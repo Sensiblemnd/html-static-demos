@@ -20,7 +20,7 @@
     --color-text-muted: var(--gray-47);
     --color-on-block: var(--gray-100);
 
-    /* one color per event block */
+    /* one color per event block, looked up via [data-color] below */
     --color-block-red: oklch(46.271% 0.18781 25.465);
     --color-block-green: oklch(44.46% 0.13167 147.146);
     --color-block-yellow: oklch(88.068% 0.15033 94.882);
@@ -56,15 +56,11 @@
     --size-row-min-height: 3.125rem;
     --size-block-height: 2.75rem;
 
-    /* change this one value to space rows/columns apart */
-    --grid-gap: 15px;
-    --timeline-row-gap: var(--grid-gap);
-    --timeline-column-gap: var(--grid-gap);
+    --row-gap: 15px;
+    --column-gap: 15px;
 
-    /* how see-through the event blocks are */
     --block-opacity: 65%;
 
-    /* block border thickness */
     --block-border: 1px;
   }
 }
@@ -80,7 +76,7 @@
 @layer layout {
   .timeline-scroll-container {
     inline-size: 100%;
-    overflow-x: auto; /* scrolls sideways instead of squishing the columns */
+    overflow-x: auto;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-m);
     background: var(--color-surface);
@@ -98,30 +94,9 @@
     ); /* stops columns getting too skinny to read */
     padding: var(--space-m);
     grid-auto-rows: minmax(var(--size-row-min-height), auto);
-    row-gap: var(--timeline-row-gap);
-    column-gap: var(--timeline-column-gap);
+    row-gap: var(--row-gap);
+    column-gap: var(--column-gap);
     position: relative;
-
-    /* everything below figures out where to draw the thin lines between
-       columns, however big or small the gap is set to */
-    --column-width: calc(
-      (100% - (var(--size-timeline-columns) - 1) * var(--timeline-column-gap)) /
-        var(--size-timeline-columns)
-    );
-    --half-gap: calc(var(--timeline-column-gap) / 2);
-
-    --line-end: min(
-      calc(var(--column-width) + var(--half-gap) + 0.5px),
-      calc(var(--column-width) + var(--timeline-column-gap))
-    );
-    --line-start: calc(var(--line-end) - 1px);
-    --column-divider: repeating-linear-gradient(
-      to right,
-      transparent 0 var(--line-start),
-      var(--color-border) var(--line-start) var(--line-end),
-      transparent var(--line-end)
-        calc(var(--column-width) + var(--timeline-column-gap))
-    );
   }
 }
 
@@ -134,10 +109,10 @@
     border-block-end: 2px solid var(--color-border);
     border-inline: 1px solid var(--color-border);
     margin-block-end: var(--space-xs);
-    background-image: var(--column-divider);
   }
 
   .header-row {
+    position: relative;
     display: grid;
     place-content: center;
     font-weight: bold;
@@ -147,23 +122,58 @@
     white-space: nowrap;
   }
 
-  /* sits behind the blocks, just here to draw the column lines */
+  .header-row:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: calc(100% + var(--column-gap) / 2 - 0.5px);
+    inline-size: 1px;
+    background: var(--color-border);
+  }
+
   .row-background {
     grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
     block-size: 100%;
     pointer-events: none;
     z-index: var(--z-row-background);
     border-inline: 1px solid var(--color-border);
-    background-image: var(--column-divider);
+  }
+  .row-cells {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    column-gap: var(--column-gap);
+    grid-template-columns: subgrid;
+  }
+  .row-data {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    column-gap: var(--column-gap);
+    grid-template-columns: subgrid;
   }
 
-  /* the colored event chips */
+  .row-cell {
+    position: relative;
+  }
+
+  .row-cell:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: calc(100% + var(--column-gap) / 2 - 0.5px);
+    inline-size: 1px;
+    background: var(--color-border);
+  }
+
   .block {
+    grid-column-start: var(--col-start, 1);
+    grid-column-end: var(--col-end, 2);
     color: var(--color-on-block);
     text-align: center;
-    line-height: calc(
-      var(--size-block-height) - 2px
-    ); /* centers the text without flex breaking the "..." truncation */
+    line-height: calc(var(--size-block-height) - 2px);
     font-weight: bold;
     font-size: 0.85rem;
     border-radius: var(--radius-s);
@@ -184,56 +194,33 @@
     contain: layout style;
   }
 
-  .row-2 {
-    grid-row: 2;
+  /* fixed color palette: data-color picks which token feeds --block-color */
+  [data-color="red"] {
+    --block-color: var(--color-block-red);
   }
-  .row-3 {
-    grid-row: 3;
-  }
-  .row-4 {
-    grid-row: 4;
-  }
-
-  /* row 2 */
-  .r2-b1 {
-    grid-column: 1 / 3;
-    --block-color: var(--color-block-red); /* feeds the .block rule's background/border above */
-  }
-  .r2-b2 {
-    grid-column: 3 / 4;
+  [data-color="green"] {
     --block-color: var(--color-block-green);
   }
-  .r2-b3 {
-    grid-column: 4 / 8;
+  [data-color="yellow"] {
     --block-color: var(--color-block-yellow);
-    color: var(--color-on-block-yellow);
+    color: var(--color-on-block-yellow); /* yellow's too light for white text */
   }
-  .r2-b4 {
-    grid-column: 8 / 21;
+  [data-color="navy"] {
     --block-color: var(--color-block-navy);
   }
-
-  /* row 3 */
-  .r3-b1 {
-    grid-column: 1 / 6;
+  [data-color="purple"] {
     --block-color: var(--color-block-purple);
   }
-  .r3-b2 {
-    grid-column: 6 / 12;
+  [data-color="blue"] {
     --block-color: var(--color-block-blue);
   }
-  .r3-b3 {
-    grid-column: 15 / 20;
+  [data-color="orange"] {
     --block-color: var(--color-block-orange);
   }
-
-  /* row 4 */
-  .r4-b1 {
-    grid-column: 2 / 10;
+  [data-color="teal"] {
     --block-color: var(--color-block-teal);
   }
-  .r4-b2 {
-    grid-column: 10 / 18;
+  [data-color="sky"] {
     --block-color: var(--color-block-sky);
   }
 }

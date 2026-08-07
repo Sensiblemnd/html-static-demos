@@ -1,20 +1,13 @@
-@layer reset, tokens, base, layout, components;
-
-@layer reset {
-  * {
-    box-sizing: border-box;
-  }
-}
+@layer tokens, layout, components;
 
 @layer tokens {
-  :root {
+  .timeline-scroll-container {
     /* base colors */
     --gray-97: oklch(97% 0.01 255);
     --gray-90: oklch(90% 0.01 255);
     --gray-47: oklch(47% 0 0);
     --gray-100: oklch(100% 0 0);
 
-    --color-page-bg: var(--gray-97);
     --color-surface: var(--gray-100);
     --color-border: var(--gray-90);
     --color-text-muted: var(--gray-47);
@@ -51,6 +44,7 @@
     --z-row-background: 1;
     --z-block: 2;
 
+    /* fallback only — TimelineGrid sets this inline per instance */
     --size-timeline-columns: 20;
     --size-timeline-min-width: 75rem;
     --size-row-min-height: 3.125rem;
@@ -62,14 +56,6 @@
     --block-opacity: 65%;
 
     --block-border: 1px;
-  }
-}
-
-@layer base {
-  body {
-    font-family: system-ui, sans-serif;
-    padding: var(--space-m);
-    background: var(--color-page-bg);
   }
 }
 
@@ -88,7 +74,7 @@
     grid-template-columns: repeat(
       var(--size-timeline-columns),
       1fr
-    ); /* 20 half-hour slots */
+    ); /* one track per timeline slot */
     min-inline-size: var(
       --size-timeline-min-width
     ); /* stops columns getting too skinny to read */
@@ -132,7 +118,6 @@
   }
 
   .row-background {
-    grid-row: var(--row, 2);
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: subgrid;
@@ -170,10 +155,8 @@
   }
 
   .block {
-    grid-row: var(--row, 2);
     grid-column-start: var(--col-start, 1);
     grid-column-end: var(--col-end, 2);
-
     color: var(--color-on-block);
     text-align: center;
     line-height: calc(var(--size-block-height) - 2px);
