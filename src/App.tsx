@@ -31,7 +31,8 @@ const eventRecords: EventRecord[][] = [
   [
     // Overlap test case: r4-2 starts an hour before r4-1 ends.
     { id: "r4-1", label: "9-11", start: `${DAY}T09:00`, end: `${DAY}T11:00`, color: "red" },
-    { id: "r4-2", label: "10-12 (overlap)", start: `${DAY}T10:00`, end: `${DAY}T12:00`, color: "purple" },
+    { id: "r4-2", label: "11-12", start: `${DAY}T11:00`, end: `${DAY}T12:00`, color: "blue" },
+    { id: "r4-3", label: "10-3:00 (overlap)", start: `${DAY}T10:00`, end: `${DAY}T15:00`, color: "purple" },
   ],
 ];
 
