@@ -10,23 +10,18 @@ interface TimelineGridProps {
 }
 
 const colorClasses: Record<BlockColor, string> = {
-  red: " bg-red-600 bg-opacity-75 border border-red-700 text-white",
+  red: "bg-red-600 bg-opacity-75 border border-red-700 text-white",
   green: "bg-green-600 bg-opacity-75 border border-green-700 text-white",
   yellow:
-    "bg-yellow-400 bg-opacity-80 border border-yellow-500 text-yellow-900",
-  navy: "bg-navy bg-opacity-80 border border-navy text-white",
+    "bg-yellow-400 bg-opacity-75 border border-yellow-500 text-yellow-900",
+  navy: "bg-navy bg-opacity-75 border border-navy text-white",
   purple: "bg-purple-600 bg-opacity-75 border border-purple-700 text-white",
   blue: "bg-blue-600 bg-opacity-75 border border-blue-700 text-white",
   orange: "bg-orange-500 bg-opacity-75 border border-orange-600 text-white",
   teal: "bg-teal-600 bg-opacity-75 border border-teal-700 text-white",
   sky: "bg-sky bg-opacity-75 border border-sky text-white",
 };
-/**
- *
- * @param param0
- * @returns
- *
- */
+
 export function TimelineGrid({
   startTime,
   endTime,
@@ -51,7 +46,9 @@ export function TimelineGrid({
             <div
               key={slot.start.getTime()}
               style={{ gridColumn: `${i + 1} / ${i + 2}` }}
-              className="whitespace-nowrap text-center text-xs font-bold text-gray-500"
+              className={`whitespace-no-wrap text-center text-xs font-bold text-gray-500 ${
+                i < slots.length - 1 ? "border-r border-gray-200" : ""
+              }`}
             >
               {formatTime(slot.start)}
             </div>
@@ -62,7 +59,7 @@ export function TimelineGrid({
           {rows.map((row, rowIndex) => (
             <div
               key={rowIndex}
-              className="relative grid gap-x-4"
+              className="relative grid h-12 gap-x-4"
               style={{ gridTemplateColumns }}
             >
               {slots.map((slot, i) => (
@@ -74,8 +71,8 @@ export function TimelineGrid({
                   }}
                   className={
                     i < slots.length - 1
-                      ? "h-14 border-r border-gray-600"
-                      : "h-14"
+                      ? "h-full border-r border-gray-200"
+                      : "h-full"
                   }
                 />
               ))}
@@ -93,7 +90,7 @@ export function TimelineGrid({
                       gridColumn: `${colStart} / ${colEnd}`,
                       gridRow: "1 / 2",
                     }}
-                    className={`relative z-10 flex h-11 items-center justify-center overflow-hidden whitespace-nowrap rounded-md px-1 text-xs font-bold shadow ${colorClasses[event.color]}`}
+                    className={`relative z-10 my-1 flex items-center justify-center overflow-hidden whitespace-no-wrap rounded-md px-1 text-xs font-bold shadow ${colorClasses[event.color]}`}
                   >
                     {event.label}
                   </div>
