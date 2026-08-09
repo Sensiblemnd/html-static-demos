@@ -1,3 +1,4 @@
 node_modules/
 dist/
 .playwright-mcp/
+src-tailwind/tailwind.generated.css
