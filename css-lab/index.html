@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Constraint Lab</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+<header>
+  <h1>CSS Constraint Lab</h1>
+  <p>Standalone HTML/CSS demos exploring conditional layout, container-aware design, and the Flexbox Holy Albatross idea. Open any demo below, then drag its dashed box (or its corner, or the toggle, depending on the demo) to see the constraint fire. See <a href="docs/">docs/</a> for notes on the two source articles.</p>
+</header>
+
+<main class="index-grid">
+  <a class="demo-card-link" href="01-conditional-everything/index.html">
+    <span class="demo-num">01</span>
+    <strong>Conditional Everything</strong>
+    <span class="demo-desc">A component changes padding, radius, and gap when its container crosses a width threshold, without viewport breakpoints.</span>
+  </a>
+  <a class="demo-card-link" href="02-css-state-machine/index.html">
+    <span class="demo-num">02</span>
+    <strong>CSS State Machine</strong>
+    <span class="demo-desc">A component moves through compact, comfortable, and spacious states using its own container width.</span>
+  </a>
+  <a class="demo-card-link" href="03-responsive-personality-card/index.html">
+    <span class="demo-num">03</span>
+    <strong>Responsive Personality Card</strong>
+    <span class="demo-desc">The same card changes from a tiny alert to a richer information card as its container grows.</span>
+  </a>
+  <a class="demo-card-link" href="04-conditional-shadow/index.html">
+    <span class="demo-num">04</span>
+    <strong>Conditional Shadow</strong>
+    <span class="demo-desc">A card gets a floating shadow when it has room, then becomes visually flush as its container gets narrow.</span>
+  </a>
+  <a class="demo-card-link" href="05-app-shell/index.html">
+    <span class="demo-num">05</span>
+    <strong>Breakpointless App Shell</strong>
+    <span class="demo-desc">A shell switches between sidebar and stacked navigation based on its available container space.</span>
+  </a>
+  <a class="demo-card-link" href="06-breakpointless-navigation/index.html">
+    <span class="demo-num">06</span>
+    <strong>Breakpointless Navigation</strong>
+    <span class="demo-desc">Navigation progressively folds secondary links into a native popover menu, anchored under the hamburger with zero JavaScript.</span>
+  </a>
+  <a class="demo-card-link" href="07-no-orphan-layout/index.html">
+    <span class="demo-num">07</span>
+    <strong>No-Orphan Layout</strong>
+    <span class="demo-desc">Flex items wrap around their minimum viable width, avoiding tiny orphaned columns.</span>
+  </a>
+  <a class="demo-card-link" href="08-conditional-typography/index.html">
+    <span class="demo-num">08</span>
+    <strong>Conditional Typography</strong>
+    <span class="demo-desc">A heading scales within its component and switches to a compact treatment when space becomes tight.</span>
+  </a>
+  <a class="demo-card-link" href="09-conditional-ui-density/index.html">
+    <span class="demo-num">09</span>
+    <strong>Conditional UI Density</strong>
+    <span class="demo-desc">A data view removes secondary columns as its container gets smaller, preserving the most useful information.</span>
+  </a>
+  <a class="demo-card-link" href="10-overflow-pressure/index.html">
+    <span class="demo-num">10</span>
+    <strong>Overflow Pressure</strong>
+    <span class="demo-desc">Padding and gaps shrink continuously as the container narrows, down to a floor. No layout switch, just continuous scaling.</span>
+  </a>
+  <a class="demo-card-link" href="11-edge-aware-card/index.html">
+    <span class="demo-num">11</span>
+    <strong>Edge-Aware Component</strong>
+    <span class="demo-desc">A component changes its radius and shadow when its container becomes too narrow, creating a flush edge-to-edge treatment.</span>
+  </a>
+  <a class="demo-card-link" href="12-self-organizing-dashboard/index.html">
+    <span class="demo-num">12</span>
+    <strong>Self-Organizing Dashboard</strong>
+    <span class="demo-desc">Cards use a minimum viable width so the grid reorganizes itself instead of relying on device-specific breakpoints.</span>
+  </a>
+  <a class="demo-card-link" href="13-css-constraint-programming/index.html">
+    <span class="demo-num">13</span>
+    <strong>Gradual Shrink, Sudden Stack</strong>
+    <span class="demo-desc">Two independent rules watch the same box: padding, gaps, and corners shrink smoothly the whole time, while the grid separately snaps from three columns to one once space runs out.</span>
+  </a>
+  <a class="demo-card-link" href="14-zero-query-radius-snap/index.html">
+    <span class="demo-num">14</span>
+    <strong>Zero-Query Radius Snap</strong>
+    <span class="demo-desc">A pure calc()/clamp() trick, not a container query: the card's radius snaps to 0 the instant it's edge-to-edge with the real viewport.</span>
+  </a>
+  <a class="demo-card-link" href="15-true-holy-albatross/index.html">
+    <span class="demo-num">15</span>
+    <strong>The Holy Albatross</strong>
+    <span class="demo-desc">Heydon Pickering's original trick: three items flip straight from a row to a stacked column, skipping the awkward two-plus-one orphan state.</span>
+  </a>
+  <a class="demo-card-link" href="16-container-scoped-albatross/index.html">
+    <span class="demo-num">16</span>
+    <strong>Container-Scoped Albatross</strong>
+    <span class="demo-desc">A mashup of both articles: one calc()-derived switch flips layout, radius, and gap together, with zero @container rules.</span>
+  </a>
+  <a class="demo-card-link" href="17-chained-albatross/index.html">
+    <span class="demo-num">17</span>
+    <strong>Chained Albatross</strong>
+    <span class="demo-desc">Two calc() switches chained together: row, to 2-column grid, to fully stacked. Three states from pure math.</span>
+  </a>
+  <a class="demo-card-link" href="18-container-style-queries/index.html">
+    <span class="demo-num">18</span>
+    <strong>Container Style Queries</strong>
+    <span class="demo-desc">A container queries a custom property's value instead of its size. Click the toggle to flip @container style(--variant: accent).</span>
+  </a>
+  <a class="demo-card-link" href="19-shape-aware-container/index.html">
+    <span class="demo-num">19</span>
+    <strong>Shape-Aware Container</strong>
+    <span class="demo-desc">This card reacts to its own aspect ratio, not just its width, flipping layout via @container (aspect-ratio &lt; 1).</span>
+  </a>
+  <a class="demo-card-link" href="20-animatable-constraint-switch/index.html">
+    <span class="demo-num">20</span>
+    <strong>Animatable Constraint Switch</strong>
+    <span class="demo-desc">The same binary switch as demo 16, but registered via @property so it eases smoothly instead of snapping instantly.</span>
+  </a>
+  <a class="demo-card-link" href="21-integer-grid-steps/index.html">
+    <span class="demo-num">21</span>
+    <strong>Integer Grid Steps</strong>
+    <span class="demo-desc">round() computes exactly how many fixed-width columns fit in the container and floors it to a whole number.</span>
+  </a>
+  <a class="demo-card-link" href="22-aspect-ratio-gallery/index.html">
+    <span class="demo-num">22</span>
+    <strong>Aspect-Ratio Gallery</strong>
+    <span class="demo-desc">Four containers, four ways to react to shape: a compound range, orientation, prefixed min-aspect-ratio, and a single-sided range.</span>
+  </a>
+  <a class="demo-card-link" href="23-shape-morphing-child/index.html">
+    <span class="demo-num">23</span>
+    <strong>Shape-Morphing Child</strong>
+    <span class="demo-desc">One element whose own shape is driven entirely by its container's aspect ratio: circle, square, or rectangle, no JavaScript.</span>
+  </a>
+</main>
+</body>
+</html>

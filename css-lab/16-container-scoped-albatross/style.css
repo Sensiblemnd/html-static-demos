@@ -1,0 +1,38 @@
+@layer layout {
+  .stage {
+    --stage-max: 750px;
+  }
+}
+
+@layer components {
+  .panel {
+    --bp: 30rem;
+    /* same 0px/1px binary-snap trick as the other demos, but compared against 100cqi
+       (the container's own width) instead of 100vw, so it reacts to the .stage box, not the viewport */
+    --switch: clamp(0px, (var(--bp) - 100cqi) * 999, 1px);
+    /* strip the unit: 1 below the breakpoint (narrow/stacked), 0 above it (wide/side-by-side) */
+    --flip: calc(var(--switch) / 1px);
+    display: flex;
+    flex-wrap: wrap;
+    /* (1 - flip) inverts the switch: gap/radius are "on" only in the wide state */
+    gap: calc((1 - var(--flip)) * 1.5rem);
+    border-radius: calc((1 - var(--flip)) * 1rem);
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .panel > .side,
+  .panel > .content {
+    flex-grow: 1;
+    /* flip=0 (wide): basis 0%, items sit side by side; flip=1 (narrow): basis 999%, each item
+       overflows the row on its own and wraps to full width, i.e. stacks */
+    flex-basis: calc(var(--flip) * 999%);
+    padding: 1.5rem;
+  }
+
+  .panel > .side {
+    background: var(--color-surface-2);
+  }
+}

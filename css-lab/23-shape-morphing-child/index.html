@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shape-Morphing Child</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Shape-Morphing Child</h1>
+  <p>One element, no JavaScript: its own geometry is driven entirely by its container's aspect ratio. Drag the stage's corner: near a 1:1 ratio it rounds into a circle, the middle bands settle as a square, and past a 3:5 or 5:3 ratio it stretches into a rectangle.</p>
+</header>
+<div class="shape-stage" style="--stage-max: 460px; --stage-block: 300px;">
+  <div class="morph-wrap">
+    <div class="morph-shape" aria-hidden="true"></div>
+    <p class="morph-label" aria-hidden="true"></p>
+  </div>
+</div>
+</body>
+</html>

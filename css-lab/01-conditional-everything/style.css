@@ -1,0 +1,30 @@
+@layer layout {
+  .stage {
+    --stage-max: 700px;
+  }
+}
+
+@layer components {
+  .demo-card {
+    /* (container - 30rem) is negative when narrow, positive when wide; *1000 forces clamp()
+       to saturate at exactly 0px or 1px rather than easing through the middle */
+    --switch: clamp(0px, (100cqi - 30rem) * 1000, 1px);
+    /* dividing by 1px turns the 0px/1px snap into a plain 0/1 number so it can scale other properties below */
+    --wide: calc(var(--switch) / 1px);
+    display: grid;
+    /* each clamp() ranges from its narrow value to its wide value; --wide picks the endpoint, 0 or 1 */
+    gap: clamp(.5rem, calc(.5rem + var(--wide) * .5rem), 1rem);
+    padding: clamp(1rem, calc(1rem + var(--wide) * 1rem), 2rem);
+    border-radius: clamp(.5rem, calc(.5rem + var(--wide) * 1rem), 1.5rem);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .demo-card strong {
+    font-size: 1.25rem;
+  }
+
+  .demo-card small {
+    color: var(--color-muted);
+  }
+}

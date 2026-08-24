@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animatable Constraint Switch</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Animatable Constraint Switch</h1>
+  <p>Same binary switch as Container-Scoped Albatross, but this time --flip is registered with @property as a real &lt;number&gt;. That makes it animatable — instead of jumping instantly at the threshold, the layout eases smoothly across it.</p>
+</header>
+<div class="stage">
+  <div class="panel">
+    <div class="side">Nav</div>
+    <div class="content">Same formula as demo 16 — registering --flip via @property is what makes this one glide instead of snap.</div>
+  </div>
+</div>
+</body>
+</html>

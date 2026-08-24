@@ -1,0 +1,23 @@
+@layer layout {
+  .stage {
+    --stage-max: 850px;
+  }
+}
+
+@layer components {
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+    gap: 1rem;
+  }
+
+  .dashboard article {
+    min-block-size: 8rem;
+    display: grid;
+    place-items: center;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: .75rem;
+  }
+}

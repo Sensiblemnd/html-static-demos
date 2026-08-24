@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gradual Shrink, Sudden Stack</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Gradual Shrink, Sudden Stack</h1>
+  <p>Two independent rules watch the same box. The padding, the gap between cards, and how rounded their corners are all shrink smoothly the whole time you resize. Separately, once the container gets narrow enough, the three-column grid snaps to a single stacked column. Neither rule knows about the other, they just react to the same container.</p>
+</header>
+<div class="stage">
+  <div class="engine">
+    <div class="rule"><b>Constraint</b><span>Enough room?</span></div>
+    <div class="rule"><b>Response</b><span>Resize me</span></div>
+    <div class="rule"><b>Result</b><span>Layout adapts</span></div>
+  </div>
+</div>
+</body>
+</html>

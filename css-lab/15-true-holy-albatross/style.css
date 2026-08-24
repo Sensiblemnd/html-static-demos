@@ -1,0 +1,36 @@
+@layer layout {
+  .stage {
+    --stage-max: 700px;
+  }
+}
+
+@layer components {
+  .albatross {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    /* 100% here resolves against this flex container's own width, no @container needed;
+       negative above 34rem (row fits), positive below it (row doesn't fit) */
+    --multiplier: calc(34rem - 100%);
+  }
+
+  .albatross > div {
+    /* the three items' min-widths must leave room for the two 1rem gaps between them,
+       or the browser can't fit all three on one line and wraps the last one alone */
+    min-inline-size: calc((100% - 2rem) / 3);
+    max-inline-size: 100%;
+    flex-grow: 1;
+    /* *999 turns a small negative/positive multiplier into a huge one; flex-basis then gets
+       clamped by min/max-inline-size above, so items snap to ~33% (row) or 100% (stacked)
+       with nothing in between */
+    flex-basis: calc(var(--multiplier) * 999);
+    padding: 1.5rem;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: .75rem;
+  }
+}

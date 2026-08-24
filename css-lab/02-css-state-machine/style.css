@@ -1,0 +1,37 @@
+@layer layout {
+  .stage {
+    --stage-max: 650px;
+  }
+}
+
+@layer components {
+  .state {
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .state span {
+    display: none;
+    margin-inline-start: .5rem;
+    padding-block: .25rem;
+    padding-inline: .5rem;
+    border-radius: 999px;
+    background: var(--color-surface-2);
+    color: var(--color-text);
+    font-size: .75rem;
+    border: 1px solid transparent;
+  }
+
+  @container (width < 300px) {
+    .state span.compact { display: inline-block; }
+  }
+
+  @container (300px <= width < 500px) {
+    .state span.comfortable { display: inline-block; }
+  }
+
+  @container (width >= 500px) {
+    .state span.spacious { display: inline-block; }
+  }
+}

@@ -1,0 +1,48 @@
+@layer layout {
+  .stage {
+    --stage-max: 700px;
+    /* both axes need to be draggable so the container's aspect-ratio can actually change */
+    resize: both;
+    /* aspect-ratio queries need both axes contained, unlike every other demo's inline-size-only container */
+    container-type: size;
+    block-size: min(60vh, 420px);
+    min-block-size: 160px;
+  }
+}
+
+@layer components {
+  .shape-card {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    block-size: 100%;
+    padding: 1.5rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .art {
+    flex: 1 1 40%;
+    border-radius: .75rem;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-surface-2));
+  }
+
+  .copy {
+    flex: 1 1 60%;
+    display: grid;
+    align-content: center;
+    gap: .5rem;
+  }
+
+  .copy p {
+    color: var(--color-muted);
+  }
+
+  @container (aspect-ratio < 1) {
+    .shape-card { flex-direction: column; }
+    .art { flex-basis: 40%; }
+  }
+}

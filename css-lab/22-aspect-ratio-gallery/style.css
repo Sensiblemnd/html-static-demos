@@ -1,0 +1,182 @@
+@layer layout {
+  .shape-stage {
+    /* aspect-ratio and orientation queries need both axes contained, unlike the inline-size-only .stage every non-shape demo uses */
+    container-type: size;
+    resize: both;
+    overflow: auto;
+    inline-size: min(90vw, var(--stage-max, 480px));
+    min-inline-size: var(--stage-min, 160px);
+    block-size: var(--stage-block, 280px);
+    min-block-size: 140px;
+    margin-block: 1.5rem;
+    margin-inline: auto;
+    padding: 1rem;
+    border: 2px dashed var(--stage-border);
+    background: var(--stage-bg);
+  }
+
+  .stage-heading {
+    max-inline-size: 480px;
+    margin-inline: auto;
+    margin-block: 2.5rem 0;
+  }
+
+  .stage-heading h2 {
+    margin-block-end: .25rem;
+    font-size: 1.05rem;
+  }
+
+  .stage-heading p {
+    margin-block: 0;
+    color: var(--color-muted);
+    font-size: .875rem;
+  }
+}
+
+@layer components {
+  /* ---------- 1. tri-state card: wide / square / tall get three genuinely different layouts ---------- */
+  .tri-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    block-size: 100%;
+    padding: 1.25rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .tri-card .art {
+    flex: 0 0 40%;
+    block-size: 100%;
+    border-radius: .75rem;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-surface-2));
+  }
+
+  .tri-card .copy {
+    display: grid;
+    gap: .35rem;
+  }
+
+  .tri-card .copy p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  /* the square band isn't reachable by the other two rules, so it needs its own two-sided range */
+  @container (aspect-ratio > 4/5) and (aspect-ratio < 5/4) {
+    .tri-card {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .tri-card .art {
+      flex-basis: auto;
+      inline-size: 4rem;
+      block-size: 4rem;
+      border-radius: 50%;
+    }
+  }
+
+  @container (aspect-ratio <= 4/5) {
+    .tri-card {
+      flex-direction: column;
+    }
+
+    .tri-card .art {
+      flex: 0 0 45%;
+      inline-size: 100%;
+    }
+  }
+
+  /* ---------- 2. icon cluster: orientation keyword instead of a numeric comparison ---------- */
+  .icon-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    block-size: 100%;
+    padding: 1.25rem;
+  }
+
+  .icon-cluster .chip {
+    display: grid;
+    place-items: center;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    border-radius: 50%;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    font-size: .8rem;
+  }
+
+  @container (orientation: portrait) {
+    .icon-cluster {
+      flex-direction: column;
+    }
+  }
+
+  /* ---------- 3. stat panel: the sparkline is decorative and unreadable below a certain width, so its visibility is a shape decision, not a breakpoint ---------- */
+  .stat-panel {
+    display: grid;
+    align-content: center;
+    gap: .5rem;
+    block-size: 100%;
+    padding: 1.25rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+  }
+
+  .stat-panel .headline {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .stat-panel .sparkline {
+    display: none;
+    inline-size: 100%;
+    block-size: 2.5rem;
+  }
+
+  .stat-panel .sparkline path {
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-width: 2;
+  }
+
+  /* min-aspect-ratio is the older prefixed media-feature syntax, still valid — equivalent to (aspect-ratio >= 3/2) used elsewhere in this file */
+  @container (min-aspect-ratio: 3/2) {
+    .stat-panel .sparkline {
+      display: block;
+    }
+  }
+
+  /* ---------- 4. media block: caption overlays the art only when there's enough width that it won't obscure it ---------- */
+  .media-block {
+    position: relative;
+    block-size: 100%;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: linear-gradient(160deg, var(--color-surface-2), var(--color-surface));
+  }
+
+  .media-block .caption {
+    margin: 0;
+    padding: 1rem;
+    color: var(--color-muted);
+  }
+
+  @container (aspect-ratio >= 4/3) {
+    .media-block .caption {
+      position: absolute;
+      inset-block-end: 0;
+      inset-inline: 0;
+      color: var(--color-text);
+      background: linear-gradient(transparent, rgb(0 0 0 / 70%));
+    }
+  }
+}

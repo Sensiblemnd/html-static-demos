@@ -1,0 +1,89 @@
+@layer reset, tokens, base, layout, components, utilities, overrides;
+
+@layer tokens {
+  :root {
+    color-scheme: dark;
+    --color-bg: #0b0d10;
+    --color-surface: #151922;
+    --color-surface-2: #1c212c;
+    --color-text: #f1f3f5;
+    --color-muted: #9aa4b2;
+    --color-border: #303846;
+    --color-accent: #34d399;
+    --stage-bg: #0f1218;
+    --stage-border: #3a4352;
+    --shadow-color: rgb(0 0 0 / 13%);
+  }
+}
+
+@layer reset {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font: 16px system-ui, sans-serif;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  header {
+    max-inline-size: 900px;
+    margin-block: 2rem 0;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  header h1 {
+    margin-block-end: .25rem;
+  }
+
+  header p {
+    max-inline-size: 70ch;
+    color: var(--color-muted);
+    margin-block-start: 0;
+  }
+
+  :is(h1, h2, h3) {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button {
+    background: var(--color-surface-2);
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+
+  :where(a, button, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+  }
+}
+
+@layer layout {
+  .stage {
+    container-type: inline-size;
+    /* physical: the drag handle a browser paints for `resize` always sits at the
+       physical bottom-right corner regardless of writing mode */
+    resize: horizontal;
+    overflow: auto;
+    inline-size: min(90vw, var(--stage-max, 700px));
+    min-inline-size: var(--stage-min, 220px);
+    margin-block: 3rem;
+    margin-inline: auto;
+    padding: 1rem;
+    border: 2px dashed var(--stage-border);
+    background: var(--stage-bg);
+  }
+}

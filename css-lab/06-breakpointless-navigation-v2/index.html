@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breakpointless Navigation v2</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Breakpointless Navigation, Counted</h1>
+  <p>Same popover menu as v1, but nothing is tagged with a tier class. Which items hide is decided purely by position: a plain wrapper + :nth-last-child() does the hiding, no tier1/tier2 markers anywhere.</p>
+</header>
+<div class="stage">
+  <nav class="nav">
+    <b>Brand</b>
+    <a>Home</a>
+    <div class="nav-items">
+      <a>Products</a>
+      <a>Pricing</a>
+      <button>Sign in</button>
+      <a>About</a>
+      <a>Contact</a>
+    </div>
+    <button popovertarget="nav-menu" class="more" aria-label="More links">&#9776;</button>
+  </nav>
+  <ul id="nav-menu" popover class="nav-menu">
+    <li><a>Products</a></li>
+    <li><a>Pricing</a></li>
+    <li><button>Sign in</button></li>
+    <li><a>About</a></li>
+    <li><a>Contact</a></li>
+  </ul>
+</div>
+</body>
+</html>

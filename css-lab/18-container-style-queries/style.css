@@ -1,0 +1,93 @@
+@layer layout {
+  .stage {
+    --stage-max: 650px;
+    /* this demo reacts to a custom-property VALUE, not the container's size — the drag
+       handle every other demo relies on would be a dead, misleading affordance here */
+    resize: none;
+  }
+}
+
+@layer components {
+  .toggle-input {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .toggle-label {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    margin-block-end: 1rem;
+    padding-block: .5rem;
+    padding-inline: .9rem;
+    border-radius: 999px;
+    background: var(--color-surface-2);
+    color: var(--color-text);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .toggle-label::before {
+    content: "";
+    inline-size: .9rem;
+    block-size: .9rem;
+    border-radius: 50%;
+    background: var(--color-border);
+  }
+
+  .toggle-input:checked ~ .toggle-label::before {
+    background: var(--color-accent);
+  }
+
+  /* the real checkbox is visually hidden, so its focus ring has to be forwarded to the label */
+  .toggle-input:focus-visible ~ .toggle-label {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+  }
+
+  .panel {
+    /* container-type isn't required for style queries (only size queries need containment) —
+       set explicitly anyway so the query container is unambiguous */
+    container-type: normal;
+    container-name: panel;
+    --variant: default;
+    padding: 2rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+  }
+
+  .toggle-input:checked ~ .panel {
+    --variant: accent;
+  }
+
+  .badge {
+    display: inline-block;
+    padding-block: .35rem;
+    padding-inline: .75rem;
+    border-radius: .35rem;
+    background: var(--color-surface-2);
+    border: 1px solid transparent;
+    font-size: .85rem;
+  }
+
+  .panel p {
+    color: var(--color-muted);
+    margin-block-start: 1rem;
+  }
+
+  /* queries the container's --variant VALUE, not its width — a completely different axis
+     from every @container rule elsewhere in this lab */
+  @container panel style(--variant: accent) {
+    .badge {
+      background: var(--color-accent);
+      color: var(--color-bg);
+      border-radius: 999px;
+    }
+  }
+}

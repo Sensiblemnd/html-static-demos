@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zero-Query Radius Snap</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Zero-Query Radius Snap</h1>
+  <p>A pure calc()/clamp() trick, not a container query: this card's radius snaps to 0 the instant it becomes edge-to-edge with the real browser viewport. Resize your actual browser window (not a dashed box) — watch it snap near 700px wide.</p>
+</header>
+<div class="bleed-card">
+  <span>Full-bleed detector</span>
+  <strong>My radius reacts to real viewport width</strong>
+  <small>border-radius: clamp(0px, (100vw - 100%) * 9999, 1rem)</small>
+</div>
+</body>
+</html>

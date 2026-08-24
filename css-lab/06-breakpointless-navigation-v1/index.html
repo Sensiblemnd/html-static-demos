@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Breakpointless Navigation v1</title>
+  <link rel="stylesheet" href="../_shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Breakpointless Navigation</h1>
+    <p>Navigation progressively folds secondary links into a native popover menu (the hamburger icon) as available space
+      decreases. Click it to reach anything that's been hidden, no JavaScript involved.</p>
+  </header>
+  <div class="stage">
+    <nav class="nav">
+      <b>Brand</b>
+      <a>Home</a>
+      <a class="overflow-item overflow-item--tier2">Products</a>
+      <a class="overflow-item overflow-item--tier2">Pricing</a>
+      <a class="overflow-item overflow-item--tier1">About</a>
+      <a class="overflow-item overflow-item--tier1">Contact</a>
+      <button class="overflow-item overflow-item--tier2">Sign in</button>
+      <button popovertarget="nav-menu" class="more" aria-label="More links">&#9776;</button>
+    </nav>
+    <ul id="nav-menu" popover class="nav-menu">
+      <li class="menu-item menu-item--tier1"><a>About</a></li>
+      <li class="menu-item menu-item--tier1"><a>Contact</a></li>
+      <li class="menu-item menu-item--tier2"><a>Products</a></li>
+      <li class="menu-item menu-item--tier2"><a>Pricing</a></li>
+      <li class="menu-item menu-item--tier2"><button>Sign in</button></li>
+    </ul>
+  </div>
+</body>
+
+</html>

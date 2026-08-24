@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aspect-Ratio Gallery</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Aspect-Ratio Gallery</h1>
+  <p>Four containers, four ways to react to shape instead of width. Each stage below resizes independently &mdash; drag its corner and watch what triggers: a compound range, the <code>orientation</code> keyword, the older prefixed <code>min-aspect-ratio</code> syntax, and a single-sided range.</p>
+</header>
+
+<section>
+  <div class="stage-heading">
+    <h2>1. Tri-state card</h2>
+    <p>Wide gets a side-by-side layout, square gets a centered circular avatar, tall stacks a full-width image on top. The square band uses a compound query: <code>(aspect-ratio &gt; 4/5) and (aspect-ratio &lt; 5/4)</code>.</p>
+  </div>
+  <div class="shape-stage" style="--stage-max: 480px; --stage-block: 260px;">
+    <div class="tri-card">
+      <div class="art" aria-hidden="true"></div>
+      <div class="copy">
+        <strong>Shape-driven card</strong>
+        <p>Layout rotates through three distinct states, not just two.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="stage-heading">
+    <h2>2. Icon cluster</h2>
+    <p>Reflows to a column in a portrait container using the <code>orientation</code> keyword &mdash; the readable alternative to writing out <code>aspect-ratio &lt; 1</code>.</p>
+  </div>
+  <div class="shape-stage" style="--stage-max: 360px; --stage-block: 220px;">
+    <div class="icon-cluster">
+      <span class="chip">A</span>
+      <span class="chip">B</span>
+      <span class="chip">C</span>
+      <span class="chip">D</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="stage-heading">
+    <h2>3. Stat panel</h2>
+    <p>The sparkline only appears once the container is wide enough relative to its height to actually be legible, via the prefixed <code>(min-aspect-ratio: 3/2)</code> syntax.</p>
+  </div>
+  <div class="shape-stage" style="--stage-max: 420px; --stage-block: 200px;">
+    <div class="stat-panel">
+      <span class="headline">4,812</span>
+      <svg class="sparkline" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 25 L15 18 L30 20 L45 8 L60 14 L75 5 L90 10 L100 2" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="stage-heading">
+    <h2>4. Media block</h2>
+    <p>The caption overlays the art in wide containers, but drops to a plain block below it once the shape is too narrow to overlay without obscuring everything: <code>(aspect-ratio &gt;= 4/3)</code>.</p>
+  </div>
+  <div class="shape-stage" style="--stage-max: 460px; --stage-block: 240px;">
+    <div class="media-block">
+      <p class="caption">Editorial-style caption placement, driven entirely by container shape.</p>
+    </div>
+  </div>
+</section>
+</body>
+</html>

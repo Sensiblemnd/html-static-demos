@@ -1,0 +1,36 @@
+@layer layout {
+  .stage {
+    --stage-max: 850px;
+    --stage-min: 260px;
+  }
+}
+
+@layer components {
+  .shell {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    min-block-size: 220px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  aside {
+    padding: 1rem;
+    border-inline-end: 1px solid var(--color-border);
+  }
+
+  main {
+    padding: 1.5rem;
+  }
+
+  nav {
+    display: none;
+  }
+
+  @container (width < 550px) {
+    .shell { grid-template-columns: 1fr; }
+    aside { display: none; }
+    nav { display: block; padding: 1rem; border-block-start: 1px solid var(--color-border); }
+  }
+}

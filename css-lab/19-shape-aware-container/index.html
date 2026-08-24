@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shape-Aware Container</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Shape-Aware Container</h1>
+  <p>This card doesn't just react to width — it reacts to its own aspect ratio. Drag the stage's corner (not just its edge) to reshape it from landscape to portrait and watch the internal layout rotate via @container (aspect-ratio &lt; 1).</p>
+</header>
+<div class="stage">
+  <div class="shape-card">
+    <div class="art" aria-hidden="true"></div>
+    <div class="copy">
+      <strong>Aspect-aware layout</strong>
+      <p>Landscape containers get a side-by-side layout; portrait containers stack.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

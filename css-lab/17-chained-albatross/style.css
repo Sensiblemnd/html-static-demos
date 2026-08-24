@@ -1,0 +1,39 @@
+@layer layout {
+  .stage {
+    --stage-max: 800px;
+  }
+}
+
+@layer components {
+  .chain {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    --wide: 46rem;
+    --narrow: 26rem;
+    /* (container - wide) is negative below the threshold and positive above it;
+       *999 blows that up so clamp() saturates to exactly 0px or 1px, never in between */
+    --is-wide-px: clamp(0px, (100cqi - var(--wide)) * 999, 1px);
+    /* dividing a length by 1px strips the unit, turning the 0px/1px switch into a plain 0/1 number usable as a multiplier */
+    --is-wide: calc(var(--is-wide-px) / 1px);
+    /* mirror of --is-wide, comparing the container against the lower threshold instead */
+    --is-narrow-px: clamp(0px, (var(--narrow) - 100cqi) * 999, 1px);
+    --is-narrow: calc(var(--is-narrow-px) / 1px);
+    /* exactly one of is-wide/is-mid/is-narrow is ever 1 at a time, so this is "neither of the other two" */
+    --is-mid: calc(1 - var(--is-wide) - var(--is-narrow));
+  }
+
+  .chain > div {
+    flex-grow: 1;
+    /* only one term survives per state (the other two switches are 0), so this picks 20%, 45%, or 100% outright */
+    flex-basis: calc(var(--is-wide) * 20% + var(--is-mid) * 45% + var(--is-narrow) * 100%);
+    padding: 1.5rem;
+    display: grid;
+    place-items: center;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: .75rem;
+    font-size: 1.5rem;
+  }
+}

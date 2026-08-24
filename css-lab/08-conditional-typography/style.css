@@ -1,0 +1,29 @@
+@layer layout {
+  .stage {
+    --stage-max: 800px;
+  }
+}
+
+@layer components {
+  article {
+    padding: 2rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  article h1 {
+    margin: 0;
+    font-size: clamp(1.4rem, 6cqi, 3.5rem);
+    line-height: 1;
+  }
+
+  article p {
+    color: var(--color-muted);
+  }
+
+  @container (width < 400px) {
+    article { padding: 1rem; }
+    article h1 { font-size: 1.6rem; }
+  }
+}

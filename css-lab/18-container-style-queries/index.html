@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Container Style Queries</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Container Style Queries</h1>
+  <p>A container can query a custom property's value instead of its size — unlike every other demo here, this box isn't resizable. Click the toggle below instead: the badge reads the container's own --variant token via @container style(), no JavaScript involved. Baseline since May 2026, so it's the newest feature in this lab.</p>
+</header>
+<div class="stage">
+  <input type="checkbox" id="variant-toggle" class="toggle-input">
+  <label for="variant-toggle" class="toggle-label">Accent variant</label>
+  <div class="panel">
+    <span class="badge">Status</span>
+    <p>This badge's shape and color come entirely from the container's --variant custom property, matched by @container style(--variant: accent).</p>
+  </div>
+</div>
+</body>
+</html>
