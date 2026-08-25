@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand Palette</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Brand Palette</h1>
+  <p>Pick one brand color and CSS derives the rest: <code>color-mix()</code> makes a light and dark shade, relative color syntax (<code>rgb(from var(--brand) r 0 0)</code>) peels apart its R/G/B channels, and <code>contrast-color()</code> recomputes readable text independently for all six swatches — no JavaScript, and no color picked by hand except the first one.</p>
+</header>
+<div class="stage">
+  <fieldset class="swatch-row">
+    <legend class="visually-hidden">Brand color</legend>
+
+    <input type="radio" name="brand" id="brand-1" class="brand-radio" checked>
+    <label for="brand-1" class="brand-swatch brand-swatch--1"><span class="visually-hidden">Light blue</span></label>
+
+    <input type="radio" name="brand" id="brand-2" class="brand-radio">
+    <label for="brand-2" class="brand-swatch brand-swatch--2"><span class="visually-hidden">Navy</span></label>
+
+    <input type="radio" name="brand" id="brand-3" class="brand-radio">
+    <label for="brand-3" class="brand-swatch brand-swatch--3"><span class="visually-hidden">Purple</span></label>
+
+    <input type="radio" name="brand" id="brand-4" class="brand-radio">
+    <label for="brand-4" class="brand-swatch brand-swatch--4"><span class="visually-hidden">Blue</span></label>
+
+    <input type="radio" name="brand" id="brand-5" class="brand-radio">
+    <label for="brand-5" class="brand-swatch brand-swatch--5"><span class="visually-hidden">Teal</span></label>
+
+    <input type="radio" name="brand" id="brand-6" class="brand-radio">
+    <label for="brand-6" class="brand-swatch brand-swatch--6"><span class="visually-hidden">Yellow</span></label>
+
+    <input type="radio" name="brand" id="brand-7" class="brand-radio">
+    <label for="brand-7" class="brand-swatch brand-swatch--7"><span class="visually-hidden">Near white</span></label>
+  </fieldset>
+
+  <div class="palette">
+    <div class="palette-swatch palette-swatch--base">
+      <span class="palette-label">Base</span>
+      <span class="palette-value hex-echo"></span>
+    </div>
+    <div class="palette-swatch palette-swatch--light">
+      <span class="palette-label">Light +30%</span>
+    </div>
+    <div class="palette-swatch palette-swatch--dark">
+      <span class="palette-label">Dark +30%</span>
+    </div>
+    <div class="palette-swatch palette-swatch--r">
+      <span class="palette-label">Red channel</span>
+    </div>
+    <div class="palette-swatch palette-swatch--g">
+      <span class="palette-label">Green channel</span>
+    </div>
+    <div class="palette-swatch palette-swatch--b">
+      <span class="palette-label">Blue channel</span>
+    </div>
+  </div>
+
+  <pre class="code-block"><code>.card {
+  --brand: <span class="hex-echo"></span>;
+  --brand-light: color-mix(in srgb, var(--brand), #fff 30%);
+  --brand-dark: color-mix(in srgb, var(--brand), #000 30%);
+  --brand-r: rgb(from var(--brand) r 0 0);
+  --brand-g: rgb(from var(--brand) 0 g 0);
+  --brand-b: rgb(from var(--brand) 0 0 b);
+}
+/* every swatch above reads its own contrast-color(var(--x)) */</code></pre>
+</div>
+</body>
+</html>

@@ -1,3 +1,11 @@
+@layer tokens {
+  :root {
+    --color-channel-r: #ef4444;
+    --color-channel-g: #22c55e;
+    --color-channel-b: #3b82f6;
+  }
+}
+
 @property --_r {
   syntax: "<number>";
   inherits: true;
@@ -31,34 +39,34 @@
 
   .range-slider--r::-webkit-slider-thumb {
     view-timeline: --_r inline;
-    background: #ef4444;
-    box-shadow: 0 0 0 1px #ef4444;
+    background: var(--color-channel-r);
+    box-shadow: 0 0 0 1px var(--color-channel-r);
   }
   .range-slider--g::-webkit-slider-thumb {
     view-timeline: --_g inline;
-    background: #22c55e;
-    box-shadow: 0 0 0 1px #22c55e;
+    background: var(--color-channel-g);
+    box-shadow: 0 0 0 1px var(--color-channel-g);
   }
   .range-slider--b::-webkit-slider-thumb {
     view-timeline: --_b inline;
-    background: #3b82f6;
-    box-shadow: 0 0 0 1px #3b82f6;
+    background: var(--color-channel-b);
+    box-shadow: 0 0 0 1px var(--color-channel-b);
   }
 
   .range-slider--r::-moz-range-thumb {
     view-timeline: --_r inline;
-    background: #ef4444;
-    box-shadow: 0 0 0 1px #ef4444;
+    background: var(--color-channel-r);
+    box-shadow: 0 0 0 1px var(--color-channel-r);
   }
   .range-slider--g::-moz-range-thumb {
     view-timeline: --_g inline;
-    background: #22c55e;
-    box-shadow: 0 0 0 1px #22c55e;
+    background: var(--color-channel-g);
+    box-shadow: 0 0 0 1px var(--color-channel-g);
   }
   .range-slider--b::-moz-range-thumb {
     view-timeline: --_b inline;
-    background: #3b82f6;
-    box-shadow: 0 0 0 1px #3b82f6;
+    background: var(--color-channel-b);
+    box-shadow: 0 0 0 1px var(--color-channel-b);
   }
 }
 

@@ -27,11 +27,11 @@
 
 @layer components {
   .blend-card {
-    --dark-bg: #151922;
+    --dark-bg: var(--color-surface);
     --light-bg: #f8fafc;
-    --dark-text: #f1f3f5;
+    --dark-text: var(--color-text);
     --light-text: #0f172a;
-    --dark-border: #303846;
+    --dark-border: var(--color-border);
     --light-border: #cbd5e1;
 
     padding: 1.5rem;
@@ -47,7 +47,7 @@
 
   .blend-card button {
     background: var(--color-accent);
-    color: #0b0d10;
+    color: var(--color-bg);
     border: none;
     border-radius: .5rem;
     padding: .5rem 1rem;

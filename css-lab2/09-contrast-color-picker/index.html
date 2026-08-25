@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contrast Color Picker</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Contrast Color Picker</h1>
+  <p>Seven radio-button swatches set a <code>--brand</code> custom property via <code>:has()</code> — no JavaScript. The preview card reads it straight into <code>contrast-color(var(--brand))</code>, which picks black or white text for you, and the label below always stays readable.</p>
+</header>
+<div class="stage">
+  <fieldset class="swatch-row">
+    <legend class="visually-hidden">Brand color</legend>
+
+    <input type="radio" name="brand" id="brand-1" class="brand-radio" checked>
+    <label for="brand-1" class="brand-swatch brand-swatch--1"><span class="visually-hidden">Light blue</span></label>
+
+    <input type="radio" name="brand" id="brand-2" class="brand-radio">
+    <label for="brand-2" class="brand-swatch brand-swatch--2"><span class="visually-hidden">Navy</span></label>
+
+    <input type="radio" name="brand" id="brand-3" class="brand-radio">
+    <label for="brand-3" class="brand-swatch brand-swatch--3"><span class="visually-hidden">Purple</span></label>
+
+    <input type="radio" name="brand" id="brand-4" class="brand-radio">
+    <label for="brand-4" class="brand-swatch brand-swatch--4"><span class="visually-hidden">Blue</span></label>
+
+    <input type="radio" name="brand" id="brand-5" class="brand-radio">
+    <label for="brand-5" class="brand-swatch brand-swatch--5"><span class="visually-hidden">Teal</span></label>
+
+    <input type="radio" name="brand" id="brand-6" class="brand-radio">
+    <label for="brand-6" class="brand-swatch brand-swatch--6"><span class="visually-hidden">Yellow</span></label>
+
+    <input type="radio" name="brand" id="brand-7" class="brand-radio">
+    <label for="brand-7" class="brand-swatch brand-swatch--7"><span class="visually-hidden">Near white</span></label>
+  </fieldset>
+
+  <button type="button" class="preview">
+    Save changes
+    <span class="preview-hex"></span>
+  </button>
+
+  <pre class="code-block"><code>.card {
+  --brand: <span class="hex-echo"></span>;
+  background: var(--brand);
+  color: contrast-color(var(--brand));
+}</code></pre>
+</div>
+</body>
+</html>

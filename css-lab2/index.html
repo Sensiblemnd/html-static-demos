@@ -10,7 +10,7 @@
 <body>
 <header>
   <h1>CSS Variable Slider Lab</h1>
-  <p>Standalone HTML/CSS demos exploring a single trick: a range slider's thumb gets a <code>view-timeline</code>, a registered <code>@property</code> is bound to it, and moving the slider scrubs that property live — no JavaScript. Drag any slider below. Requires a Chromium browser with scroll-driven animations support. See <a href="docs/">docs/</a> for a note on the source article.</p>
+  <p>Standalone HTML/CSS demos, no JavaScript. Demos 1–8 share one trick: a range slider's thumb gets a <code>view-timeline</code>, a registered <code>@property</code> is bound to it, and moving the slider scrubs that property live. Drag any slider below — requires a Chromium browser with scroll-driven animations support. Demo 9 swaps that trick for <code>:has()</code>-driven swatches and <code>contrast-color()</code>, and needs a very recent browser (Chrome 147+, Firefox 146+, Safari 26+). See <a href="docs/">docs/</a> for a note on the source article.</p>
 </header>
 
 <main class="index-grid">
@@ -53,6 +53,16 @@
     <span class="demo-num">08</span>
     <strong>Theme Blend</strong>
     <span class="demo-desc">A slider crossfades an entire mini UI between dark and light via color-mix() — a live theme toggle, no class swap.</span>
+  </a>
+  <a class="demo-card-link" href="09-contrast-color-picker/index.html">
+    <span class="demo-num">09</span>
+    <strong>Contrast Color Picker</strong>
+    <span class="demo-desc">Radio-button swatches set --brand via :has(), and contrast-color(var(--brand)) picks black or white text automatically — no view-timeline needed.</span>
+  </a>
+  <a class="demo-card-link" href="10-brand-palette/index.html">
+    <span class="demo-num">10</span>
+    <strong>Brand Palette</strong>
+    <span class="demo-desc">One picked color, six swatches: color-mix() derives shades, relative color syntax splits out R/G/B, and contrast-color() recomputes readable text on every one.</span>
   </a>
 </main>
 </body>
