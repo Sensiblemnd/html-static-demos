@@ -7,6 +7,12 @@
     --color-swatch-5: #0d9488;
     --color-swatch-6: #eab308;
     --color-swatch-7: #f8fafc;
+
+    /* Local to this demo's card redesign — the rest of the lab keeps the
+       shared dashed "experiment box" look in _shared.css, only this page's
+       .stage is restyled as a polished panel (see the .stage override below). */
+    --radius-card: 1.25rem;
+    --radius-control: 1rem;
   }
 }
 
@@ -18,13 +24,33 @@
   .stage:has(#brand-5:checked) { --brand: var(--color-swatch-5); --brand-hex: "#0d9488"; }
   .stage:has(#brand-6:checked) { --brand: var(--color-swatch-6); --brand-hex: "#eab308"; }
   .stage:has(#brand-7:checked) { --brand: var(--color-swatch-7); --brand-hex: "#f8fafc"; }
+
+  /* Swap the lab's shared dashed debug-box look for a polished panel on this
+     page only — later layer wins over _shared.css's .stage without needing
+     extra specificity. */
+  .stage {
+    padding: 2rem 1.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--stage-bg);
+    box-shadow:
+      0 24px 48px -24px var(--shadow-color),
+      0 4px 12px -6px var(--shadow-color);
+  }
 }
 
 @layer components {
+  .section-label {
+    margin: 0 0 .75rem;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--color-muted);
+  }
+
   .swatch-row {
     display: flex;
     flex-wrap: wrap;
-    gap: .6rem;
+    gap: .75rem;
     padding: 0;
     margin: 0 0 2rem;
     border: 0;
@@ -43,21 +69,47 @@
   }
 
   .brand-swatch {
-    inline-size: 2.5rem;
-    block-size: 2.5rem;
-    border-radius: .5rem;
+    position: relative;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    border-radius: 50%;
     border: 1px solid var(--color-border);
     cursor: pointer;
+    transition: transform 150ms ease;
   }
 
-  .brand-radio:checked + .brand-swatch {
-    outline: 2px solid var(--color-text);
-    outline-offset: 2px;
+  @media (prefers-reduced-motion: no-preference) {
+    .brand-radio:checked + .brand-swatch {
+      transform: scale(1.08);
+    }
+  }
+
+  /* Selection is shown with a checkmark badge (below), not this ring alone —
+     :checked is still native, so screen readers get the state either way.
+     Specificity (0,3,1): the radio-hack's class+:checked+class chain is the
+     selector's minimum necessary form for a no-JS "if this input is checked,
+     style that sibling" rule — can't be reduced without extra markup or JS. */
+  .brand-radio:checked + .brand-swatch::after {
+    content: "\2713";
+    position: absolute;
+    inset-block-end: -.2rem;
+    inset-inline-end: -.2rem;
+    inline-size: 1.125rem;
+    block-size: 1.125rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 2px solid var(--stage-bg);
+    background: var(--color-accent);
+    color: contrast-color(var(--color-accent));
+    font-size: .65rem;
+    font-weight: 700;
+    line-height: 1;
   }
 
   .brand-radio:focus-visible + .brand-swatch {
     outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
+    outline-offset: 3px;
   }
 
   .brand-swatch--1 { background: var(--color-swatch-1); }
@@ -80,8 +132,8 @@
     justify-content: flex-end;
     gap: .15rem;
     block-size: 6rem;
-    padding: .6rem;
-    border-radius: .5rem;
+    padding: .75rem;
+    border-radius: var(--radius-control);
     border: 1px solid var(--color-border);
     font-weight: 600;
     font-size: .8rem;
@@ -94,45 +146,22 @@
     opacity: .75;
   }
 
-  .palette-swatch--base {
-    background: var(--brand);
-    color: contrast-color(var(--brand));
+  .palette-swatch {
+    background: var(--swatch-color);
+    color: contrast-color(var(--swatch-color));
   }
 
-  .palette-swatch--light {
-    --brand-light: color-mix(in srgb, var(--brand), #fff 30%);
-    background: var(--brand-light);
-    color: contrast-color(var(--brand-light));
-  }
-
-  .palette-swatch--dark {
-    --brand-dark: color-mix(in srgb, var(--brand), #000 30%);
-    background: var(--brand-dark);
-    color: contrast-color(var(--brand-dark));
-  }
-
-  .palette-swatch--r {
-    --brand-r: rgb(from var(--brand) r 0 0);
-    background: var(--brand-r);
-    color: contrast-color(var(--brand-r));
-  }
-
-  .palette-swatch--g {
-    --brand-g: rgb(from var(--brand) 0 g 0);
-    background: var(--brand-g);
-    color: contrast-color(var(--brand-g));
-  }
-
-  .palette-swatch--b {
-    --brand-b: rgb(from var(--brand) 0 0 b);
-    background: var(--brand-b);
-    color: contrast-color(var(--brand-b));
-  }
+  .palette-swatch--base  { --swatch-color: var(--brand); }
+  .palette-swatch--light { --swatch-color: color-mix(in srgb, var(--brand), #fff 30%); }
+  .palette-swatch--dark  { --swatch-color: color-mix(in srgb, var(--brand), #000 30%); }
+  .palette-swatch--r     { --swatch-color: rgb(from var(--brand) r 0 0); }
+  .palette-swatch--g     { --swatch-color: rgb(from var(--brand) 0 g 0); }
+  .palette-swatch--b     { --swatch-color: rgb(from var(--brand) 0 0 b); }
 
   .code-block {
     margin: 2rem 0 0;
     padding: 1.25rem 1.5rem;
-    border-radius: .75rem;
+    border-radius: var(--radius-control);
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     color: var(--color-muted);
