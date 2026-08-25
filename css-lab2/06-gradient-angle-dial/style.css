@@ -1,0 +1,58 @@
+@property --_f {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@layer overrides {
+  :root {
+    timeline-scope: --_f;
+    animation: --_f linear both;
+    animation-timeline: --_f;
+    animation-range: entry 100% exit 0%;
+  }
+
+  @keyframes --_f {
+    0% { --_f: 1; }
+  }
+
+  .range-slider::-webkit-slider-thumb {
+    view-timeline: --_f inline;
+  }
+
+  .range-slider::-moz-range-thumb {
+    view-timeline: --_f inline;
+  }
+}
+
+@layer components {
+  .dial {
+    position: relative;
+    inline-size: 14rem;
+    block-size: 14rem;
+    margin-inline: auto;
+  }
+
+  .dial-wheel {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: conic-gradient(
+      from calc(var(--_f) * 360deg),
+      #ef4444, #f59e0b, #eab308, #22c55e, #06b6d4, #3b82f6, #a855f7, #ef4444
+    );
+  }
+
+  .dial-pointer {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    inline-size: 45%;
+    block-size: 4px;
+    background: var(--color-text);
+    border-radius: 2px;
+    transform-origin: left center;
+    transform: translateY(-50%) rotate(calc(var(--_f) * 360deg));
+  }
+}

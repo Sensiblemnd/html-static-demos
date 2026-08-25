@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme Blend</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Theme Blend</h1>
+  <p>A single slider-linked <code>--_f</code> feeds <code>color-mix(in oklch, ...)</code> for background, text, and border together, crossfading a mini UI between dark and light. A live theme toggle with no <code>:root</code> class swap and no JavaScript.</p>
+</header>
+<div class="stage">
+  <div class="stage-control">
+    <label for="blend">Dark &#8596; Light</label>
+    <input type="range" id="blend" class="range-slider" value="0">
+  </div>
+  <div class="blend-card">
+    <h2>Panel preview</h2>
+    <p>Every color on this card is a live mix of a dark token and a light token, keyed off the same slider position.</p>
+    <button type="button">Action</button>
+  </div>
+</div>
+</body>
+</html>

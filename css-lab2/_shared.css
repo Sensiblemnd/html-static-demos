@@ -1,0 +1,157 @@
+@layer reset, tokens, base, layout, components, utilities, overrides;
+
+@layer tokens {
+  :root {
+    color-scheme: dark;
+    --color-bg: #0b0d10;
+    --color-surface: #151922;
+    --color-surface-2: #1c212c;
+    --color-text: #f1f3f5;
+    --color-muted: #9aa4b2;
+    --color-border: #303846;
+    --color-accent: #34d399;
+    --stage-bg: #0f1218;
+    --stage-border: #3a4352;
+    --shadow-color: rgb(0 0 0 / 13%);
+  }
+}
+
+@layer reset {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font: 16px system-ui, sans-serif;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  header {
+    max-inline-size: 900px;
+    margin-block: 2rem 0;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  header h1 {
+    margin-block-end: .25rem;
+  }
+
+  header p {
+    max-inline-size: 70ch;
+    color: var(--color-muted);
+    margin-block-start: 0;
+  }
+
+  :is(h1, h2, h3) {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button {
+    background: var(--color-surface-2);
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+
+  :where(a, button, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+  }
+}
+
+@layer layout {
+  .stage {
+    inline-size: min(90vw, 700px);
+    margin-block: 3rem;
+    margin-inline: auto;
+    padding: 2rem 1.5rem;
+    border: 2px dashed var(--stage-border);
+    background: var(--stage-bg);
+  }
+
+  .stage-controls {
+    display: grid;
+    gap: 1.25rem;
+    margin-block-end: 2rem;
+  }
+
+  .stage-control label {
+    display: flex;
+    justify-content: space-between;
+    font-size: .8rem;
+    color: var(--color-muted);
+    margin-block-end: .35rem;
+  }
+}
+
+@layer components {
+  /* Shared cosmetic reset for every range input in this lab. The scroll-driven
+     view-timeline wiring that makes the slider live-update a CSS variable is
+     registered per demo (each needs its own property name/count) — this only
+     makes the native control look intentional instead of browser-default. */
+  input[type="range"].range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    inline-size: 100%;
+    block-size: 1.5rem;
+    background: transparent;
+    margin: 0;
+  }
+
+  input[type="range"].range-slider::-webkit-slider-runnable-track {
+    block-size: 4px;
+    background: var(--color-border);
+    border-radius: 2px;
+  }
+
+  input[type="range"].range-slider::-moz-range-track {
+    block-size: 4px;
+    background: var(--color-border);
+    border-radius: 2px;
+  }
+
+  input[type="range"].range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    inline-size: 16px;
+    block-size: 16px;
+    margin-block-start: -6px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: 2px solid var(--color-bg);
+    box-shadow: 0 0 0 1px var(--color-accent);
+    cursor: pointer;
+  }
+
+  input[type="range"].range-slider::-moz-range-thumb {
+    inline-size: 16px;
+    block-size: 16px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: 2px solid var(--color-bg);
+    box-shadow: 0 0 0 1px var(--color-accent);
+    cursor: pointer;
+  }
+
+  input[type="range"].range-slider:focus-visible::-webkit-slider-thumb {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+  }
+
+  input[type="range"].range-slider:focus-visible::-moz-range-thumb {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+  }
+}

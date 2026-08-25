@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tilt Card</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Tilt Card</h1>
+  <p>Two sliders, two registered properties (<code>--_x</code>, <code>--_y</code>), each wired to its own thumb's <code>view-timeline</code>. Together they drive <code>rotateX()</code>/<code>rotateY()</code> and a matching specular highlight — a joystick-controlled 3D card with no JavaScript.</p>
+</header>
+<div class="stage">
+  <div class="stage-controls">
+    <div class="stage-control">
+      <label for="x">Tilt X</label>
+      <input type="range" id="x" class="range-slider range-slider--x" value="50">
+    </div>
+    <div class="stage-control">
+      <label for="y">Tilt Y</label>
+      <input type="range" id="y" class="range-slider range-slider--y" value="50">
+    </div>
+  </div>
+  <div class="tilt-scene">
+    <div class="tilt-card">
+      <div class="tilt-card-sheen"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

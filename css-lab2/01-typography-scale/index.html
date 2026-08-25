@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typography Scale</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Typography Scale</h1>
+  <p>The slider's thumb has a <code>view-timeline</code>; a registered <code>@property --_f</code> is bound to that timeline. Dragging the thumb scrubs <code>--_f</code> from 0 to 1 live, and font size, line height, and letter spacing all interpolate from that single number. Zero JavaScript.</p>
+</header>
+<div class="stage">
+  <div class="stage-control">
+    <label for="scale">Scale</label>
+    <input type="range" id="scale" class="range-slider" value="0">
+  </div>
+  <div class="type-preview">
+    <h2>The quick brown fox</h2>
+    <p>jumps over the lazy dog. Drag the slider and watch the heading scale, loosen its line height, and open up its letter-spacing all at once.</p>
+  </div>
+</div>
+</body>
+</html>

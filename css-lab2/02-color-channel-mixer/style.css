@@ -1,0 +1,77 @@
+@property --_r {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --_g {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --_b {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@layer overrides {
+  :root {
+    timeline-scope: --_r, --_g, --_b;
+    animation:
+      --_r linear both,
+      --_g linear both,
+      --_b linear both;
+    animation-timeline: --_r, --_g, --_b;
+    animation-range: entry 100% exit 0%;
+  }
+
+  @keyframes --_r { 0% { --_r: 1; } }
+  @keyframes --_g { 0% { --_g: 1; } }
+  @keyframes --_b { 0% { --_b: 1; } }
+
+  .range-slider--r::-webkit-slider-thumb {
+    view-timeline: --_r inline;
+    background: #ef4444;
+    box-shadow: 0 0 0 1px #ef4444;
+  }
+  .range-slider--g::-webkit-slider-thumb {
+    view-timeline: --_g inline;
+    background: #22c55e;
+    box-shadow: 0 0 0 1px #22c55e;
+  }
+  .range-slider--b::-webkit-slider-thumb {
+    view-timeline: --_b inline;
+    background: #3b82f6;
+    box-shadow: 0 0 0 1px #3b82f6;
+  }
+
+  .range-slider--r::-moz-range-thumb {
+    view-timeline: --_r inline;
+    background: #ef4444;
+    box-shadow: 0 0 0 1px #ef4444;
+  }
+  .range-slider--g::-moz-range-thumb {
+    view-timeline: --_g inline;
+    background: #22c55e;
+    box-shadow: 0 0 0 1px #22c55e;
+  }
+  .range-slider--b::-moz-range-thumb {
+    view-timeline: --_b inline;
+    background: #3b82f6;
+    box-shadow: 0 0 0 1px #3b82f6;
+  }
+}
+
+@layer components {
+  .swatch {
+    inline-size: 100%;
+    block-size: 8rem;
+    border-radius: .75rem;
+    border: 1px solid var(--color-border);
+    background: rgb(
+      calc(var(--_r) * 255)
+      calc(var(--_g) * 255)
+      calc(var(--_b) * 255)
+    );
+  }
+}

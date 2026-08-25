@@ -1,0 +1,74 @@
+@property --_f1 { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --_f2 { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --_f3 { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --_f4 { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --_f5 { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --_f6 { syntax: "<number>"; inherits: true; initial-value: 0; }
+
+@layer overrides {
+  :root {
+    timeline-scope: --_f1, --_f2, --_f3, --_f4, --_f5, --_f6;
+    animation:
+      --_f1 linear both,
+      --_f2 linear both,
+      --_f3 linear both,
+      --_f4 linear both,
+      --_f5 linear both,
+      --_f6 linear both;
+    animation-timeline: --_f1, --_f2, --_f3, --_f4, --_f5, --_f6;
+    animation-range: entry 100% exit 0%;
+  }
+
+  @keyframes --_f1 { 0% { --_f1: 1; } }
+  @keyframes --_f2 { 0% { --_f2: 1; } }
+  @keyframes --_f3 { 0% { --_f3: 1; } }
+  @keyframes --_f4 { 0% { --_f4: 1; } }
+  @keyframes --_f5 { 0% { --_f5: 1; } }
+  @keyframes --_f6 { 0% { --_f6: 1; } }
+
+  .range-slider--f1::-webkit-slider-thumb { view-timeline: --_f1 inline; }
+  .range-slider--f2::-webkit-slider-thumb { view-timeline: --_f2 inline; }
+  .range-slider--f3::-webkit-slider-thumb { view-timeline: --_f3 inline; }
+  .range-slider--f4::-webkit-slider-thumb { view-timeline: --_f4 inline; }
+  .range-slider--f5::-webkit-slider-thumb { view-timeline: --_f5 inline; }
+  .range-slider--f6::-webkit-slider-thumb { view-timeline: --_f6 inline; }
+
+  .range-slider--f1::-moz-range-thumb { view-timeline: --_f1 inline; }
+  .range-slider--f2::-moz-range-thumb { view-timeline: --_f2 inline; }
+  .range-slider--f3::-moz-range-thumb { view-timeline: --_f3 inline; }
+  .range-slider--f4::-moz-range-thumb { view-timeline: --_f4 inline; }
+  .range-slider--f5::-moz-range-thumb { view-timeline: --_f5 inline; }
+  .range-slider--f6::-moz-range-thumb { view-timeline: --_f6 inline; }
+}
+
+@layer components {
+  .eq {
+    display: flex;
+    align-items: end;
+    gap: 1rem;
+    block-size: 14rem;
+  }
+
+  .eq-band {
+    flex: 1;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: .75rem;
+    block-size: 100%;
+  }
+
+  .eq-bar {
+    inline-size: 100%;
+    border-radius: .35rem .35rem 0 0;
+    background: linear-gradient(180deg, var(--color-accent), #3b82f6);
+    min-block-size: 4px;
+  }
+
+  .eq-bar--1 { block-size: calc(4px + var(--_f1) * 10rem); }
+  .eq-bar--2 { block-size: calc(4px + var(--_f2) * 10rem); }
+  .eq-bar--3 { block-size: calc(4px + var(--_f3) * 10rem); }
+  .eq-bar--4 { block-size: calc(4px + var(--_f4) * 10rem); }
+  .eq-bar--5 { block-size: calc(4px + var(--_f5) * 10rem); }
+  .eq-bar--6 { block-size: calc(4px + var(--_f6) * 10rem); }
+}

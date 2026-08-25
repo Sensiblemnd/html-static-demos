@@ -1,0 +1,57 @@
+@property --_f {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@layer overrides {
+  :root {
+    timeline-scope: --_f;
+    animation: --_f linear both;
+    animation-timeline: --_f;
+    animation-range: entry 100% exit 0%;
+  }
+
+  @keyframes --_f {
+    0% { --_f: 1; }
+  }
+
+  .range-slider::-webkit-slider-thumb {
+    view-timeline: --_f inline;
+  }
+
+  .range-slider::-moz-range-thumb {
+    view-timeline: --_f inline;
+  }
+}
+
+@layer components {
+  .blend-card {
+    --dark-bg: #151922;
+    --light-bg: #f8fafc;
+    --dark-text: #f1f3f5;
+    --light-text: #0f172a;
+    --dark-border: #303846;
+    --light-border: #cbd5e1;
+
+    padding: 1.5rem;
+    border-radius: .75rem;
+    background: color-mix(in oklch, var(--dark-bg) calc((1 - var(--_f)) * 100%), var(--light-bg) calc(var(--_f) * 100%));
+    color: color-mix(in oklch, var(--dark-text) calc((1 - var(--_f)) * 100%), var(--light-text) calc(var(--_f) * 100%));
+    border: 1px solid color-mix(in oklch, var(--dark-border) calc((1 - var(--_f)) * 100%), var(--light-border) calc(var(--_f) * 100%));
+  }
+
+  .blend-card h2 {
+    margin-block-start: 0;
+  }
+
+  .blend-card button {
+    background: var(--color-accent);
+    color: #0b0d10;
+    border: none;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    font: inherit;
+    cursor: pointer;
+  }
+}

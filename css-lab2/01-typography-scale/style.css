@@ -1,0 +1,49 @@
+@property --_f {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@layer overrides {
+  :root {
+    timeline-scope: --_f;
+    animation: --_f linear both;
+    animation-timeline: --_f;
+    animation-range: entry 100% exit 0%;
+  }
+
+  @keyframes --_f {
+    0% { --_f: 1; }
+  }
+
+  .range-slider::-webkit-slider-thumb {
+    view-timeline: --_f inline;
+  }
+
+  .range-slider::-moz-range-thumb {
+    view-timeline: --_f inline;
+  }
+}
+
+@layer components {
+  .type-preview {
+    --font-size-min: 1rem;
+    --font-size-max: 3.5rem;
+    --leading-min: 1.2;
+    --leading-max: 1.6;
+    --tracking-min: -0.01em;
+    --tracking-max: 0.08em;
+  }
+
+  .type-preview h2 {
+    margin: 0 0 .75rem;
+    font-size: calc(var(--font-size-max) * var(--_f) + var(--font-size-min) * (1 - var(--_f)));
+    line-height: calc(var(--leading-max) * var(--_f) + var(--leading-min) * (1 - var(--_f)));
+    letter-spacing: calc(var(--tracking-max) * var(--_f) + var(--tracking-min) * (1 - var(--_f)));
+  }
+
+  .type-preview p {
+    max-inline-size: 60ch;
+    color: var(--color-muted);
+  }
+}

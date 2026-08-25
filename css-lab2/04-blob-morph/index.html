@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blob Morph</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Blob Morph</h1>
+  <p>All eight <code>border-radius</code> corner values interpolate independently from the same slider-linked <code>--_f</code>, morphing a squircle into a lopsided blob. Compare with <a href="../../css-lab/23-shape-morphing-child/index.html">css-lab's shape-morphing demo</a>, which drives the same idea from a container's aspect ratio instead of a physical control.</p>
+</header>
+<div class="stage">
+  <div class="stage-control">
+    <label for="morph">Morph</label>
+    <input type="range" id="morph" class="range-slider" value="0">
+  </div>
+  <div class="blob"></div>
+</div>
+</body>
+</html>

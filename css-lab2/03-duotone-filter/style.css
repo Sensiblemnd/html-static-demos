@@ -1,0 +1,45 @@
+@property --_f {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@layer overrides {
+  :root {
+    timeline-scope: --_f;
+    animation: --_f linear both;
+    animation-timeline: --_f;
+    animation-range: entry 100% exit 0%;
+  }
+
+  @keyframes --_f {
+    0% { --_f: 1; }
+  }
+
+  .range-slider::-webkit-slider-thumb {
+    view-timeline: --_f inline;
+  }
+
+  .range-slider::-moz-range-thumb {
+    view-timeline: --_f inline;
+  }
+}
+
+@layer components {
+  .photo {
+    inline-size: 100%;
+    block-size: 16rem;
+    border-radius: .75rem;
+    border: 1px solid var(--color-border);
+    background-image:
+      radial-gradient(circle at 20% 25%, #f59e0b, transparent 45%),
+      radial-gradient(circle at 75% 30%, #ec4899, transparent 50%),
+      radial-gradient(circle at 60% 80%, #22d3ee, transparent 55%),
+      linear-gradient(135deg, #1e293b, #0f172a);
+    filter:
+      grayscale(calc(1 - var(--_f)))
+      sepia(calc(var(--_f) * 0.6))
+      hue-rotate(calc(var(--_f) * 260deg))
+      saturate(calc(1 + var(--_f)));
+  }
+}

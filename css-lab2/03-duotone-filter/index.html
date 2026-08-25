@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duotone Filter Slider</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Duotone Filter Slider</h1>
+  <p>A single slider-linked <code>--_f</code> drives a stack of <code>filter()</code> functions — <code>grayscale()</code>, <code>sepia()</code>, <code>hue-rotate()</code>, <code>saturate()</code> — live over a CSS gradient "photo". An Instagram-style intensity control with no JavaScript and no image asset.</p>
+</header>
+<div class="stage">
+  <div class="stage-control">
+    <label for="intensity">Filter intensity</label>
+    <input type="range" id="intensity" class="range-slider" value="0">
+  </div>
+  <div class="photo"></div>
+</div>
+</body>
+</html>

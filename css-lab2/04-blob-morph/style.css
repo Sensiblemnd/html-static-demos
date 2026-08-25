@@ -1,0 +1,53 @@
+@property --_f {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@layer overrides {
+  :root {
+    timeline-scope: --_f;
+    animation: --_f linear both;
+    animation-timeline: --_f;
+    animation-range: entry 100% exit 0%;
+  }
+
+  @keyframes --_f {
+    0% { --_f: 1; }
+  }
+
+  .range-slider::-webkit-slider-thumb {
+    view-timeline: --_f inline;
+  }
+
+  .range-slider::-moz-range-thumb {
+    view-timeline: --_f inline;
+  }
+}
+
+@layer components {
+  .blob {
+    --tl-x-min: 42%; --tl-x-max: 65%;
+    --tr-x-min: 58%; --tr-x-max: 25%;
+    --br-x-min: 40%; --br-x-max: 70%;
+    --bl-x-min: 60%; --bl-x-max: 30%;
+    --tl-y-min: 38%; --tl-y-max: 60%;
+    --tr-y-min: 42%; --tr-y-max: 65%;
+    --br-y-min: 62%; --br-y-max: 35%;
+    --bl-y-min: 58%; --bl-y-max: 40%;
+
+    inline-size: 100%;
+    block-size: 16rem;
+    background: linear-gradient(135deg, var(--color-accent), #3b82f6);
+    border-radius:
+      calc(var(--tl-x-min) + (var(--tl-x-max) - var(--tl-x-min)) * var(--_f))
+      calc(var(--tr-x-min) + (var(--tr-x-max) - var(--tr-x-min)) * var(--_f))
+      calc(var(--br-x-min) + (var(--br-x-max) - var(--br-x-min)) * var(--_f))
+      calc(var(--bl-x-min) + (var(--bl-x-max) - var(--bl-x-min)) * var(--_f))
+      /
+      calc(var(--tl-y-min) + (var(--tl-y-max) - var(--tl-y-min)) * var(--_f))
+      calc(var(--tr-y-min) + (var(--tr-y-max) - var(--tr-y-min)) * var(--_f))
+      calc(var(--br-y-min) + (var(--br-y-max) - var(--br-y-min)) * var(--_f))
+      calc(var(--bl-y-min) + (var(--bl-y-max) - var(--bl-y-min)) * var(--_f));
+  }
+}

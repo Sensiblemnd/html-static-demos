@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Variable Slider Lab</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+<header>
+  <h1>CSS Variable Slider Lab</h1>
+  <p>Standalone HTML/CSS demos exploring a single trick: a range slider's thumb gets a <code>view-timeline</code>, a registered <code>@property</code> is bound to it, and moving the slider scrubs that property live — no JavaScript. Drag any slider below. Requires a Chromium browser with scroll-driven animations support. See <a href="docs/">docs/</a> for a note on the source article.</p>
+</header>
+
+<main class="index-grid">
+  <a class="demo-card-link" href="01-typography-scale/index.html">
+    <span class="demo-num">01</span>
+    <strong>Typography Scale</strong>
+    <span class="demo-desc">One slider drives font size, line height, and letter spacing together from a single interpolated number.</span>
+  </a>
+  <a class="demo-card-link" href="02-color-channel-mixer/index.html">
+    <span class="demo-num">02</span>
+    <strong>Color Channel Mixer</strong>
+    <span class="demo-desc">Three sliders, three independent view-timelines, mixed live into an rgb() swatch — a from-scratch color picker.</span>
+  </a>
+  <a class="demo-card-link" href="03-duotone-filter/index.html">
+    <span class="demo-num">03</span>
+    <strong>Duotone Filter Slider</strong>
+    <span class="demo-desc">A slider scrubs grayscale, sepia, hue-rotate, and saturate together over a CSS-gradient "photo".</span>
+  </a>
+  <a class="demo-card-link" href="04-blob-morph/index.html">
+    <span class="demo-num">04</span>
+    <strong>Blob Morph</strong>
+    <span class="demo-desc">All eight border-radius corners interpolate independently, morphing a squircle into a lopsided blob.</span>
+  </a>
+  <a class="demo-card-link" href="05-tilt-card/index.html">
+    <span class="demo-num">05</span>
+    <strong>Tilt Card</strong>
+    <span class="demo-desc">Two sliders drive rotateX/rotateY and a matching highlight — a joystick-controlled 3D card.</span>
+  </a>
+  <a class="demo-card-link" href="06-gradient-angle-dial/index.html">
+    <span class="demo-num">06</span>
+    <strong>Gradient Angle Dial</strong>
+    <span class="demo-desc">A slider rotates a conic-gradient wheel and a pointer overlay in lockstep, like a color-wheel dial.</span>
+  </a>
+  <a class="demo-card-link" href="07-equalizer-bars/index.html">
+    <span class="demo-num">07</span>
+    <strong>Equalizer Bars</strong>
+    <span class="demo-desc">Six sliders, six view-timelines, six bars — showing the technique scales to many simultaneous inputs.</span>
+  </a>
+  <a class="demo-card-link" href="08-theme-blend/index.html">
+    <span class="demo-num">08</span>
+    <strong>Theme Blend</strong>
+    <span class="demo-desc">A slider crossfades an entire mini UI between dark and light via color-mix() — a live theme toggle, no class swap.</span>
+  </a>
+</main>
+</body>
+</html>

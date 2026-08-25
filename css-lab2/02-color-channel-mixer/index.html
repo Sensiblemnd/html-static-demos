@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Color Channel Mixer</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Color Channel Mixer</h1>
+  <p>Three sliders, three independent registered properties (<code>--_r</code>, <code>--_g</code>, <code>--_b</code>), each with its own <code>view-timeline</code> on its own thumb. The swatch below is a plain <code>rgb()</code> built from all three — a from-scratch color picker with no JavaScript.</p>
+</header>
+<div class="stage">
+  <div class="stage-controls">
+    <div class="stage-control">
+      <label for="r">Red</label>
+      <input type="range" id="r" class="range-slider range-slider--r" value="0">
+    </div>
+    <div class="stage-control">
+      <label for="g">Green</label>
+      <input type="range" id="g" class="range-slider range-slider--g" value="0">
+    </div>
+    <div class="stage-control">
+      <label for="b">Blue</label>
+      <input type="range" id="b" class="range-slider range-slider--b" value="0">
+    </div>
+  </div>
+  <div class="swatch"></div>
+</div>
+</body>
+</html>
