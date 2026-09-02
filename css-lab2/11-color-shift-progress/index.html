@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Color-Shift Progress Bar</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Color-Shift Progress Bar</h1>
+  <p>A looping <code>@keyframes</code> animation drives a registered number <em>and</em> a registered integer at once. The number sweeps the fill's hue from red to green (<code>hsl(calc(var(--_p) * 120) 70% 50%)</code>), and the integer feeds a CSS counter for the live "<code>N%</code>" label. <code>contrast-color()</code> keeps that label readable through the whole sweep. No JavaScript.</p>
+</header>
+<div class="stage">
+  <div class="progress-demo">
+    <div class="progress-header">
+      <span class="progress-caption">Uploading…</span>
+      <span class="progress-readout"></span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

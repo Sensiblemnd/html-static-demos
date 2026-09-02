@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kanban Board</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Kanban Board</h1>
+  <p>The subgrid trick turned sideways: instead of columns lining up across rows like the base timeline, here <em>rows</em> line up across columns, so cards in the same position sit at the same height across every list. No drag-and-drop (that needs JavaScript), just the static board.</p>
+</header>
+<div class="board">
+  <div class="column">
+    <h2 class="column-header">To Do <span class="count">3</span></h2>
+    <div class="card" data-color="blue">Update docs</div>
+    <div class="card" data-color="purple">Design onboarding flow</div>
+    <div class="card" data-color="red">Fix Safari bug</div>
+  </div>
+  <div class="column">
+    <h2 class="column-header">In Progress <span class="count">2</span></h2>
+    <div class="card" data-color="teal">Build resource scheduler</div>
+    <div class="card" data-color="orange">Write changelog</div>
+  </div>
+  <div class="column">
+    <h2 class="column-header">Done <span class="count">4</span></h2>
+    <div class="card" data-color="green">Ship v1.2</div>
+    <div class="card" data-color="navy">Migrate to OKLCH tokens</div>
+    <div class="card" data-color="sky">Add dark mode</div>
+    <div class="card" data-color="yellow">Refactor grid CSS</div>
+  </div>
+</div>
+</body>
+</html>

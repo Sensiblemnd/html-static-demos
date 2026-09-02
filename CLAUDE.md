@@ -9,3 +9,6 @@ Uses **pnpm** (`pnpm-lock.yaml`). Never run `pnpm install` or other pnpm command
 - Formatting: Prettier (`.prettierrc`, `.prettierignore`). Run via `pnpm format` (writes) or `pnpm format:check`.
 - `typescript` is pinned to `^6.0.2`, not 7.x — `typescript-eslint` doesn't support TS 7's new API yet (expected in TS 7.1). Don't bump past 6.x until typescript-eslint adds support.
 - `src/vite-env.d.ts` provides `vite/client` types (needed for CSS side-effect imports etc.) — keep it if regenerating the src tree.
+
+## Writing style
+Never use em dashes, anywhere: not in demo copy, docs, READMEs, commit messages, or HTML/CSS comments. This applies to `&mdash;` and literal `—` alike. Use a period, comma, colon, semicolon, or parentheses instead.

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Responsive Agenda</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Responsive Agenda</h1>
+  <p>A container query collapses the grid into a stacked agenda list once its container gets narrow. Drag the handle in the corner below to resize it (native CSS <code>resize</code>, no JavaScript involved in reading the size).</p>
+</header>
+<div class="resize-demo">
+  <div class="agenda-container">
+    <div class="timeline-scroll-container">
+      <div class="grid-timeline">
+        <div class="header-container">
+          <div class="header-row">9 AM</div><div class="header-row">10 AM</div>
+          <div class="header-row">11 AM</div><div class="header-row">12 PM</div>
+          <div class="header-row">1 PM</div><div class="header-row">2 PM</div>
+        </div>
+        <div class="row-background">
+          <div class="row-cells">
+            <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+            <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+          </div>
+          <div class="row-data">
+            <div class="block" data-color="blue" style="--col-start: 1; --col-end: 2">Standup</div>
+            <div class="block" data-color="teal" style="--col-start: 2; --col-end: 4">Design Review</div>
+            <div class="block" data-color="orange" style="--col-start: 4; --col-end: 7">Client Workshop</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ul class="agenda-list">
+      <li class="agenda-item" data-color="blue">
+        <span class="agenda-time">9:00 – 10:00</span>
+        <span class="agenda-title">Standup</span>
+      </li>
+      <li class="agenda-item" data-color="teal">
+        <span class="agenda-time">10:00 – 11:00</span>
+        <span class="agenda-title">Design Review</span>
+      </li>
+      <li class="agenda-item" data-color="orange">
+        <span class="agenda-time">11:00 – 2:00</span>
+        <span class="agenda-title">Client Workshop</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

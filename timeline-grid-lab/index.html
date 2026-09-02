@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Timeline Grid Lab</title>
+<link rel="stylesheet" href="_shared.css">
+</head>
+<body>
+<header>
+  <h1>Timeline Grid Lab</h1>
+  <p>Nine standalone HTML/CSS demos built on the <a href="../timeline-grid/index.html">base Timeline Grid</a>'s subgrid technique: a header row and per-row backgrounds all locked to one shared column grid via <code>grid-template-columns: subgrid</code>. No JavaScript anywhere; toggles and interactivity use the checkbox/radio hack, <code>:has()</code>, container queries, and native <code>resize</code>.</p>
+</header>
+
+<main class="index-grid">
+  <a class="demo-card-link" href="01-overlapping-events/index.html">
+    <span class="demo-num">01</span>
+    <strong>Overlapping Events</strong>
+    <span class="demo-desc">Concurrent events get explicit lanes inside .row-data, so a row's height grows to fit however many events overlap.</span>
+  </a>
+  <a class="demo-card-link" href="02-now-indicator/index.html">
+    <span class="demo-num">02</span>
+    <strong>Now Indicator</strong>
+    <span class="demo-desc">A registered @property percentage drives a looping vertical line sweeping across the grid, simulating a live clock with zero JavaScript.</span>
+  </a>
+  <a class="demo-card-link" href="03-density-toggle/index.html">
+    <span class="demo-num">03</span>
+    <strong>Density Toggle</strong>
+    <span class="demo-desc">Radio buttons + :has() swap between three pre-built grids at 15/30/60-minute column widths.</span>
+  </a>
+  <a class="demo-card-link" href="04-dark-mode-toggle/index.html">
+    <span class="demo-num">04</span>
+    <strong>Dark Mode Toggle</strong>
+    <span class="demo-desc">Tokens declared once as light-dark(light, dark); radios + :has() force color-scheme to flip them, plus a bonus @supports-gated light-dark() image swap.</span>
+  </a>
+  <a class="demo-card-link" href="05-responsive-agenda/index.html">
+    <span class="demo-num">05</span>
+    <strong>Responsive Agenda</strong>
+    <span class="demo-desc">A container query collapses the grid into a stacked agenda list once its container narrows. Drag the native resize handle to see it happen live.</span>
+  </a>
+  <a class="demo-card-link" href="06-gantt-chart/index.html">
+    <span class="demo-num">06</span>
+    <strong>Gantt Chart</strong>
+    <span class="demo-desc">Days on the axis instead of hours, a labeled row per task, and a diamond milestone marker for a single-day event.</span>
+  </a>
+  <a class="demo-card-link" href="07-contribution-heatmap/index.html">
+    <span class="demo-num">07</span>
+    <strong>Contribution Heatmap</strong>
+    <span class="demo-desc">A GitHub-style activity grid: data-level swaps a color token per square, laid out with grid-auto-flow: column.</span>
+  </a>
+  <a class="demo-card-link" href="08-resource-scheduler/index.html">
+    <span class="demo-num">08</span>
+    <strong>Resource Scheduler</strong>
+    <span class="demo-desc">A rooms &times; hours matrix with a sticky label column that rides along inside the same subgrid as the hour tracks.</span>
+  </a>
+  <a class="demo-card-link" href="09-kanban-board/index.html">
+    <span class="demo-num">09</span>
+    <strong>Kanban Board</strong>
+    <span class="demo-desc">The subgrid trick turned sideways: rows line up across columns instead of columns lining up across rows.</span>
+  </a>
+</main>
+</body>
+</html>

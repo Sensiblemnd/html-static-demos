@@ -1,9 +1,21 @@
-@layer tokens, layout, components;
+@layer reset, tokens, base, layout, components;
+
+@layer reset {
+  * {
+    box-sizing: border-box;
+  }
+}
 
 @layer tokens {
+  :root {
+    /* page shell only: body sits outside .timeline-scroll-container, so these can't live there */
+    --gray-97: oklch(97% 0.01 255);
+    --color-page-bg: var(--gray-97);
+    --space-m: 1.25rem;
+  }
+
   .timeline-scroll-container {
     /* base colors */
-    --gray-97: oklch(97% 0.01 255);
     --gray-90: oklch(90% 0.01 255);
     --gray-47: oklch(47% 0 0);
     --gray-100: oklch(100% 0 0);
@@ -27,7 +39,7 @@
     --color-block-teal: oklch(43.953% 0.08345 174.247);
     --color-block-sky: oklch(48.061% 0.11146 240.717);
 
-    /* spacing scale */
+    /* spacing scale (--space-m duplicated from :root, needed inside the container too) */
     --space-3xs: 0.1875rem;
     --space-2xs: 0.5rem;
     --space-xs: 0.625rem;
@@ -44,7 +56,6 @@
     --z-row-background: 1;
     --z-block: 2;
 
-    /* fallback only — TimelineGrid sets this inline per instance */
     --size-timeline-columns: 20;
     --size-timeline-min-width: 75rem;
     --size-row-min-height: 3.125rem;
@@ -56,7 +67,14 @@
     --block-opacity: 65%;
 
     --block-border: 1px;
-    --border-hairline: 1px;
+  }
+}
+
+@layer base {
+  body {
+    font-family: system-ui, sans-serif;
+    padding: var(--space-m);
+    background: var(--color-page-bg);
   }
 }
 
@@ -75,7 +93,7 @@
     grid-template-columns: repeat(
       var(--size-timeline-columns),
       1fr
-    ); /* one track per timeline slot */
+    ); /* 20 half-hour slots */
     min-inline-size: var(
       --size-timeline-min-width
     ); /* stops columns getting too skinny to read */
@@ -94,7 +112,7 @@
     display: grid;
     grid-template-columns: subgrid; /* keeps header lined up with the rows below */
     border-block-end: 2px solid var(--color-border);
-    border-inline: var(--border-hairline) solid var(--color-border);
+    border-inline: 1px solid var(--color-border);
     margin-block-end: var(--space-xs);
   }
 
@@ -109,6 +127,15 @@
     white-space: nowrap;
   }
 
+  .header-row:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: calc(100% + var(--column-gap) / 2 - 0.5px);
+    inline-size: 1px;
+    background: var(--color-border);
+  }
+
   .row-background {
     grid-column: 1 / -1;
     display: grid;
@@ -116,9 +143,16 @@
     block-size: 100%;
     pointer-events: none;
     z-index: var(--z-row-background);
-    border-inline: var(--border-hairline) solid var(--color-border);
+    border-inline: 1px solid var(--color-border);
   }
-  :is(.row-cells, .row-data) {
+  .row-cells {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    column-gap: var(--column-gap);
+    grid-template-columns: subgrid;
+  }
+  .row-data {
     display: grid;
     grid-column: 1 / -1;
     grid-row: 1 / -1;
@@ -130,12 +164,12 @@
     position: relative;
   }
 
-  :is(.header-row, .row-cell):not(:last-child)::after {
+  .row-cell:not(:last-child)::after {
     content: "";
     position: absolute;
     inset-block: 0;
     inset-inline-start: calc(100% + var(--column-gap) / 2 - 0.5px);
-    inline-size: var(--border-hairline);
+    inline-size: 1px;
     background: var(--color-border);
   }
 

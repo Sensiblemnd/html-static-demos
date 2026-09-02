@@ -2,7 +2,7 @@
 
 A small collection of standalone HTML/CSS experiments. No build step, no dependencies, just open the HTML file in a browser or serve it with anything that can host static files.
 
-## demo1 Timeline Grid
+## Timeline Grid
 
 A CSS only day-schedule grid (think calendar/Gantt view), built entirely with native CSS Grid and subgrid. No JavaScript involved. A few things worth pointing out if you're poking around the code:
 
@@ -10,7 +10,13 @@ A CSS only day-schedule grid (think calendar/Gantt view), built entirely with na
 - The row/column gaps are configurable via `--timeline-row-gap` and `--timeline-column-gap`, and the divider lines re-center themselves automatically whatever you set them to.
 - The header and the row backgrounds share one gradient definition, so they can't drift out of alignment with each other.
 
-Open `demo1/inde.html` to see it.
+Open `timeline-grid/index.html` to see it.
+
+## Timeline Grid Lab
+
+Nine standalone HTML/CSS demos spun off Timeline Grid's subgrid technique: overlapping events, a looping "now" indicator, a density toggle, dark mode, a responsive agenda view, a Gantt chart, a contribution heatmap, a resource scheduler, and a Kanban board. No JavaScript. See [`timeline-grid-lab/README.md`](timeline-grid-lab/README.md) for the full list.
+
+Open `timeline-grid-lab/index.html` to browse all nine.
 
 ## Tailwind v1.9.6 Timeline Grid POC
 

@@ -10,7 +10,7 @@
 <body>
 <header>
   <h1>CSS Variable Slider Lab</h1>
-  <p>Standalone HTML/CSS demos, no JavaScript. Demos 1–8 share one trick: a range slider's thumb gets a <code>view-timeline</code>, a registered <code>@property</code> is bound to it, and moving the slider scrubs that property live. Drag any slider below — requires a Chromium browser with scroll-driven animations support. Demo 9 swaps that trick for <code>:has()</code>-driven swatches and <code>contrast-color()</code>, and needs a very recent browser (Chrome 147+, Firefox 146+, Safari 26+). See <a href="docs/">docs/</a> for a note on the source article.</p>
+  <p>Standalone HTML/CSS demos, no JavaScript. Demos 1–8 share one trick: a range slider's thumb gets a <code>view-timeline</code>, a registered <code>@property</code> is bound to it, and moving the slider scrubs that property live. Drag any slider below — requires a Chromium browser with scroll-driven animations support. Demos 9–11 swap that trick for other no-JS mechanisms — <code>:has()</code>-driven swatches, and a looping <code>@keyframes</code> animation — paired with <code>contrast-color()</code>, and need a very recent browser (Chrome 147+, Firefox 146+, Safari 26+). See <a href="docs/">docs/</a> for a note on the source article.</p>
 </header>
 
 <main class="index-grid">
@@ -63,6 +63,11 @@
     <span class="demo-num">10</span>
     <strong>Brand Palette</strong>
     <span class="demo-desc">One picked color, six swatches: color-mix() derives shades, relative color syntax splits out R/G/B, and contrast-color() recomputes readable text on every one.</span>
+  </a>
+  <a class="demo-card-link" href="11-color-shift-progress/index.html">
+    <span class="demo-num">11</span>
+    <strong>Color-Shift Progress Bar</strong>
+    <span class="demo-desc">A looping @keyframes animation sweeps a fill's hue from red to green while a counter-driven "N%" badge stays legible via contrast-color() the whole way.</span>
   </a>
 </main>
 </body>

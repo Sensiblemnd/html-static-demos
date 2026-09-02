@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resource Scheduler</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Resource Scheduler</h1>
+  <p>A rooms &times; hours matrix. The grid gains one fixed-width label column ahead of the hour columns, and every subgrid still inherits it. The label cells just add <code>position: sticky</code> so they stay put while you scroll the hours horizontally.</p>
+</header>
+<div class="timeline-scroll-container">
+  <div class="grid-timeline">
+    <div class="header-container">
+      <div class="header-corner"></div>
+      <div class="header-row">9 AM</div><div class="header-row">10 AM</div>
+      <div class="header-row">11 AM</div><div class="header-row">12 PM</div>
+      <div class="header-row">1 PM</div><div class="header-row">2 PM</div>
+      <div class="header-row">3 PM</div><div class="header-row">4 PM</div>
+    </div>
+
+    <div class="room-row">
+      <div class="room-label">Room A</div>
+      <div class="row-background">
+        <div class="row-cells">
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        </div>
+        <div class="row-data">
+          <div class="block" data-color="blue" style="--col-start: 1; --col-end: 2">Standup</div>
+          <div class="block" data-color="purple" style="--col-start: 5; --col-end: 7">Workshop</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="room-row">
+      <div class="room-label">Room B</div>
+      <div class="row-background">
+        <div class="row-cells">
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        </div>
+        <div class="row-data">
+          <div class="block" data-color="orange" style="--col-start: 2; --col-end: 4">Client Call</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="room-row">
+      <div class="room-label">Room C</div>
+      <div class="row-background">
+        <div class="row-cells">
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        </div>
+        <div class="row-data">
+          <div class="block" data-color="teal" style="--col-start: 6; --col-end: 8">Training</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

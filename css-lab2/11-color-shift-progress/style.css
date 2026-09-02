@@ -1,0 +1,85 @@
+@property --_p {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --_n {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@layer overrides {
+  .progress-demo {
+    animation: sweep-p 3s ease-in-out infinite alternate, sweep-n 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes sweep-p {
+    from { --_p: 0; }
+    to { --_p: 1; }
+  }
+
+  @keyframes sweep-n {
+    from { --_n: 0; }
+    to { --_n: 100; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .progress-demo {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@layer components {
+  .progress-demo {
+    /* single source of truth — the fill and the readout badge both read this,
+       so the hue math only exists once (see the demo 10 palette refactor). */
+    --fill-color: hsl(calc(var(--_p) * 120) 70% 50%);
+    margin-block-start: .5rem;
+  }
+
+  .progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-block-end: .6rem;
+  }
+
+  .progress-caption {
+    font-size: .85rem;
+    color: var(--color-muted);
+  }
+
+  .progress-readout {
+    min-inline-size: 3.25rem;
+    padding: .2rem .6rem;
+    border-radius: 999px;
+    background: var(--fill-color);
+    color: contrast-color(var(--fill-color));
+    font-family: ui-monospace, monospace;
+    font-size: .8rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .progress-readout::before {
+    counter-reset: pct var(--_n);
+    content: counter(pct) "%";
+  }
+
+  .progress-track {
+    inline-size: 100%;
+    block-size: 1.25rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    inline-size: calc(var(--_p) * 100%);
+    block-size: 100%;
+    background: var(--fill-color);
+  }
+}

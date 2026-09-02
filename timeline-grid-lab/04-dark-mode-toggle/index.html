@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dark Mode Toggle</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Dark Mode Toggle</h1>
+  <p>Two takes on <code>light-dark()</code>: color tokens are declared once as <code>light-dark(light, dark)</code>, and whichever half applies depends entirely on the <code>color-scheme</code> of the element using them. No gray primitives to override, no custom-property cross-element surprises.</p>
+</header>
+
+<div class="theme-lab">
+  <section class="theme-section">
+    <h2>Auto: follows your system</h2>
+    <p>No toggle here on purpose. This panel only sets <code>color-scheme: light dark</code>; the browser picks based on your OS or browser appearance setting.</p>
+    <div class="timeline-scroll-container">
+      <div class="grid-timeline">
+        <div class="header-container">
+          <div class="header-row">9 AM</div><div class="header-row">10 AM</div>
+          <div class="header-row">11 AM</div><div class="header-row">12 PM</div>
+          <div class="header-row">1 PM</div><div class="header-row">2 PM</div>
+        </div>
+        <div class="row-background">
+          <div class="row-cells">
+            <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+            <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+          </div>
+          <div class="row-data">
+            <div class="block" data-color="blue" style="--col-start: 1; --col-end: 3">Standup</div>
+            <div class="block" data-color="teal" style="--col-start: 3; --col-end: 5">Design Review</div>
+            <div class="block" data-color="orange" style="--col-start: 5; --col-end: 7">Client Call</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section manual-scope">
+    <h2>Manual override</h2>
+    <p>Radios force <code>color-scheme</code> on this section directly, overriding the system default. The swatch on the right goes further: its <code>background-image</code> is itself a <code>light-dark()</code> pair, gated behind <code>@supports</code> for browsers that don't parse images inside it yet (Safari, as of this writing).</p>
+    <div class="mode-switcher" role="radiogroup" aria-label="Theme">
+      <input type="radio" name="mode" id="mode-auto" class="visually-hidden" checked>
+      <label for="mode-auto">Auto</label>
+      <input type="radio" name="mode" id="mode-light" class="visually-hidden">
+      <label for="mode-light">Light</label>
+      <input type="radio" name="mode" id="mode-dark" class="visually-hidden">
+      <label for="mode-dark">Dark</label>
+    </div>
+    <div class="manual-preview">
+      <div class="timeline-scroll-container">
+        <div class="grid-timeline">
+          <div class="header-container">
+            <div class="header-row">9 AM</div><div class="header-row">10 AM</div>
+            <div class="header-row">11 AM</div><div class="header-row">12 PM</div>
+          </div>
+          <div class="row-background">
+            <div class="row-cells">
+              <div class="row-cell"></div><div class="row-cell"></div>
+              <div class="row-cell"></div><div class="row-cell"></div>
+            </div>
+            <div class="row-data">
+              <div class="block" data-color="blue" style="--col-start: 1; --col-end: 2">Standup</div>
+              <div class="block" data-color="teal" style="--col-start: 2; --col-end: 4">Design Review</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pattern-swatch">
+        <span class="pattern-label">background-image: light-dark(&hellip;)</span>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

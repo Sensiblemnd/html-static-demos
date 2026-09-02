@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gantt Chart</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Gantt Chart</h1>
+  <p>Same header/row subgrid as the base timeline, just with days on the axis instead of hours, a labeled row per task, and a diamond milestone marker for a single-day event.</p>
+</header>
+<div class="timeline-scroll-container">
+  <div class="grid-timeline">
+    <div class="header-container">
+      <div class="header-row">Jun 1</div><div class="header-row">Jun 2</div>
+      <div class="header-row">Jun 3</div><div class="header-row">Jun 4</div>
+      <div class="header-row">Jun 5</div><div class="header-row">Jun 6</div>
+      <div class="header-row">Jun 7</div><div class="header-row">Jun 8</div>
+      <div class="header-row">Jun 9</div><div class="header-row">Jun 10</div>
+      <div class="header-row">Jun 11</div><div class="header-row">Jun 12</div>
+      <div class="header-row">Jun 13</div><div class="header-row">Jun 14</div>
+    </div>
+
+    <div class="row-label">Research</div>
+    <div class="row-background">
+      <div class="row-cells">
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div>
+      </div>
+      <div class="row-data">
+        <div class="block" data-color="sky" style="--col-start: 1; --col-end: 4">Research</div>
+      </div>
+    </div>
+
+    <div class="row-label">Design</div>
+    <div class="row-background">
+      <div class="row-cells">
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div>
+      </div>
+      <div class="row-data">
+        <div class="block" data-color="purple" style="--col-start: 3; --col-end: 7">Design</div>
+      </div>
+    </div>
+
+    <div class="row-label">Build</div>
+    <div class="row-background">
+      <div class="row-cells">
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div>
+      </div>
+      <div class="row-data">
+        <div class="block" data-color="blue" style="--col-start: 6; --col-end: 12">Build</div>
+      </div>
+    </div>
+
+    <div class="row-label">Test</div>
+    <div class="row-background">
+      <div class="row-cells">
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        <div class="row-cell"></div><div class="row-cell"></div>
+      </div>
+      <div class="row-data">
+        <div class="block" data-color="teal" style="--col-start: 10; --col-end: 14">Test</div>
+        <div class="milestone" style="--col-start: 14; --col-end: 15">
+          <span class="milestone-diamond"></span>
+          <span class="milestone-label">Launch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

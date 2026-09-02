@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Density Toggle</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Density Toggle</h1>
+  <p>Three pre-built grids (15/30/60 min columns) swap visibility via the checkbox-hack: hidden radios + <code>:has()</code> on a wrapping element. No JavaScript recomputes anything. Coarser grains just round sub-slot events to the nearest column.</p>
+</header>
+<div class="density-switcher-wrap">
+  <div class="density-switcher" role="radiogroup" aria-label="Column density">
+    <input type="radio" name="density" id="density-15" class="visually-hidden">
+    <label for="density-15">15 min</label>
+    <input type="radio" name="density" id="density-30" class="visually-hidden" checked>
+    <label for="density-30">30 min</label>
+    <input type="radio" name="density" id="density-60" class="visually-hidden">
+    <label for="density-60">Hourly</label>
+  </div>
+
+  <div class="timeline-scroll-container" data-density="15">
+    <div class="grid-timeline">
+      <div class="header-container">
+        <div class="header-row">9:00</div><div class="header-row">9:15</div>
+        <div class="header-row">9:30</div><div class="header-row">9:45</div>
+        <div class="header-row">10:00</div><div class="header-row">10:15</div>
+        <div class="header-row">10:30</div><div class="header-row">10:45</div>
+        <div class="header-row">11:00</div><div class="header-row">11:15</div>
+        <div class="header-row">11:30</div><div class="header-row">11:45</div>
+        <div class="header-row">12:00</div><div class="header-row">12:15</div>
+        <div class="header-row">12:30</div><div class="header-row">12:45</div>
+      </div>
+      <div class="row-background">
+        <div class="row-cells">
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        </div>
+        <div class="row-data">
+          <div class="block" data-color="blue" style="--col-start: 1; --col-end: 3">Team Sync</div>
+          <div class="block" data-color="teal" style="--col-start: 3; --col-end: 7">Focus Block</div>
+          <div class="block" data-color="orange" style="--col-start: 13; --col-end: 15">Lunch Prep</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-scroll-container" data-density="30">
+    <div class="grid-timeline">
+      <div class="header-container">
+        <div class="header-row">9:00</div><div class="header-row">9:30</div>
+        <div class="header-row">10:00</div><div class="header-row">10:30</div>
+        <div class="header-row">11:00</div><div class="header-row">11:30</div>
+        <div class="header-row">12:00</div><div class="header-row">12:30</div>
+      </div>
+      <div class="row-background">
+        <div class="row-cells">
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        </div>
+        <div class="row-data">
+          <div class="block" data-color="blue" style="--col-start: 1; --col-end: 2">Team Sync</div>
+          <div class="block" data-color="teal" style="--col-start: 2; --col-end: 4">Focus Block</div>
+          <div class="block" data-color="orange" style="--col-start: 7; --col-end: 8">Lunch Prep</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-scroll-container" data-density="60">
+    <div class="grid-timeline">
+      <div class="header-container">
+        <div class="header-row">9 AM</div><div class="header-row">10 AM</div>
+        <div class="header-row">11 AM</div><div class="header-row">12 PM</div>
+      </div>
+      <div class="row-background">
+        <div class="row-cells">
+          <div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div><div class="row-cell"></div>
+        </div>
+        <div class="row-data">
+          <div class="block" data-color="teal" style="--col-start: 1; --col-end: 3">Morning Meetings</div>
+          <div class="block" data-color="orange" style="--col-start: 4; --col-end: 5">Lunch Prep</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

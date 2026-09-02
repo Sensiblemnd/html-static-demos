@@ -1,0 +1,167 @@
+@layer tokens {
+  :root {
+    --page-bg-image:
+      radial-gradient(ellipse 70% 60% at 50% 55%, oklch(58% 0.16 45 / 75%), transparent 70%),
+      radial-gradient(ellipse 60% 55% at 15% 80%, oklch(42% 0.12 30 / 55%), transparent 70%),
+      radial-gradient(ellipse 70% 65% at 88% 20%, oklch(38% 0.09 40 / 50%), transparent 70%),
+      linear-gradient(oklch(16% 0.02 45), oklch(9% 0.015 40));
+    --nav-radius: 1.5rem;
+    --pill-radius: 1rem;
+    --nav-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --nav-transition-duration: .45s;
+  }
+}
+
+@layer base {
+  body {
+    background-color: oklch(9% 0.015 40);
+    background-image: var(--page-bg-image);
+    background-attachment: fixed;
+    background-size: cover;
+    min-block-size: 100dvh;
+  }
+}
+
+@layer layout {
+  .demo-stage {
+    display: grid;
+    place-items: center;
+    min-block-size: 60dvh;
+    padding: 2rem 1rem;
+  }
+}
+
+@layer components {
+  .showcase-nav {
+    position: relative;
+    isolation: isolate;
+    padding: .35rem;
+    background: oklch(12% 0.02 40 / 96%);
+    border: 1px solid oklch(45% 0.03 50 / 35%);
+    border-radius: var(--nav-radius);
+  }
+
+  .showcase-nav ul {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .showcase-nav a {
+    display: block;
+    position: relative;
+    padding: .85rem 1.5rem;
+    border-radius: calc(var(--nav-radius) - .35rem);
+    color: var(--color-text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* Fallback indicator for browsers without anchor positioning: a plain
+     underline per link. Hidden once the anchor-driven version above takes over. */
+  .showcase-nav a::after {
+    content: "";
+    position: absolute;
+    inset-inline: .75rem;
+    inset-block-end: .35rem;
+    block-size: 2px;
+    border-radius: 999px;
+    background: var(--color-accent);
+    scale: 0 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .showcase-nav a::after {
+      transition: scale .2s ease;
+    }
+  }
+
+  .showcase-nav a:hover::after,
+  .showcase-nav a:focus-visible::after {
+    scale: 1 1;
+  }
+
+  @supports (corner-shape: squircle) {
+    .showcase-nav {
+      corner-shape: squircle;
+    }
+  }
+
+  @supports (anchor-name: --a) {
+    .showcase-nav a::after {
+      display: none;
+    }
+
+    .showcase-nav li:hover,
+    .showcase-nav li:focus-within {
+      /* Same anchor name moves to whichever link is active. The name itself
+         never changes, so the anchor()-based offsets below stay animatable —
+         swapping *which* element owns a name is continuous, swapping
+         position-anchor itself would be a discrete (unanimatable) jump. The
+         li stays position:static: an anchor-name element that is also
+         position:relative fails to resolve as a valid anchor. */
+      anchor-name: --hovered-link;
+    }
+
+    .showcase-nav::before,
+    .showcase-nav::after {
+      content: "";
+      position: absolute;
+      position-anchor: --hovered-link;
+      position-try-fallbacks: flip-block, flip-inline;
+      top: anchor(top);
+      right: anchor(right);
+      bottom: anchor(bottom);
+      left: anchor(left);
+      border-radius: var(--pill-radius);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @supports (corner-shape: squircle) {
+      .showcase-nav::before,
+      .showcase-nav::after {
+        corner-shape: squircle;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .showcase-nav::before,
+      .showcase-nav::after {
+        /* Animating inset properties instead of transform is normally
+           avoided for performance, but it is the whole point of this demo:
+           the anchor-name reassignment trick above only pays off if these
+           offsets can transition. */
+        transition:
+          top var(--nav-transition-duration) var(--nav-spring),
+          right var(--nav-transition-duration) var(--nav-spring),
+          bottom var(--nav-transition-duration) var(--nav-spring),
+          left var(--nav-transition-duration) var(--nav-spring),
+          opacity .2s ease;
+      }
+    }
+
+    /* Duplicates the page's fixed-attachment background so this layer reads
+       as a window into the page rather than a separately drawn shape. */
+    .showcase-nav::after {
+      z-index: -2;
+      background-image: var(--page-bg-image);
+      background-attachment: fixed;
+    }
+
+    .showcase-nav::before {
+      z-index: -1;
+      background: oklch(0% 0 0 / 8%);
+      border: 1px solid oklch(95% 0.01 60 / 14%);
+      backdrop-filter: blur(4px);
+    }
+
+    .showcase-nav:has(li:hover, li:focus-within)::before,
+    .showcase-nav:has(li:hover, li:focus-within)::after {
+      opacity: 1;
+    }
+  }
+}
