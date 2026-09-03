@@ -1,0 +1,56 @@
+@layer components {
+  .trim-list {
+    display: grid;
+    gap: 1rem;
+    max-inline-size: 420px;
+    margin-inline: auto;
+    padding: 0;
+    list-style: none;
+  }
+
+  .trim-list li {
+    display: grid;
+    gap: .75rem;
+    justify-items: start;
+    padding: 1.1rem 1.25rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: .5rem;
+  }
+
+  .trim-label {
+    margin: 0;
+    font-family: ui-monospace, monospace;
+    font-size: .78rem;
+    line-height: 1.4;
+    color: var(--color-muted);
+  }
+
+  /* The background is the whole point: it paints the element's real box,
+     so an exaggerated line-height (inflating the invisible half-leading)
+     shows up directly as visible highlight above/below the glyphs instead
+     of something you have to infer. */
+  .trim-sample {
+    padding-inline: .4rem;
+    background: var(--color-accent);
+    color: oklch(15% 0.02 250);
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 2.2;
+  }
+
+  .trim-sample--start {
+    text-box-trim: trim-start;
+    text-box-edge: cap alphabetic;
+  }
+
+  .trim-sample--end {
+    text-box-trim: trim-end;
+    text-box-edge: cap alphabetic;
+  }
+
+  .trim-sample--both {
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
+}

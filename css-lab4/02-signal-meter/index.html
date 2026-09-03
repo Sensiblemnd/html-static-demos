@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal Meter</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Signal Meter</h1>
+  <p>Each preset is a raw reading on its own scale (0-100 here). The CSS <code>progress()</code> function maps that raw number onto a 0-1 fraction directly in <code>calc()</code>, no JavaScript division required, and the same fraction drives both the fill width and its hue.</p>
+</header>
+
+<div class="stage">
+  <div class="meter-demo">
+    <fieldset class="preset-picker">
+      <legend>Reading</legend>
+      <label class="preset-option">
+        <input type="radio" name="level" id="lvl-1">
+        <span>Low</span>
+      </label>
+      <label class="preset-option">
+        <input type="radio" name="level" id="lvl-2" checked>
+        <span>Fair</span>
+      </label>
+      <label class="preset-option">
+        <input type="radio" name="level" id="lvl-3">
+        <span>Good</span>
+      </label>
+      <label class="preset-option">
+        <input type="radio" name="level" id="lvl-4">
+        <span>Excellent</span>
+      </label>
+    </fieldset>
+
+    <div class="meter">
+      <div class="meter-track">
+        <div class="meter-fill"></div>
+      </div>
+      <p class="meter-readout"></p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

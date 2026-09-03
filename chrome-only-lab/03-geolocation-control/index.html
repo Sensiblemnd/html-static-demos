@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geolocation Element</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Geolocation Element</h1>
+  <p>The browser, not this page's JavaScript, owns the button and the permission prompt: your click on it <em>is</em> the permission signal. This needs a few lines of JS to read the result back out (CSS can't), and it needs a secure context, this will only work served over <code>https://</code> or <code>http://localhost</code>, never opened as a local <code>file://</code> page.</p>
+</header>
+
+<div class="stage">
+  <p id="support-note" class="support-banner">Checking for <code>&lt;geolocation&gt;</code> support&hellip;</p>
+
+  <geolocation class="geo-control">
+    <button id="fallback-btn">Share my location</button>
+  </geolocation>
+
+  <dl class="geo-readout" id="geo-readout" hidden>
+    <div><dt>Latitude</dt><dd id="geo-lat">n/a</dd></div>
+    <div><dt>Longitude</dt><dd id="geo-lng">n/a</dd></div>
+    <div><dt>Accuracy</dt><dd id="geo-acc">n/a</dd></div>
+  </dl>
+
+  <p id="geo-error" class="geo-error" hidden></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

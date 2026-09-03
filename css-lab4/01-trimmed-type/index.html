@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trimmed Type</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Trimmed Type</h1>
+  <p>Same text, same exaggerated <code>line-height: 2.2</code>, in all four rows. The highlight color behind "Agypqj" (a cap, an ascender, and three different descenders, chosen to catch trimming on both edges) <em>is</em> the text's actual box, background-color always fills the full line box, trimmed or not. Watch the highlight shrink from the top only, then the bottom only, then both, as <code>text-box-trim</code> changes.</p>
+</header>
+
+<div class="stage">
+  <ul class="trim-list">
+    <li>
+      <p class="trim-label">text-box-trim: normal;</p>
+      <span class="trim-sample">Agypqj</span>
+    </li>
+    <li>
+      <p class="trim-label">text-box-trim: trim-start;<br>text-box-edge: cap alphabetic;</p>
+      <span class="trim-sample trim-sample--start">Agypqj</span>
+    </li>
+    <li>
+      <p class="trim-label">text-box-trim: trim-end;<br>text-box-edge: cap alphabetic;</p>
+      <span class="trim-sample trim-sample--end">Agypqj</span>
+    </li>
+    <li>
+      <p class="trim-label">text-box-trim: trim-both;<br>text-box-edge: cap alphabetic;</p>
+      <span class="trim-sample trim-sample--both">Agypqj</span>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

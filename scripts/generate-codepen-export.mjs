@@ -8,7 +8,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
-const labs = ["css-lab", "css-lab2", "css-lab3", "timeline-grid-lab"];
+const labs = ["css-lab", "css-lab2", "css-lab3", "css-lab4", "chrome-only-lab", "timeline-grid-lab"];
 
 function extractTag(html, tag) {
   const match = html.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, "i"));
@@ -31,11 +31,20 @@ function collectDemos(lab) {
 
       const html = readFileSync(indexPath, "utf8");
       const title = extractTag(html, "title").trim() || folder;
-      const body = extractTag(html, "body").trim();
+      const scriptPath = join(demoDir, "script.js");
+      const hasScript = existsSync(scriptPath);
+      const js = hasScript ? readFileSync(scriptPath, "utf8").trim() : "";
+      // Demos with their own script.js load it via <script src="script.js">,
+      // which won't resolve once the markup is lifted out onto CodePen or
+      // into this page's srcdoc preview; drop that reference here since its
+      // content is carried separately in the js field instead.
+      const body = extractTag(html, "body")
+        .replace(/<script\s+src=["']script\.js["']><\/script>/, "")
+        .trim();
       const styleCss = readFileSync(stylePath, "utf8").trim();
       const css = [sharedCss, styleCss].filter(Boolean).join("\n\n");
 
-      return { id: `${lab}/${folder}`, lab, folder, title, html: body, css };
+      return { id: `${lab}/${folder}`, lab, folder, title, html: body, css, js };
     })
     .filter(Boolean);
 }
@@ -88,7 +97,12 @@ const page = `<!doctype html>
   function renderPreview() {
     const demo = currentDemo();
     if (!demo) return;
-    preview.srcdoc = \`<!doctype html><html><head><style>\${demo.css}</style></head><body>\${demo.html}</body></html>\`;
+    // The embedded closing script tag below must stay backslash-escaped:
+    // unescaped, even inside a JS string, it's still what the HTML
+    // tokenizer scans for to end this element's own closing tag, and
+    // would truncate this whole inline script right there.
+    const scriptTag = demo.js ? \`<script>\${demo.js}<\\/script>\` : "";
+    preview.srcdoc = \`<!doctype html><html><head><style>\${demo.css}</style></head><body>\${demo.html}\${scriptTag}</body></html>\`;
   }
 
   select.addEventListener("change", renderPreview);
@@ -97,7 +111,7 @@ const page = `<!doctype html>
   document.getElementById("open-codepen").addEventListener("click", () => {
     const demo = currentDemo();
     if (!demo) return;
-    const data = { title: demo.title, html: demo.html, css: demo.css };
+    const data = { title: demo.title, html: demo.html, css: demo.css, js: demo.js };
 
     const form = document.createElement("form");
     form.action = "https://codepen.io/pen/define";

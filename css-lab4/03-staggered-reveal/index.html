@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Staggered Reveal</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Staggered Reveal</h1>
+  <p>Each row's <code>animation-delay</code> is <code>calc(sibling-index() * 80ms)</code>, read straight off its position in the list. No <code>:nth-child()</code> chain of hand-written delays, no JavaScript loop assigning inline styles. Reload the page to replay it.</p>
+</header>
+
+<div class="stage">
+  <ul class="stagger-list">
+    <li><span class="dot"></span>Build finished in 4.2s</li>
+    <li><span class="dot"></span>3 tests updated</li>
+    <li><span class="dot"></span>Bundle size: 128kb</li>
+    <li><span class="dot"></span>Lint: 0 warnings</li>
+    <li><span class="dot"></span>Deployed to staging</li>
+    <li><span class="dot"></span>Preview link ready</li>
+    <li><span class="dot"></span>Notified 2 reviewers</li>
+  </ul>
+</div>
+</body>
+</html>

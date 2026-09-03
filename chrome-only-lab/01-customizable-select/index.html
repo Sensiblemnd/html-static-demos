@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customizable Select</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Customizable Select</h1>
+  <p>A real <code>&lt;select&gt;</code>, not a JS-built combobox: native keyboard and screen-reader behavior, restyled with CSS via <code>appearance: base-select</code>. The <code>&lt;option&gt;</code>s hold arbitrary HTML (an icon plus a label), and <code>&lt;selectedcontent&gt;</code> mirrors whichever one is picked into the closed button.</p>
+</header>
+
+<div class="stage">
+  <form>
+    <label for="channel-select">Notify me via</label>
+    <select id="channel-select">
+      <button>
+        <selectedcontent></selectedcontent>
+      </button>
+
+      <option value="email" selected>
+        <span class="option-icon" aria-hidden="true">&#9993;&#65039;</span>
+        <span class="option-label">Email</span>
+      </option>
+      <option value="sms">
+        <span class="option-icon" aria-hidden="true">&#128172;</span>
+        <span class="option-label">SMS</span>
+      </option>
+      <option value="push">
+        <span class="option-icon" aria-hidden="true">&#128276;</span>
+        <span class="option-label">Push notification</span>
+      </option>
+      <option value="chat">
+        <span class="option-icon" aria-hidden="true">&#128187;</span>
+        <span class="option-label">Team chat</span>
+      </option>
+    </select>
+  </form>
+</div>
+</body>
+</html>

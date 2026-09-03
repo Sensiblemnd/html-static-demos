@@ -1,0 +1,73 @@
+@layer components {
+  /* geolocation's rendering has forced/clamped values for a handful of
+     properties (opacity locked to 1, line-height to normal, white-space
+     to nowrap, user-select none, plus clamped font-weight/min-height/
+     max-height/border-width/letter-spacing/word-spacing), everything
+     else here is free to style. */
+  .geo-control {
+    display: inline-block;
+    padding: .7rem 1.2rem;
+    border: 1px solid var(--color-border);
+    border-radius: .5rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 1rem;
+  }
+
+  .geo-control:hover {
+    border-color: var(--color-accent);
+  }
+
+  /* Plain fallback button for browsers without the element: shown as
+     genuine fallback content only when the browser doesn't recognize
+     <geolocation> at all. */
+  #fallback-btn {
+    padding: .7rem 1.2rem;
+    border: 1px solid var(--color-border);
+    border-radius: .5rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  #fallback-btn:hover {
+    border-color: var(--color-accent);
+  }
+
+  .geo-readout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0 0;
+  }
+
+  /* A declared display always beats the UA stylesheet's [hidden] rule,
+     author-origin styles outrank user-agent ones regardless of
+     specificity, so the hidden attribute needs its own override here or
+     this stays visible the whole time. */
+  .geo-readout[hidden] {
+    display: none;
+  }
+
+  .geo-readout dt {
+    font-size: .75rem;
+    color: var(--color-muted);
+  }
+
+  .geo-readout dd {
+    margin: .2rem 0 0;
+    font-family: ui-monospace, monospace;
+    font-size: .95rem;
+  }
+
+  .geo-error {
+    margin: 1.5rem 0 0;
+    padding: .75rem 1rem;
+    border: 1px solid oklch(65% 0.18 25);
+    border-radius: .5rem;
+    background: oklch(65% 0.18 25 / 12%);
+    color: oklch(85% 0.1 25);
+    font-size: .9rem;
+  }
+}

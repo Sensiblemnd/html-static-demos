@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radial Spokes</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Radial Spokes</h1>
+  <p>Eight items, evenly spaced around a circle at <code>calc((360deg / sibling-count()) * sibling-index())</code> each. Add or remove an item from the markup and the spacing recomputes on its own, no manual angle math or a synced <code>--count</code> variable to update. Without support for the two functions, this falls back to a plain wrapped row.</p>
+</header>
+
+<div class="stage">
+  <div class="ring">
+    <div class="spoke"><span>01</span></div>
+    <div class="spoke"><span>02</span></div>
+    <div class="spoke"><span>03</span></div>
+    <div class="spoke"><span>04</span></div>
+    <div class="spoke"><span>05</span></div>
+    <div class="spoke"><span>06</span></div>
+    <div class="spoke"><span>07</span></div>
+    <div class="spoke"><span>08</span></div>
+  </div>
+</div>
+</body>
+</html>

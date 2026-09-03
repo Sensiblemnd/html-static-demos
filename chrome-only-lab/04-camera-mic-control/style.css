@@ -1,0 +1,57 @@
+@layer components {
+  .media-control {
+    display: inline-block;
+    padding: .7rem 1.2rem;
+    border: 1px solid var(--color-border);
+    border-radius: .5rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 1rem;
+  }
+
+  .media-control:hover {
+    border-color: var(--color-accent);
+  }
+
+  #fallback-btn {
+    padding: .7rem 1.2rem;
+    border: 1px solid var(--color-border);
+    border-radius: .5rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  #fallback-btn:hover {
+    border-color: var(--color-accent);
+  }
+
+  .media-preview {
+    display: block;
+    inline-size: 100%;
+    max-inline-size: 24rem;
+    margin: 1.5rem 0 0;
+    border-radius: .5rem;
+    border: 1px solid var(--color-border);
+    background: var(--stage-bg);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  /* Same fix as the geolocation demo: an explicit display always beats
+     the UA stylesheet's [hidden] rule regardless of specificity. */
+  .media-preview[hidden] {
+    display: none;
+  }
+
+  .media-error {
+    margin: 1.5rem 0 0;
+    padding: .75rem 1rem;
+    border: 1px solid oklch(65% 0.18 25);
+    border-radius: .5rem;
+    background: oklch(65% 0.18 25 / 12%);
+    color: oklch(85% 0.1 25);
+    font-size: .9rem;
+  }
+}

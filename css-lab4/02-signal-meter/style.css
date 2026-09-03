@@ -1,0 +1,114 @@
+@property --raw {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 52;
+}
+
+@layer components {
+  .meter-demo {
+    /* Each preset's own raw reading, on its own 0-100 scale. progress()
+       below is what turns this into a fraction: nothing here is
+       pre-divided. */
+    --raw: 52;
+  }
+
+  .meter-demo:has(#lvl-1:checked) {
+    --raw: 18;
+  }
+
+  .meter-demo:has(#lvl-2:checked) {
+    --raw: 52;
+  }
+
+  .meter-demo:has(#lvl-3:checked) {
+    --raw: 78;
+  }
+
+  .meter-demo:has(#lvl-4:checked) {
+    --raw: 100;
+  }
+
+  .preset-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin: 0 0 2rem;
+    padding: 0;
+    border: 0;
+  }
+
+  .preset-picker legend {
+    inline-size: 100%;
+    margin-block-end: .5rem;
+    font-size: .8rem;
+    color: var(--color-muted);
+  }
+
+  .preset-option input {
+    position: absolute;
+    opacity: 0;
+    inline-size: 1px;
+    block-size: 1px;
+  }
+
+  .preset-option span {
+    display: inline-block;
+    padding: .5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    color: var(--color-muted);
+    cursor: pointer;
+  }
+
+  .preset-option input:checked + span {
+    border-color: var(--color-accent);
+    color: var(--color-text);
+    background: color-mix(in oklch, var(--color-accent) 20%, transparent);
+  }
+
+  .preset-option input:focus-visible + span {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+  }
+
+  .meter-track {
+    inline-size: 100%;
+    block-size: 1.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+
+  .meter-fill {
+    block-size: 100%;
+    /* Static fallback for browsers without progress() support, overridden
+       below once it's confirmed available. */
+    inline-size: 50%;
+    background: var(--color-accent);
+  }
+
+  /* progress() returns a bare number, not a length, so testing
+     "width: progress(...)" directly is invalid regardless of support and
+     always fails. Wrapping it in calc(... * 100%) produces an actual
+     length-percentage, which is what makes this a real support test. */
+  @supports (width: calc(progress(1, 0, 1) * 100%)) {
+    .meter-fill {
+      inline-size: calc(progress(var(--raw), 0, 100) * 100%);
+      background: hsl(calc(progress(var(--raw), 0, 100) * 120) 70% 50%);
+      transition: inline-size .3s ease, background-color .3s ease;
+    }
+  }
+
+  .meter-readout {
+    margin: .75rem 0 0;
+    font-family: ui-monospace, monospace;
+    font-size: .9rem;
+    color: var(--color-muted);
+  }
+
+  .meter-readout::before {
+    counter-reset: pct var(--raw);
+    content: "raw " counter(pct) " -> progress() " counter(pct) "/100";
+  }
+}

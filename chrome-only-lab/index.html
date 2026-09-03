@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chrome-Only Lab</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+<header>
+  <h1>Chrome-Only Lab</h1>
+  <p>New HTML/CSS from 2025-2026 that only one engine has shipped, or that's only recently crossed into more than one. Unlike the <code>css-lab*</code> series, demos 3 and 4 here use a few lines of JavaScript, they're browser APIs, not CSS, so there's no way around it. Every demo has a real fallback for unsupported browsers, and demos 3-4 need a secure context (<code>https://</code> or <code>http://localhost</code>), not a <code>file://</code> page.</p>
+</header>
+
+<main class="index-grid">
+  <a class="demo-card-link" href="01-customizable-select/index.html">
+    <span class="demo-num">01</span>
+    <strong>Customizable Select</strong>
+    <span class="demo-tag">CSS only</span>
+    <span class="demo-desc">A real, fully-accessible &lt;select&gt; restyled with appearance: base-select, rich HTML options, an animated picker. Chrome/Edge 135+, Safari 27+, no Firefox yet; falls back to a plain native select.</span>
+  </a>
+  <a class="demo-card-link" href="02-typed-attr/index.html">
+    <span class="demo-num">02</span>
+    <strong>Typed attr()</strong>
+    <span class="demo-tag">CSS only</span>
+    <span class="demo-desc">A color and a load percentage read straight off data-* attributes into a border-color and a width, no per-row class. Chrome/Edge 133+ only.</span>
+  </a>
+  <a class="demo-card-link" href="03-geolocation-control/index.html">
+    <span class="demo-num">03</span>
+    <strong>Geolocation Element</strong>
+    <span class="demo-tag">needs JS</span>
+    <span class="demo-desc">The browser's own permission-request button for location, via the declarative &lt;geolocation&gt; element. Chrome 144+, likely flag-gated even there.</span>
+  </a>
+  <a class="demo-card-link" href="04-camera-mic-control/index.html">
+    <span class="demo-num">04</span>
+    <strong>Camera/Mic Element</strong>
+    <span class="demo-tag">needs JS</span>
+    <span class="demo-desc">Same idea as demo 03 for camera/mic access, via &lt;usermedia&gt;. Chrome 151+, likely flag-gated even there.</span>
+  </a>
+</main>
+</body>
+</html>

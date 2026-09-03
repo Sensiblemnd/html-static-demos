@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS 2026 Features Lab</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+<header>
+  <h1>CSS 2026 Features Lab</h1>
+  <p>Standalone HTML/CSS demos of CSS that landed since January 2026: <code>text-box-trim</code>/<code>text-box-edge</code>, <code>progress()</code>, and <code>sibling-index()</code>/<code>sibling-count()</code>. No JavaScript. Support varies per demo, see each card and its stylesheet comments; every demo degrades to a plain, still-usable layout where the feature isn't available rather than breaking.</p>
+</header>
+
+<main class="index-grid">
+  <a class="demo-card-link" href="01-trimmed-type/index.html">
+    <span class="demo-num">01</span>
+    <strong>Trimmed Type</strong>
+    <span class="demo-desc">text-box-trim/text-box-edge strip a font's invisible half-leading. A highlight color painted directly behind the text shows its real box shrinking from the top, then the bottom, then both. Chrome/Edge 133+, Safari 18.2+, Firefox 154+.</span>
+  </a>
+  <a class="demo-card-link" href="02-signal-meter/index.html">
+    <span class="demo-num">02</span>
+    <strong>Signal Meter</strong>
+    <span class="demo-desc">progress() turns a raw 0-100 reading into a 0-1 fraction inside calc(), driving both a meter's fill width and its hue. Chrome/Edge 138+, Safari 26+; Firefox landing in 155.</span>
+  </a>
+  <a class="demo-card-link" href="03-staggered-reveal/index.html">
+    <span class="demo-num">03</span>
+    <strong>Staggered Reveal</strong>
+    <span class="demo-desc">A list's entrance stagger reads animation-delay straight off sibling-index(), no hand-written :nth-child() delays. Chrome/Edge 138+, Safari 26.2+; not yet in Firefox.</span>
+  </a>
+  <a class="demo-card-link" href="04-radial-spokes/index.html">
+    <span class="demo-num">04</span>
+    <strong>Radial Spokes</strong>
+    <span class="demo-desc">Eight items space themselves evenly around a circle from sibling-index() and sibling-count() alone, add or remove one and the spacing recomputes. Same support window as demo 03.</span>
+  </a>
+</main>
+</body>
+</html>

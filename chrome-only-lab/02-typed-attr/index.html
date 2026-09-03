@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typed attr()</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Typed attr()</h1>
+  <p>Each row's accent color and load bar come straight from <code>data-accent</code>/<code>data-load</code> HTML attributes via <code>attr(data-accent type(&lt;color&gt;))</code>, no class per row, no inline <code>style</code>, no JavaScript reading the DOM. <code>attr()</code> only ever reads from the exact element it's declared on though, never an ancestor, so the border and the fill bar (two different elements) each carry their own copy of the same two attributes. The percent label is generated the same way, but with plain untyped <code>attr()</code> in <code>content</code>, the one form of <code>attr()</code> that's always worked everywhere. Typed <code>attr()</code> on other properties is Chrome/Edge-only right now, so every row also has a flat fallback color declared first.</p>
+</header>
+
+<div class="stage">
+  <ul class="server-list">
+    <li class="server-card" data-accent="oklch(70% 0.19 25)" data-load="88%">
+      <span class="server-name">api-prod-1</span>
+      <span class="server-load-track"><span class="server-load-fill" data-accent="oklch(70% 0.19 25)" data-load="88%"></span></span>
+    </li>
+    <li class="server-card" data-accent="oklch(78% 0.15 70)" data-load="54%">
+      <span class="server-name">api-prod-2</span>
+      <span class="server-load-track"><span class="server-load-fill" data-accent="oklch(78% 0.15 70)" data-load="54%"></span></span>
+    </li>
+    <li class="server-card" data-accent="oklch(75% 0.14 225)" data-load="31%">
+      <span class="server-name">worker-queue-1</span>
+      <span class="server-load-track"><span class="server-load-fill" data-accent="oklch(75% 0.14 225)" data-load="31%"></span></span>
+    </li>
+    <li class="server-card" data-accent="oklch(72% 0.17 150)" data-load="12%">
+      <span class="server-name">cache-1</span>
+      <span class="server-load-track"><span class="server-load-fill" data-accent="oklch(72% 0.17 150)" data-load="12%"></span></span>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

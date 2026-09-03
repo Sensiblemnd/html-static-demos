@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Camera/Mic Element</title>
+<link rel="stylesheet" href="../_shared.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Camera/Mic Element</h1>
+  <p><code>&lt;usermedia&gt;</code> is the same idea as the geolocation demo, applied to <code>getUserMedia()</code>: the browser owns the button and the prompt, this page just listens for a <code>stream</code> event and attaches the resulting <code>MediaStream</code> to a preview <code>&lt;video&gt;</code>. Needs a camera/mic, a secure context (<code>https://</code> or <code>http://localhost</code>), and you'll have to actually grant the permission to see the preview.</p>
+</header>
+
+<div class="stage">
+  <p id="support-note" class="support-banner">Checking for <code>&lt;usermedia&gt;</code> support&hellip;</p>
+
+  <usermedia id="media-ctrl" class="media-control">
+    <button id="fallback-btn">Enable camera and microphone</button>
+  </usermedia>
+
+  <video id="preview" class="media-preview" autoplay muted playsinline hidden></video>
+
+  <p id="media-error" class="media-error" hidden></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
