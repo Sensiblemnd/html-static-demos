@@ -6,27 +6,27 @@
 
 @layer components {
   .pressure {
-    padding: clamp(.75rem, 4cqi, 2rem);
+    padding: clamp(var(--space-7), 4cqi, var(--space-13));
     background: var(--color-surface);
     color: var(--color-text);
     border: 1px solid var(--color-border);
-    border-radius: 1rem;
+    border-radius: var(--radius-l);
   }
 
   .chips {
     display: flex;
     flex-wrap: wrap;
-    gap: clamp(.25rem, 2cqi, 1rem);
-    margin-block-start: 1rem;
-  }
+    gap: clamp(var(--space-2), 2cqi, var(--space-10));
+    margin-block-start: var(--space-10);
 
-  .chips span {
-    padding-block: .5rem;
-    padding-inline: .75rem;
-    background: var(--color-surface-2);
-    color: var(--color-text);
-    border: 1px solid transparent;
-    border-radius: 999px;
-    white-space: nowrap;
+    span {
+      padding-block: var(--space-5);
+      padding-inline: var(--space-7);
+      background: var(--color-surface-2);
+      color: var(--color-text);
+      border: 1px solid transparent;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
   }
 }

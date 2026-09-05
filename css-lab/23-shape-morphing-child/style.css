@@ -9,9 +9,9 @@
     min-inline-size: var(--stage-min, 140px);
     block-size: var(--stage-block, 300px);
     min-block-size: 120px;
-    margin-block: 3rem;
+    margin-block: var(--space-14);
     margin-inline: auto;
-    padding: 1rem;
+    padding: var(--space-10);
     border: 2px dashed var(--stage-border);
     background: var(--stage-bg);
   }
@@ -22,70 +22,70 @@
     display: grid;
     justify-items: center;
     align-content: center;
-    gap: .75rem;
+    gap: var(--space-7);
     block-size: 100%;
-  }
 
-  .morph-shape {
-    /* cqmin ties the shape to whichever axis is smaller, so a square/circle never overflows as the container reshapes */
-    inline-size: 50cqmin;
-    block-size: 50cqmin;
-    border-radius: 12%;
-    background: linear-gradient(135deg, var(--color-accent), var(--color-surface-2));
-    transition: inline-size .3s ease, block-size .3s ease, border-radius .3s ease;
-  }
-
-  .morph-label {
-    margin: 0;
-    font-size: .8rem;
-    color: var(--color-muted);
-  }
-
-  /* square is the fallback identity: only the near-1:1 and far-from-1:1 bands get explicit
-     overrides below, so every ratio in between falls through to this rule for free instead of
-     needing its own explicit range */
-  .morph-label::after {
-    content: "Square";
-  }
-
-  /* every boundary below comes from one base ratio, 5/3 (≈1.6667), the "how far from square
-     counts as a rectangle" threshold. The rectangle bands are that ratio and its reciprocal
-     (3/5). The circle band is its fourth root, sqrt(sqrt(5/3)) ≈ 1.1362, and that root's
-     reciprocal ≈ .8801, so one number determines all four edges instead of two unrelated
-     magic-fraction pairs. @container conditions can't reference custom properties or calc()
-     (verified: both are silently ignored), so the derived decimals are hardcoded rather than
-     computed live from a single variable. */
-  @container morph (aspect-ratio > .8801) and (aspect-ratio < 1.1362) {
     .morph-shape {
-      border-radius: 50%;
+      /* cqmin ties the shape to whichever axis is smaller, so a square/circle never overflows as the container reshapes */
+      inline-size: 50cqmin;
+      block-size: 50cqmin;
+      border-radius: 12%;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-surface-2));
+      transition: inline-size .3s ease, block-size .3s ease, border-radius .3s ease;
     }
 
-    .morph-label::after {
-      content: "Circle";
-    }
-  }
+    .morph-label {
+      margin: 0;
+      font-size: .8rem;
+      color: var(--color-muted);
 
-  @container morph (aspect-ratio <= 3/5) {
-    .morph-shape {
-      inline-size: 30cqmin;
-      block-size: 70cqh;
-      border-radius: 15%;
-    }
-
-    .morph-label::after {
-      content: "Rectangle";
-    }
-  }
-
-  @container morph (aspect-ratio >= 5/3) {
-    .morph-shape {
-      inline-size: 70cqw;
-      block-size: 30cqmin;
-      border-radius: 15%;
+      /* square is the fallback identity: only the near-1:1 and far-from-1:1 bands get explicit
+         overrides below, so every ratio in between falls through to this rule for free instead of
+         needing its own explicit range */
+      &::after {
+        content: "Square";
+      }
     }
 
-    .morph-label::after {
-      content: "Rectangle";
+    /* every boundary below comes from one base ratio, 5/3 (≈1.6667), the "how far from square
+       counts as a rectangle" threshold. The rectangle bands are that ratio and its reciprocal
+       (3/5). The circle band is its fourth root, sqrt(sqrt(5/3)) ≈ 1.1362, and that root's
+       reciprocal ≈ .8801, so one number determines all four edges instead of two unrelated
+       magic-fraction pairs. @container conditions can't reference custom properties or calc()
+       (verified: both are silently ignored), so the derived decimals are hardcoded rather than
+       computed live from a single variable. */
+    @container morph (aspect-ratio > .8801) and (aspect-ratio < 1.1362) {
+      .morph-shape {
+        border-radius: 50%;
+      }
+
+      .morph-label::after {
+        content: "Circle";
+      }
+    }
+
+    @container morph (aspect-ratio <= 3/5) {
+      .morph-shape {
+        inline-size: 30cqmin;
+        block-size: 70cqh;
+        border-radius: 15%;
+      }
+
+      .morph-label::after {
+        content: "Rectangle";
+      }
+    }
+
+    @container morph (aspect-ratio >= 5/3) {
+      .morph-shape {
+        inline-size: 70cqw;
+        block-size: 30cqmin;
+        border-radius: 15%;
+      }
+
+      .morph-label::after {
+        content: "Rectangle";
+      }
     }
   }
 }

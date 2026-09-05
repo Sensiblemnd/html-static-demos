@@ -23,31 +23,29 @@
     --flip: calc(var(--switch) / 1px);
     display: flex;
     flex-wrap: wrap;
-    gap: calc((1 - var(--flip)) * 1.5rem);
-    border-radius: calc((1 - var(--flip)) * 1rem);
+    gap: calc((1 - var(--flip)) * var(--space-12));
+    border-radius: calc((1 - var(--flip)) * var(--radius-l));
     background: var(--color-surface);
     color: var(--color-text);
     border: 1px solid var(--color-border);
     overflow: hidden;
-  }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .panel {
+    @media (prefers-reduced-motion: no-preference) {
       /* transitioning the custom property itself is enough: every calc() that reads
          var(--flip) below, including the children's flex-basis, recomputes every frame as
          this one value eases from 0 to 1 */
       transition: --flip .35s ease;
     }
-  }
 
-  .panel > .side,
-  .panel > .content {
-    flex-grow: 1;
-    flex-basis: calc(var(--flip) * 999%);
-    padding: 1.5rem;
-  }
+    > .side,
+    > .content {
+      flex-grow: 1;
+      flex-basis: calc(var(--flip) * 999%);
+      padding: var(--space-12);
+    }
 
-  .panel > .side {
-    background: var(--color-surface-2);
+    > .side {
+      background: var(--color-surface-2);
+    }
   }
 }

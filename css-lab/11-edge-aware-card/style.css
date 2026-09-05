@@ -6,19 +6,22 @@
 
 @layer components {
   .edge-card {
-    padding: 2rem;
+    padding: var(--space-13);
     background: var(--color-surface);
     color: var(--color-text);
     border: 1px solid var(--color-border);
-    border-radius: 1.25rem;
-    box-shadow: 0 1rem 2rem var(--shadow-color);
-  }
+    border-radius: var(--radius-xl);
+    box-shadow: 0 var(--space-10) var(--space-13) var(--shadow-color);
 
-  .edge-card p {
-    color: var(--color-muted);
-  }
+    p {
+      color: var(--color-muted);
+    }
 
-  @container (width < 400px) {
-    .edge-card { margin-inline: -1rem; border-inline: 0; border-radius: 0; box-shadow: none; }
+    @container (width < 400px) {
+      margin-inline: calc(var(--space-10) * -1);
+      border-inline: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
   }
 }

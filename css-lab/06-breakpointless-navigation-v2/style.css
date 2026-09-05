@@ -9,9 +9,9 @@
   .nav {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-10);
     min-inline-size: max-content;
-    padding: 1rem;
+    padding: var(--space-10);
     background: var(--color-surface);
     color: var(--color-text);
     border: 1px solid var(--color-border);
@@ -22,8 +22,8 @@
 
     button {
       border: 0;
-      padding-block: .5rem;
-      padding-inline: .75rem;
+      padding-block: var(--space-5);
+      padding-inline: var(--space-7);
     }
   }
 
@@ -48,7 +48,7 @@
     line-height: 1;
     align-items: center;
     justify-content: center;
-    border-radius: .35rem;
+    border-radius: var(--radius-xs);
     background: transparent;
     color: var(--color-text);
     cursor: pointer;
@@ -88,19 +88,19 @@
        be reset to auto or this box stays over-constrained and the anchor() values above lose */
     bottom: auto;
     left: auto;
-    margin-block-start: .5rem;
-    padding: .4rem;
+    margin-block-start: var(--space-5);
+    padding: var(--space-4);
     display: grid;
-    gap: .1rem;
+    gap: var(--space-1);
     list-style: none;
     min-inline-size: 10rem;
     background: var(--color-surface);
     color: var(--color-text);
     border: 1px solid var(--color-border);
-    border-radius: .6rem;
-    box-shadow: 0 1rem 2rem var(--shadow-color);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 var(--space-10) var(--space-13) var(--shadow-color);
     opacity: 0;
-    translate: 0 -.25rem;
+    translate: 0 calc(var(--space-2) * -1);
 
     @media (prefers-reduced-motion: no-preference) {
       transition: opacity .15s ease, translate .15s ease, display .15s allow-discrete;
@@ -112,7 +112,7 @@
 
       @starting-style {
         opacity: 0;
-        translate: 0 -.25rem;
+        translate: 0 calc(var(--space-2) * -1);
       }
     }
 
@@ -139,9 +139,9 @@
     button {
       display: block;
       inline-size: 100%;
-      padding-block: .5rem;
-      padding-inline: .6rem;
-      border-radius: .4rem;
+      padding-block: var(--space-5);
+      padding-inline: var(--space-6);
+      border-radius: var(--space-4);
       text-align: start;
       text-decoration: none;
       color: inherit;

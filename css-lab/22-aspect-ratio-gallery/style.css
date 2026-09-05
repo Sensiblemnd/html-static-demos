@@ -8,9 +8,9 @@
     min-inline-size: var(--stage-min, 160px);
     block-size: var(--stage-block, 280px);
     min-block-size: 140px;
-    margin-block: 1.5rem;
+    margin-block: var(--space-12);
     margin-inline: auto;
-    padding: 1rem;
+    padding: var(--space-10);
     border: 2px dashed var(--stage-border);
     background: var(--stage-bg);
   }
@@ -19,17 +19,17 @@
     max-inline-size: 480px;
     margin-inline: auto;
     margin-block: 2.5rem 0;
-  }
 
-  .stage-heading h2 {
-    margin-block-end: .25rem;
-    font-size: 1.05rem;
-  }
+    h2 {
+      margin-block-end: var(--space-2);
+      font-size: 1.05rem;
+    }
 
-  .stage-heading p {
-    margin-block: 0;
-    color: var(--color-muted);
-    font-size: .875rem;
+    p {
+      margin-block: 0;
+      color: var(--color-muted);
+      font-size: .875rem;
+    }
   }
 }
 
@@ -39,55 +39,51 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-10);
     block-size: 100%;
-    padding: 1.25rem;
+    padding: var(--space-11);
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: 1rem;
+    border-radius: var(--radius-l);
     overflow: hidden;
-  }
 
-  .tri-card .art {
-    flex: 0 0 40%;
-    block-size: 100%;
-    border-radius: .75rem;
-    background: linear-gradient(135deg, var(--color-accent), var(--color-surface-2));
-  }
+    .art {
+      flex: 0 0 40%;
+      block-size: 100%;
+      border-radius: var(--radius-m);
+      background: linear-gradient(135deg, var(--color-accent), var(--color-surface-2));
+    }
 
-  .tri-card .copy {
-    display: grid;
-    gap: .35rem;
-  }
+    .copy {
+      display: grid;
+      gap: var(--space-3);
 
-  .tri-card .copy p {
-    margin: 0;
-    color: var(--color-muted);
-  }
+      p {
+        margin: 0;
+        color: var(--color-muted);
+      }
+    }
 
-  /* the square band isn't reachable by the other two rules, so it needs its own two-sided range */
-  @container (aspect-ratio > 4/5) and (aspect-ratio < 5/4) {
-    .tri-card {
+    /* the square band isn't reachable by the other two rules, so it needs its own two-sided range */
+    @container (aspect-ratio > 4/5) and (aspect-ratio < 5/4) {
       flex-direction: column;
       text-align: center;
+
+      .art {
+        flex-basis: auto;
+        inline-size: 4rem;
+        block-size: 4rem;
+        border-radius: 50%;
+      }
     }
 
-    .tri-card .art {
-      flex-basis: auto;
-      inline-size: 4rem;
-      block-size: 4rem;
-      border-radius: 50%;
-    }
-  }
-
-  @container (aspect-ratio <= 4/5) {
-    .tri-card {
+    @container (aspect-ratio <= 4/5) {
       flex-direction: column;
-    }
 
-    .tri-card .art {
-      flex: 0 0 45%;
-      inline-size: 100%;
+      .art {
+        flex: 0 0 45%;
+        inline-size: 100%;
+      }
     }
   }
 
@@ -97,24 +93,22 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: .75rem;
+    gap: var(--space-7);
     block-size: 100%;
-    padding: 1.25rem;
-  }
+    padding: var(--space-11);
 
-  .icon-cluster .chip {
-    display: grid;
-    place-items: center;
-    inline-size: 2.75rem;
-    block-size: 2.75rem;
-    border-radius: 50%;
-    background: var(--color-surface-2);
-    border: 1px solid var(--color-border);
-    font-size: .8rem;
-  }
+    .chip {
+      display: grid;
+      place-items: center;
+      inline-size: 2.75rem;
+      block-size: 2.75rem;
+      border-radius: 50%;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      font-size: .8rem;
+    }
 
-  @container (orientation: portrait) {
-    .icon-cluster {
+    @container (orientation: portrait) {
       flex-direction: column;
     }
   }
@@ -123,35 +117,35 @@
   .stat-panel {
     display: grid;
     align-content: center;
-    gap: .5rem;
+    gap: var(--space-5);
     block-size: 100%;
-    padding: 1.25rem;
+    padding: var(--space-11);
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: 1rem;
-  }
+    border-radius: var(--radius-l);
 
-  .stat-panel .headline {
-    font-size: 2rem;
-    font-weight: 600;
-  }
+    .headline {
+      font-size: 2rem;
+      font-weight: 600;
+    }
 
-  .stat-panel .sparkline {
-    display: none;
-    inline-size: 100%;
-    block-size: 2.5rem;
-  }
+    .sparkline {
+      display: none;
+      inline-size: 100%;
+      block-size: 2.5rem;
 
-  .stat-panel .sparkline path {
-    fill: none;
-    stroke: var(--color-accent);
-    stroke-width: 2;
-  }
+      path {
+        fill: none;
+        stroke: var(--color-accent);
+        stroke-width: 2;
+      }
+    }
 
-  /* min-aspect-ratio is the older prefixed media-feature syntax, still valid — equivalent to (aspect-ratio >= 3/2) used elsewhere in this file */
-  @container (min-aspect-ratio: 3/2) {
-    .stat-panel .sparkline {
-      display: block;
+    /* min-aspect-ratio is the older prefixed media-feature syntax, still valid — equivalent to (aspect-ratio >= 3/2) used elsewhere in this file */
+    @container (min-aspect-ratio: 3/2) {
+      .sparkline {
+        display: block;
+      }
     }
   }
 
@@ -160,23 +154,23 @@
     position: relative;
     block-size: 100%;
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: var(--radius-l);
     background: linear-gradient(160deg, var(--color-surface-2), var(--color-surface));
-  }
 
-  .media-block .caption {
-    margin: 0;
-    padding: 1rem;
-    color: var(--color-muted);
-  }
+    .caption {
+      margin: 0;
+      padding: var(--space-10);
+      color: var(--color-muted);
+    }
 
-  @container (aspect-ratio >= 4/3) {
-    .media-block .caption {
-      position: absolute;
-      inset-block-end: 0;
-      inset-inline: 0;
-      color: var(--color-text);
-      background: linear-gradient(transparent, rgb(0 0 0 / 70%));
+    @container (aspect-ratio >= 4/3) {
+      .caption {
+        position: absolute;
+        inset-block-end: 0;
+        inset-inline: 0;
+        color: var(--color-text);
+        background: linear-gradient(transparent, rgb(0 0 0 / 70%));
+      }
     }
   }
 }

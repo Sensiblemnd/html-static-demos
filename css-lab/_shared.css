@@ -13,6 +13,37 @@
     --stage-bg: #0f1218;
     --stage-border: #3a4352;
     --shadow-color: rgb(0 0 0 / 13%);
+
+    /* Numbered rather than t-shirt sized: this lab's 23 demos land on 14
+       distinct rem steps between .1rem and 3rem. */
+    --space-1: .1rem;
+    --space-2: .25rem;
+    --space-3: .35rem;
+    --space-4: .4rem;
+    --space-5: .5rem;
+    --space-6: .6rem;
+    --space-7: .75rem;
+    --space-8: .8rem;
+    --space-9: .9rem;
+    --space-10: 1rem;
+    --space-11: 1.25rem;
+    --space-12: 1.5rem;
+    --space-13: 2rem;
+    --space-14: 3rem;
+
+    --radius-xs: .35rem;
+    --radius-s: .5rem;
+    --radius-sm: .6rem;
+    --radius-m: .75rem;
+    --radius-l: 1rem;
+    --radius-xl: 1.25rem;
+    --radius-full: 999px;
+
+    /* Content-width caps: same concept (a block's max-inline-size before
+       centering with margin-inline: auto) reused across demo cards. */
+    --measure-m: 700px;
+    --measure-l: 900px;
+    --measure-xl: 1100px;
   }
 }
 
@@ -35,20 +66,20 @@
   }
 
   header {
-    max-inline-size: 900px;
-    margin-block: 2rem 0;
+    max-inline-size: var(--measure-l);
+    margin-block: var(--space-13) 0;
     margin-inline: auto;
-    padding-inline: 1rem;
-  }
+    padding-inline: var(--space-10);
 
-  header h1 {
-    margin-block-end: .25rem;
-  }
+    h1 {
+      margin-block-end: var(--space-2);
+    }
 
-  header p {
-    max-inline-size: 70ch;
-    color: var(--color-muted);
-    margin-block-start: 0;
+    p {
+      max-inline-size: 70ch;
+      color: var(--color-muted);
+      margin-block-start: 0;
+    }
   }
 
   :is(h1, h2, h3) {
@@ -78,11 +109,11 @@
        physical bottom-right corner regardless of writing mode */
     resize: horizontal;
     overflow: auto;
-    inline-size: min(90vw, var(--stage-max, 700px));
+    inline-size: min(90vw, var(--stage-max, var(--measure-m)));
     min-inline-size: var(--stage-min, 220px);
-    margin-block: 3rem;
+    margin-block: var(--space-14);
     margin-inline: auto;
-    padding: 1rem;
+    padding: var(--space-10);
     border: 2px dashed var(--stage-border);
     background: var(--stage-bg);
   }

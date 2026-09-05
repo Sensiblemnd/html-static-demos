@@ -1,30 +1,30 @@
 @layer components {
   .bleed-card {
     inline-size: 100%;
-    max-inline-size: 700px;
-    margin-block: 3rem;
+    max-inline-size: var(--measure-m);
+    margin-block: var(--space-14);
     margin-inline: auto;
-    padding: 2rem;
+    padding: var(--space-13);
     background: var(--color-surface);
     color: var(--color-text);
     border: 1px solid var(--color-border);
-    box-shadow: 0 1rem 2rem var(--shadow-color);
+    box-shadow: 0 var(--space-10) var(--space-13) var(--shadow-color);
     /* 100% resolves to this element's own rendered width; when it's edge-to-edge with the
        viewport, (100vw - 100%) is ~0, otherwise it's a large positive gap. *9999 amplifies
        that gap so clamp() snaps straight to 0px or 1rem instead of a smooth blend; the 4px
        fudge absorbs sub-pixel/scrollbar rounding right at the boundary */
-    border-radius: clamp(0px, (100vw - 4px - 100%) * 9999, 1rem);
-  }
+    border-radius: clamp(0px, (100vw - 4px - 100%) * 9999, var(--space-10));
 
-  .bleed-card span,
-  .bleed-card small {
-    display: block;
-    color: var(--color-muted);
-  }
+    span,
+    small {
+      display: block;
+      color: var(--color-muted);
+    }
 
-  .bleed-card strong {
-    display: block;
-    margin-block: .5rem;
-    font-size: 1.25rem;
+    strong {
+      display: block;
+      margin-block: var(--space-5);
+      font-size: 1.25rem;
+    }
   }
 }

@@ -6,27 +6,26 @@
 
 @layer components {
   .card {
-    padding: 2rem;
+    padding: var(--space-13);
     background: var(--color-surface);
     color: var(--color-text);
     border: 1px solid var(--color-border);
-    border-radius: 1rem;
-    box-shadow: 0 1rem 2rem var(--shadow-color);
-  }
+    border-radius: var(--radius-l);
+    box-shadow: 0 var(--space-10) var(--space-13) var(--shadow-color);
 
-  @media (prefers-reduced-motion: no-preference) {
-    .card {
+    span {
+      display: block;
+      color: var(--color-muted);
+      margin-block-start: var(--space-5);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
       transition: border-radius .2s, box-shadow .2s;
     }
-  }
 
-  .card span {
-    display: block;
-    color: var(--color-muted);
-    margin-block-start: .5rem;
-  }
-
-  @container (width < 400px) {
-    .card { border-radius: 0; box-shadow: none; }
+    @container (width < 400px) {
+      border-radius: 0;
+      box-shadow: none;
+    }
   }
 }

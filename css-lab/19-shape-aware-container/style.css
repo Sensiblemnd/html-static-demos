@@ -14,35 +14,38 @@
   .shape-card {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: var(--space-10);
     block-size: 100%;
-    padding: 1.5rem;
+    padding: var(--space-12);
     background: var(--color-surface);
     color: var(--color-text);
     border: 1px solid var(--color-border);
-    border-radius: 1rem;
+    border-radius: var(--radius-l);
     overflow: hidden;
-  }
 
-  .art {
-    flex: 1 1 40%;
-    border-radius: .75rem;
-    background: linear-gradient(135deg, var(--color-accent), var(--color-surface-2));
-  }
+    .art {
+      flex: 1 1 40%;
+      border-radius: var(--radius-m);
+      background: linear-gradient(135deg, var(--color-accent), var(--color-surface-2));
+    }
 
-  .copy {
-    flex: 1 1 60%;
-    display: grid;
-    align-content: center;
-    gap: .5rem;
-  }
+    .copy {
+      flex: 1 1 60%;
+      display: grid;
+      align-content: center;
+      gap: var(--space-5);
 
-  .copy p {
-    color: var(--color-muted);
-  }
+      p {
+        color: var(--color-muted);
+      }
+    }
 
-  @container (aspect-ratio < 1) {
-    .shape-card { flex-direction: column; }
-    .art { flex-basis: 40%; }
+    @container (aspect-ratio < 1) {
+      flex-direction: column;
+
+      .art {
+        flex-basis: 40%;
+      }
+    }
   }
 }

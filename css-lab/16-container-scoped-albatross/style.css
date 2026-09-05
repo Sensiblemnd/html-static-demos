@@ -15,24 +15,24 @@
     display: flex;
     flex-wrap: wrap;
     /* (1 - flip) inverts the switch: gap/radius are "on" only in the wide state */
-    gap: calc((1 - var(--flip)) * 1.5rem);
-    border-radius: calc((1 - var(--flip)) * 1rem);
+    gap: calc((1 - var(--flip)) * var(--space-12));
+    border-radius: calc((1 - var(--flip)) * var(--radius-l));
     background: var(--color-surface);
     color: var(--color-text);
     border: 1px solid var(--color-border);
     overflow: hidden;
-  }
 
-  .panel > .side,
-  .panel > .content {
-    flex-grow: 1;
-    /* flip=0 (wide): basis 0%, items sit side by side; flip=1 (narrow): basis 999%, each item
-       overflows the row on its own and wraps to full width, i.e. stacks */
-    flex-basis: calc(var(--flip) * 999%);
-    padding: 1.5rem;
-  }
+    > .side,
+    > .content {
+      flex-grow: 1;
+      /* flip=0 (wide): basis 0%, items sit side by side; flip=1 (narrow): basis 999%, each item
+         overflows the row on its own and wraps to full width, i.e. stacks */
+      flex-basis: calc(var(--flip) * 999%);
+      padding: var(--space-12);
+    }
 
-  .panel > .side {
-    background: var(--color-surface-2);
+    > .side {
+      background: var(--color-surface-2);
+    }
   }
 }
