@@ -1,7 +1,9 @@
-@property --_f {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
+@layer tokens {
+  @property --_f {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
 }
 
 @layer overrides {
@@ -16,20 +18,22 @@
     0% { --_f: 1; }
   }
 
-  .range-slider::-webkit-slider-thumb {
-    view-timeline: --_f inline;
-  }
+  .range-slider {
+    &::-webkit-slider-thumb {
+      view-timeline: --_f inline;
+    }
 
-  .range-slider::-moz-range-thumb {
-    view-timeline: --_f inline;
+    &::-moz-range-thumb {
+      view-timeline: --_f inline;
+    }
   }
 }
 
 @layer components {
   .photo {
     inline-size: 100%;
-    block-size: 16rem;
-    border-radius: .75rem;
+    block-size: var(--preview-block);
+    border-radius: var(--radius-m);
     border: 1px solid var(--color-border);
     background-image:
       radial-gradient(circle at 20% 25%, #f59e0b, transparent 45%),

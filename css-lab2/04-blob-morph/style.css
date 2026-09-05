@@ -1,7 +1,9 @@
-@property --_f {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
+@layer tokens {
+  @property --_f {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
 }
 
 @layer overrides {
@@ -16,12 +18,14 @@
     0% { --_f: 1; }
   }
 
-  .range-slider::-webkit-slider-thumb {
-    view-timeline: --_f inline;
-  }
+  .range-slider {
+    &::-webkit-slider-thumb {
+      view-timeline: --_f inline;
+    }
 
-  .range-slider::-moz-range-thumb {
-    view-timeline: --_f inline;
+    &::-moz-range-thumb {
+      view-timeline: --_f inline;
+    }
   }
 }
 
@@ -37,7 +41,7 @@
     --bl-y-min: 58%; --bl-y-max: 40%;
 
     inline-size: 100%;
-    block-size: 16rem;
+    block-size: var(--preview-block);
     background: linear-gradient(135deg, var(--color-accent), #3b82f6);
     border-radius:
       calc(var(--tl-x-min) + (var(--tl-x-max) - var(--tl-x-min)) * var(--_f))

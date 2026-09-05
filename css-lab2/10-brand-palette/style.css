@@ -29,7 +29,7 @@
      page only — later layer wins over _shared.css's .stage without needing
      extra specificity. */
   .stage {
-    padding: 2rem 1.75rem;
+    padding: var(--space-11) var(--space-10);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-card);
     background: var(--stage-bg);
@@ -41,7 +41,7 @@
 
 @layer components {
   .section-label {
-    margin: 0 0 .75rem;
+    margin: 0 0 var(--space-6);
     font-size: .8rem;
     font-weight: 600;
     color: var(--color-muted);
@@ -50,9 +50,9 @@
   .swatch-row {
     display: flex;
     flex-wrap: wrap;
-    gap: .75rem;
+    gap: var(--space-6);
     padding: 0;
-    margin: 0 0 2rem;
+    margin: 0 0 var(--space-11);
     border: 0;
   }
 
@@ -66,101 +66,107 @@
     clip-path: inset(50%);
     white-space: nowrap;
     border: 0;
+
+    @media (prefers-reduced-motion: no-preference) {
+      &:checked + .brand-swatch {
+        transform: scale(1.08);
+      }
+    }
+
+    /* Selection is shown with a checkmark badge (below), not this ring alone —
+       :checked is still native, so screen readers get the state either way.
+       Specificity (0,3,1): the radio-hack's class+:checked+class chain is the
+       selector's minimum necessary form for a no-JS "if this input is checked,
+       style that sibling" rule — can't be reduced without extra markup or JS. */
+    &:checked + .brand-swatch::after {
+      --badge-size: 1.125rem;
+      --badge-offset: -.2rem;
+
+      content: "\2713";
+      position: absolute;
+      inset-block-end: var(--badge-offset);
+      inset-inline-end: var(--badge-offset);
+      inline-size: var(--badge-size);
+      block-size: var(--badge-size);
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 2px solid var(--stage-bg);
+      background: var(--color-accent);
+      color: contrast-color(var(--color-accent));
+      font-size: .65rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    &:focus-visible + .brand-swatch {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+    }
   }
 
   .brand-swatch {
+    --size: 2.75rem;
+
     position: relative;
-    inline-size: 2.75rem;
-    block-size: 2.75rem;
+    inline-size: var(--size);
+    block-size: var(--size);
     border-radius: 50%;
     border: 1px solid var(--color-border);
     cursor: pointer;
     transition: transform 150ms ease;
-  }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .brand-radio:checked + .brand-swatch {
-      transform: scale(1.08);
-    }
+    &.brand-swatch--1 { background: var(--color-swatch-1); }
+    &.brand-swatch--2 { background: var(--color-swatch-2); }
+    &.brand-swatch--3 { background: var(--color-swatch-3); }
+    &.brand-swatch--4 { background: var(--color-swatch-4); }
+    &.brand-swatch--5 { background: var(--color-swatch-5); }
+    &.brand-swatch--6 { background: var(--color-swatch-6); }
+    &.brand-swatch--7 { background: var(--color-swatch-7); }
   }
-
-  /* Selection is shown with a checkmark badge (below), not this ring alone —
-     :checked is still native, so screen readers get the state either way.
-     Specificity (0,3,1): the radio-hack's class+:checked+class chain is the
-     selector's minimum necessary form for a no-JS "if this input is checked,
-     style that sibling" rule — can't be reduced without extra markup or JS. */
-  .brand-radio:checked + .brand-swatch::after {
-    content: "\2713";
-    position: absolute;
-    inset-block-end: -.2rem;
-    inset-inline-end: -.2rem;
-    inline-size: 1.125rem;
-    block-size: 1.125rem;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    border: 2px solid var(--stage-bg);
-    background: var(--color-accent);
-    color: contrast-color(var(--color-accent));
-    font-size: .65rem;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .brand-radio:focus-visible + .brand-swatch {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 3px;
-  }
-
-  .brand-swatch--1 { background: var(--color-swatch-1); }
-  .brand-swatch--2 { background: var(--color-swatch-2); }
-  .brand-swatch--3 { background: var(--color-swatch-3); }
-  .brand-swatch--4 { background: var(--color-swatch-4); }
-  .brand-swatch--5 { background: var(--color-swatch-5); }
-  .brand-swatch--6 { background: var(--color-swatch-6); }
-  .brand-swatch--7 { background: var(--color-swatch-7); }
 
   .palette {
+    --col-min: 7rem;
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-    gap: .75rem;
+    grid-template-columns: repeat(auto-fit, minmax(var(--col-min), 1fr));
+    gap: var(--space-6);
   }
 
   .palette-swatch {
+    --size: 6rem;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     gap: .15rem;
-    block-size: 6rem;
-    padding: .75rem;
+    block-size: var(--size);
+    padding: var(--space-6);
     border-radius: var(--radius-control);
     border: 1px solid var(--color-border);
     font-weight: 600;
     font-size: .8rem;
-  }
-
-  .palette-value {
-    font-family: ui-monospace, monospace;
-    font-size: .7rem;
-    font-weight: 400;
-    opacity: .75;
-  }
-
-  .palette-swatch {
     background: var(--swatch-color);
     color: contrast-color(var(--swatch-color));
+
+    .palette-value {
+      font-family: ui-monospace, monospace;
+      font-size: .7rem;
+      font-weight: 400;
+      opacity: .75;
+    }
+
+    &.palette-swatch--base  { --swatch-color: var(--brand); }
+    &.palette-swatch--light { --swatch-color: color-mix(in srgb, var(--brand), #fff 30%); }
+    &.palette-swatch--dark  { --swatch-color: color-mix(in srgb, var(--brand), #000 30%); }
+    &.palette-swatch--r     { --swatch-color: rgb(from var(--brand) r 0 0); }
+    &.palette-swatch--g     { --swatch-color: rgb(from var(--brand) 0 g 0); }
+    &.palette-swatch--b     { --swatch-color: rgb(from var(--brand) 0 0 b); }
   }
 
-  .palette-swatch--base  { --swatch-color: var(--brand); }
-  .palette-swatch--light { --swatch-color: color-mix(in srgb, var(--brand), #fff 30%); }
-  .palette-swatch--dark  { --swatch-color: color-mix(in srgb, var(--brand), #000 30%); }
-  .palette-swatch--r     { --swatch-color: rgb(from var(--brand) r 0 0); }
-  .palette-swatch--g     { --swatch-color: rgb(from var(--brand) 0 g 0); }
-  .palette-swatch--b     { --swatch-color: rgb(from var(--brand) 0 0 b); }
-
   .code-block {
-    margin: 2rem 0 0;
-    padding: 1.25rem 1.5rem;
+    margin: var(--space-11) 0 0;
+    padding: var(--space-8) var(--space-9);
     border-radius: var(--radius-control);
     border: 1px solid var(--color-border);
     background: var(--color-surface);
@@ -169,10 +175,10 @@
     font-size: .85rem;
     line-height: 1.6;
     overflow-x: auto;
-  }
 
-  .code-block .hex-echo {
-    color: var(--color-accent);
+    .hex-echo {
+      color: var(--color-accent);
+    }
   }
 
   .hex-echo::before {

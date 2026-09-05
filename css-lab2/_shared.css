@@ -13,6 +13,40 @@
     --stage-bg: #0f1218;
     --stage-border: #3a4352;
     --shadow-color: rgb(0 0 0 / 13%);
+
+    /* Numbered rather than t-shirt sized: this lab's 11 hand-tuned demos
+       land on 12 distinct rem steps between .25rem and 3rem, closer
+       together than a small/medium/large naming scheme reads cleanly. */
+    --space-1: .25rem;
+    --space-2: .35rem;
+    --space-3: .4rem;
+    --space-4: .5rem;
+    --space-5: .6rem;
+    --space-6: .75rem;
+    --space-7: 1rem;
+    --space-8: 1.25rem;
+    --space-9: 1.5rem;
+    --space-10: 1.75rem;
+    --space-11: 2rem;
+    --space-12: 3rem;
+
+    --radius-s: .5rem;
+    --radius-m: .75rem;
+    --radius-l: 1rem;
+    --radius-full: 999px;
+
+    /* Content-width caps: same concept (a block's max-inline-size before
+       centering with margin-inline: auto) reused across demo cards. */
+    --measure-m: 700px;
+    --measure-l: 900px;
+    --measure-xl: 1100px;
+
+    /* Preview-box block-size: identical 16rem reused verbatim by the
+       photo, blob-morph, and tilt-scene demos. */
+    --preview-block: 16rem;
+    /* Compact color-preview square: reused by the channel-mixer swatch and
+       the contrast-picker preview. */
+    --size-swatch: 8rem;
   }
 }
 
@@ -35,20 +69,20 @@
   }
 
   header {
-    max-inline-size: 900px;
-    margin-block: 2rem 0;
+    max-inline-size: var(--measure-l);
+    margin-block: var(--space-11) 0;
     margin-inline: auto;
-    padding-inline: 1rem;
-  }
+    padding-inline: var(--space-7);
 
-  header h1 {
-    margin-block-end: .25rem;
-  }
+    h1 {
+      margin-block-end: var(--space-1);
+    }
 
-  header p {
-    max-inline-size: 70ch;
-    color: var(--color-muted);
-    margin-block-start: 0;
+    p {
+      max-inline-size: 70ch;
+      color: var(--color-muted);
+      margin-block-start: 0;
+    }
   }
 
   :is(h1, h2, h3) {
@@ -73,26 +107,28 @@
 
 @layer layout {
   .stage {
-    inline-size: min(90vw, 700px);
-    margin-block: 3rem;
+    inline-size: min(90vw, var(--measure-m));
+    margin-block: var(--space-12);
     margin-inline: auto;
-    padding: 2rem 1.5rem;
+    padding: var(--space-11) var(--space-9);
     border: 2px dashed var(--stage-border);
     background: var(--stage-bg);
   }
 
   .stage-controls {
     display: grid;
-    gap: 1.25rem;
-    margin-block-end: 2rem;
+    gap: var(--space-8);
+    margin-block-end: var(--space-11);
   }
 
-  .stage-control label {
-    display: flex;
-    justify-content: space-between;
-    font-size: .8rem;
-    color: var(--color-muted);
-    margin-block-end: .35rem;
+  .stage-control {
+    label {
+      display: flex;
+      justify-content: space-between;
+      font-size: .8rem;
+      color: var(--color-muted);
+      margin-block-end: var(--space-2);
+    }
   }
 }
 
@@ -102,57 +138,62 @@
      registered per demo (each needs its own property name/count) — this only
      makes the native control look intentional instead of browser-default. */
   input[type="range"].range-slider {
+    /* Thumb is centered on the track by construction: margin-block-start is
+       always half the size difference, not a value re-tuned by eye. */
+    --track-size: 4px;
+    --thumb-size: 16px;
+
     -webkit-appearance: none;
     appearance: none;
     inline-size: 100%;
     block-size: 1.5rem;
     background: transparent;
     margin: 0;
-  }
 
-  input[type="range"].range-slider::-webkit-slider-runnable-track {
-    block-size: 4px;
-    background: var(--color-border);
-    border-radius: 2px;
-  }
+    &::-webkit-slider-runnable-track {
+      block-size: var(--track-size);
+      background: var(--color-border);
+      border-radius: 2px;
+    }
 
-  input[type="range"].range-slider::-moz-range-track {
-    block-size: 4px;
-    background: var(--color-border);
-    border-radius: 2px;
-  }
+    &::-moz-range-track {
+      block-size: var(--track-size);
+      background: var(--color-border);
+      border-radius: 2px;
+    }
 
-  input[type="range"].range-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    inline-size: 16px;
-    block-size: 16px;
-    margin-block-start: -6px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    border: 2px solid var(--color-bg);
-    box-shadow: 0 0 0 1px var(--color-accent);
-    cursor: pointer;
-  }
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      inline-size: var(--thumb-size);
+      block-size: var(--thumb-size);
+      margin-block-start: calc((var(--track-size) - var(--thumb-size)) / 2);
+      border-radius: 50%;
+      background: var(--color-accent);
+      border: 2px solid var(--color-bg);
+      box-shadow: 0 0 0 1px var(--color-accent);
+      cursor: pointer;
+    }
 
-  input[type="range"].range-slider::-moz-range-thumb {
-    inline-size: 16px;
-    block-size: 16px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    border: 2px solid var(--color-bg);
-    box-shadow: 0 0 0 1px var(--color-accent);
-    cursor: pointer;
-  }
+    &::-moz-range-thumb {
+      inline-size: var(--thumb-size);
+      block-size: var(--thumb-size);
+      border-radius: 50%;
+      background: var(--color-accent);
+      border: 2px solid var(--color-bg);
+      box-shadow: 0 0 0 1px var(--color-accent);
+      cursor: pointer;
+    }
 
-  input[type="range"].range-slider:focus-visible::-webkit-slider-thumb {
-    outline: 2px solid var(--color-text);
-    outline-offset: 2px;
-  }
+    &:focus-visible::-webkit-slider-thumb {
+      outline: 2px solid var(--color-text);
+      outline-offset: 2px;
+    }
 
-  input[type="range"].range-slider:focus-visible::-moz-range-thumb {
-    outline: 2px solid var(--color-text);
-    outline-offset: 2px;
+    &:focus-visible::-moz-range-thumb {
+      outline: 2px solid var(--color-text);
+      outline-offset: 2px;
+    }
   }
 }
 

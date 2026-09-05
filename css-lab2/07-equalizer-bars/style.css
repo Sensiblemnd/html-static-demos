@@ -1,9 +1,11 @@
-@property --_f1 { syntax: "<number>"; inherits: true; initial-value: 0; }
-@property --_f2 { syntax: "<number>"; inherits: true; initial-value: 0; }
-@property --_f3 { syntax: "<number>"; inherits: true; initial-value: 0; }
-@property --_f4 { syntax: "<number>"; inherits: true; initial-value: 0; }
-@property --_f5 { syntax: "<number>"; inherits: true; initial-value: 0; }
-@property --_f6 { syntax: "<number>"; inherits: true; initial-value: 0; }
+@layer tokens {
+  @property --_f1 { syntax: "<number>"; inherits: true; initial-value: 0; }
+  @property --_f2 { syntax: "<number>"; inherits: true; initial-value: 0; }
+  @property --_f3 { syntax: "<number>"; inherits: true; initial-value: 0; }
+  @property --_f4 { syntax: "<number>"; inherits: true; initial-value: 0; }
+  @property --_f5 { syntax: "<number>"; inherits: true; initial-value: 0; }
+  @property --_f6 { syntax: "<number>"; inherits: true; initial-value: 0; }
+}
 
 @layer overrides {
   :root {
@@ -26,49 +28,46 @@
   @keyframes --_f5 { 0% { --_f5: 1; } }
   @keyframes --_f6 { 0% { --_f6: 1; } }
 
-  .range-slider--f1::-webkit-slider-thumb { view-timeline: --_f1 inline; }
-  .range-slider--f2::-webkit-slider-thumb { view-timeline: --_f2 inline; }
-  .range-slider--f3::-webkit-slider-thumb { view-timeline: --_f3 inline; }
-  .range-slider--f4::-webkit-slider-thumb { view-timeline: --_f4 inline; }
-  .range-slider--f5::-webkit-slider-thumb { view-timeline: --_f5 inline; }
-  .range-slider--f6::-webkit-slider-thumb { view-timeline: --_f6 inline; }
-
-  .range-slider--f1::-moz-range-thumb { view-timeline: --_f1 inline; }
-  .range-slider--f2::-moz-range-thumb { view-timeline: --_f2 inline; }
-  .range-slider--f3::-moz-range-thumb { view-timeline: --_f3 inline; }
-  .range-slider--f4::-moz-range-thumb { view-timeline: --_f4 inline; }
-  .range-slider--f5::-moz-range-thumb { view-timeline: --_f5 inline; }
-  .range-slider--f6::-moz-range-thumb { view-timeline: --_f6 inline; }
+  .range-slider--f1 { &::-webkit-slider-thumb { view-timeline: --_f1 inline; } &::-moz-range-thumb { view-timeline: --_f1 inline; } }
+  .range-slider--f2 { &::-webkit-slider-thumb { view-timeline: --_f2 inline; } &::-moz-range-thumb { view-timeline: --_f2 inline; } }
+  .range-slider--f3 { &::-webkit-slider-thumb { view-timeline: --_f3 inline; } &::-moz-range-thumb { view-timeline: --_f3 inline; } }
+  .range-slider--f4 { &::-webkit-slider-thumb { view-timeline: --_f4 inline; } &::-moz-range-thumb { view-timeline: --_f4 inline; } }
+  .range-slider--f5 { &::-webkit-slider-thumb { view-timeline: --_f5 inline; } &::-moz-range-thumb { view-timeline: --_f5 inline; } }
+  .range-slider--f6 { &::-webkit-slider-thumb { view-timeline: --_f6 inline; } &::-moz-range-thumb { view-timeline: --_f6 inline; } }
 }
 
 @layer components {
   .eq {
+    /* Tallest a bar can grow beyond its 4px resting height, shared by all
+       six .eq-bar--N rules below via var(--bar-range). */
+    --bar-range: 10rem;
+
     display: flex;
     align-items: end;
-    gap: 1rem;
+    gap: var(--space-7);
     block-size: 14rem;
-  }
 
-  .eq-band {
-    flex: 1;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: stretch;
-    gap: .75rem;
-    block-size: 100%;
-  }
+    .eq-band {
+      flex: 1;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: stretch;
+      gap: var(--space-6);
+      block-size: 100%;
+    }
 
-  .eq-bar {
-    inline-size: 100%;
-    border-radius: .35rem .35rem 0 0;
-    background: linear-gradient(180deg, var(--color-accent), #3b82f6);
-    min-block-size: 4px;
-  }
+    .eq-bar {
+      inline-size: 100%;
+      border-radius: var(--space-2) var(--space-2) 0 0;
+      background: linear-gradient(180deg, var(--color-accent), #3b82f6);
+      min-block-size: 4px;
 
-  .eq-bar--1 { block-size: calc(4px + var(--_f1) * 10rem); }
-  .eq-bar--2 { block-size: calc(4px + var(--_f2) * 10rem); }
-  .eq-bar--3 { block-size: calc(4px + var(--_f3) * 10rem); }
-  .eq-bar--4 { block-size: calc(4px + var(--_f4) * 10rem); }
-  .eq-bar--5 { block-size: calc(4px + var(--_f5) * 10rem); }
-  .eq-bar--6 { block-size: calc(4px + var(--_f6) * 10rem); }
+      &.eq-bar--1 { block-size: calc(4px + var(--_f1) * var(--bar-range)); }
+      &.eq-bar--2 { block-size: calc(4px + var(--_f2) * var(--bar-range)); }
+      &.eq-bar--3 { block-size: calc(4px + var(--_f3) * var(--bar-range)); }
+      &.eq-bar--4 { block-size: calc(4px + var(--_f4) * var(--bar-range)); }
+      &.eq-bar--5 { block-size: calc(4px + var(--_f5) * var(--bar-range)); }
+      &.eq-bar--6 { block-size: calc(4px + var(--_f6) * var(--bar-range)); }
+    }
+  }
 }

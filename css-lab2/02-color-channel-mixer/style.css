@@ -4,22 +4,22 @@
     --color-channel-g: #22c55e;
     --color-channel-b: #3b82f6;
   }
-}
 
-@property --_r {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-@property --_g {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-@property --_b {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
+  @property --_r {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+  @property --_g {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+  @property --_b {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
 }
 
 @layer overrides {
@@ -37,44 +37,54 @@
   @keyframes --_g { 0% { --_g: 1; } }
   @keyframes --_b { 0% { --_b: 1; } }
 
-  .range-slider--r::-webkit-slider-thumb {
-    view-timeline: --_r inline;
-    background: var(--color-channel-r);
-    box-shadow: 0 0 0 1px var(--color-channel-r);
-  }
-  .range-slider--g::-webkit-slider-thumb {
-    view-timeline: --_g inline;
-    background: var(--color-channel-g);
-    box-shadow: 0 0 0 1px var(--color-channel-g);
-  }
-  .range-slider--b::-webkit-slider-thumb {
-    view-timeline: --_b inline;
-    background: var(--color-channel-b);
-    box-shadow: 0 0 0 1px var(--color-channel-b);
+  .range-slider--r {
+    &::-webkit-slider-thumb {
+      view-timeline: --_r inline;
+      background: var(--color-channel-r);
+      box-shadow: 0 0 0 1px var(--color-channel-r);
+    }
+
+    &::-moz-range-thumb {
+      view-timeline: --_r inline;
+      background: var(--color-channel-r);
+      box-shadow: 0 0 0 1px var(--color-channel-r);
+    }
   }
 
-  .range-slider--r::-moz-range-thumb {
-    view-timeline: --_r inline;
-    background: var(--color-channel-r);
-    box-shadow: 0 0 0 1px var(--color-channel-r);
+  .range-slider--g {
+    &::-webkit-slider-thumb {
+      view-timeline: --_g inline;
+      background: var(--color-channel-g);
+      box-shadow: 0 0 0 1px var(--color-channel-g);
+    }
+
+    &::-moz-range-thumb {
+      view-timeline: --_g inline;
+      background: var(--color-channel-g);
+      box-shadow: 0 0 0 1px var(--color-channel-g);
+    }
   }
-  .range-slider--g::-moz-range-thumb {
-    view-timeline: --_g inline;
-    background: var(--color-channel-g);
-    box-shadow: 0 0 0 1px var(--color-channel-g);
-  }
-  .range-slider--b::-moz-range-thumb {
-    view-timeline: --_b inline;
-    background: var(--color-channel-b);
-    box-shadow: 0 0 0 1px var(--color-channel-b);
+
+  .range-slider--b {
+    &::-webkit-slider-thumb {
+      view-timeline: --_b inline;
+      background: var(--color-channel-b);
+      box-shadow: 0 0 0 1px var(--color-channel-b);
+    }
+
+    &::-moz-range-thumb {
+      view-timeline: --_b inline;
+      background: var(--color-channel-b);
+      box-shadow: 0 0 0 1px var(--color-channel-b);
+    }
   }
 }
 
 @layer components {
   .swatch {
     inline-size: 100%;
-    block-size: 8rem;
-    border-radius: .75rem;
+    block-size: var(--size-swatch);
+    border-radius: var(--radius-m);
     border: 1px solid var(--color-border);
     background: rgb(
       calc(var(--_r) * 255)

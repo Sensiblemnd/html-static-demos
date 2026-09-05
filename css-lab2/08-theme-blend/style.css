@@ -1,7 +1,9 @@
-@property --_f {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
+@layer tokens {
+  @property --_f {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
 }
 
 @layer overrides {
@@ -16,12 +18,14 @@
     0% { --_f: 1; }
   }
 
-  .range-slider::-webkit-slider-thumb {
-    view-timeline: --_f inline;
-  }
+  .range-slider {
+    &::-webkit-slider-thumb {
+      view-timeline: --_f inline;
+    }
 
-  .range-slider::-moz-range-thumb {
-    view-timeline: --_f inline;
+    &::-moz-range-thumb {
+      view-timeline: --_f inline;
+    }
   }
 }
 
@@ -34,24 +38,24 @@
     --dark-border: var(--color-border);
     --light-border: #cbd5e1;
 
-    padding: 1.5rem;
-    border-radius: .75rem;
+    padding: var(--space-9);
+    border-radius: var(--radius-m);
     background: color-mix(in oklch, var(--dark-bg) calc((1 - var(--_f)) * 100%), var(--light-bg) calc(var(--_f) * 100%));
     color: color-mix(in oklch, var(--dark-text) calc((1 - var(--_f)) * 100%), var(--light-text) calc(var(--_f) * 100%));
     border: 1px solid color-mix(in oklch, var(--dark-border) calc((1 - var(--_f)) * 100%), var(--light-border) calc(var(--_f) * 100%));
-  }
 
-  .blend-card h2 {
-    margin-block-start: 0;
-  }
+    h2 {
+      margin-block-start: 0;
+    }
 
-  .blend-card button {
-    background: var(--color-accent);
-    color: var(--color-bg);
-    border: none;
-    border-radius: .5rem;
-    padding: .5rem 1rem;
-    font: inherit;
-    cursor: pointer;
+    button {
+      background: var(--color-accent);
+      color: var(--color-bg);
+      border: none;
+      border-radius: var(--radius-s);
+      padding: var(--space-4) var(--space-7);
+      font: inherit;
+      cursor: pointer;
+    }
   }
 }

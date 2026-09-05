@@ -1,7 +1,9 @@
-@property --_f {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
+@layer tokens {
+  @property --_f {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
 }
 
 @layer overrides {
@@ -16,12 +18,14 @@
     0% { --_f: 1; }
   }
 
-  .range-slider::-webkit-slider-thumb {
-    view-timeline: --_f inline;
-  }
+  .range-slider {
+    &::-webkit-slider-thumb {
+      view-timeline: --_f inline;
+    }
 
-  .range-slider::-moz-range-thumb {
-    view-timeline: --_f inline;
+    &::-moz-range-thumb {
+      view-timeline: --_f inline;
+    }
   }
 }
 
@@ -33,17 +37,17 @@
     --leading-max: 1.6;
     --tracking-min: -0.01em;
     --tracking-max: 0.08em;
-  }
 
-  .type-preview h2 {
-    margin: 0 0 .75rem;
-    font-size: calc(var(--font-size-max) * var(--_f) + var(--font-size-min) * (1 - var(--_f)));
-    line-height: calc(var(--leading-max) * var(--_f) + var(--leading-min) * (1 - var(--_f)));
-    letter-spacing: calc(var(--tracking-max) * var(--_f) + var(--tracking-min) * (1 - var(--_f)));
-  }
+    h2 {
+      margin: 0 0 var(--space-6);
+      font-size: calc(var(--font-size-max) * var(--_f) + var(--font-size-min) * (1 - var(--_f)));
+      line-height: calc(var(--leading-max) * var(--_f) + var(--leading-min) * (1 - var(--_f)));
+      letter-spacing: calc(var(--tracking-max) * var(--_f) + var(--tracking-min) * (1 - var(--_f)));
+    }
 
-  .type-preview p {
-    max-inline-size: 60ch;
-    color: var(--color-muted);
+    p {
+      max-inline-size: 60ch;
+      color: var(--color-muted);
+    }
   }
 }

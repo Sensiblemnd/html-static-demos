@@ -1,12 +1,14 @@
-@property --_p {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-@property --_n {
-  syntax: "<integer>";
-  inherits: true;
-  initial-value: 0;
+@layer tokens {
+  @property --_p {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+  @property --_n {
+    syntax: "<integer>";
+    inherits: true;
+    initial-value: 0;
+  }
 }
 
 @layer overrides {
@@ -36,50 +38,50 @@
     /* single source of truth — the fill and the readout badge both read this,
        so the hue math only exists once (see the demo 10 palette refactor). */
     --fill-color: hsl(calc(var(--_p) * 120) 70% 50%);
-    margin-block-start: .5rem;
-  }
+    margin-block-start: var(--space-4);
 
-  .progress-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-block-end: .6rem;
-  }
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-block-end: var(--space-5);
+    }
 
-  .progress-caption {
-    font-size: .85rem;
-    color: var(--color-muted);
-  }
+    .progress-caption {
+      font-size: .85rem;
+      color: var(--color-muted);
+    }
 
-  .progress-readout {
-    min-inline-size: 3.25rem;
-    padding: .2rem .6rem;
-    border-radius: 999px;
-    background: var(--fill-color);
-    color: contrast-color(var(--fill-color));
-    font-family: ui-monospace, monospace;
-    font-size: .8rem;
-    font-weight: 700;
-    text-align: center;
-  }
+    .progress-readout {
+      min-inline-size: 3.25rem;
+      padding: .2rem var(--space-5);
+      border-radius: var(--radius-full);
+      background: var(--fill-color);
+      color: contrast-color(var(--fill-color));
+      font-family: ui-monospace, monospace;
+      font-size: .8rem;
+      font-weight: 700;
+      text-align: center;
 
-  .progress-readout::before {
-    counter-reset: pct var(--_n);
-    content: counter(pct) "%";
-  }
+      &::before {
+        counter-reset: pct var(--_n);
+        content: counter(pct) "%";
+      }
+    }
 
-  .progress-track {
-    inline-size: 100%;
-    block-size: 1.25rem;
-    border-radius: 999px;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    overflow: hidden;
-  }
+    .progress-track {
+      inline-size: 100%;
+      block-size: var(--space-8);
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      overflow: hidden;
 
-  .progress-fill {
-    inline-size: calc(var(--_p) * 100%);
-    block-size: 100%;
-    background: var(--fill-color);
+      .progress-fill {
+        inline-size: calc(var(--_p) * 100%);
+        block-size: 100%;
+        background: var(--fill-color);
+      }
+    }
   }
 }

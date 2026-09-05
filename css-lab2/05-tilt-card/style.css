@@ -1,12 +1,14 @@
-@property --_x {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0.5;
-}
-@property --_y {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0.5;
+@layer tokens {
+  @property --_x {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0.5;
+  }
+  @property --_y {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0.5;
+  }
 }
 
 @layer overrides {
@@ -22,53 +24,62 @@
   @keyframes --_x { 0% { --_x: 1; } }
   @keyframes --_y { 0% { --_y: 1; } }
 
-  .range-slider--x::-webkit-slider-thumb {
-    view-timeline: --_x inline;
+  .range-slider--x {
+    &::-webkit-slider-thumb {
+      view-timeline: --_x inline;
+    }
+
+    &::-moz-range-thumb {
+      view-timeline: --_x inline;
+    }
   }
-  .range-slider--y::-webkit-slider-thumb {
-    view-timeline: --_y inline;
-  }
-  .range-slider--x::-moz-range-thumb {
-    view-timeline: --_x inline;
-  }
-  .range-slider--y::-moz-range-thumb {
-    view-timeline: --_y inline;
+
+  .range-slider--y {
+    &::-webkit-slider-thumb {
+      view-timeline: --_y inline;
+    }
+
+    &::-moz-range-thumb {
+      view-timeline: --_y inline;
+    }
   }
 }
 
 @layer components {
   .tilt-scene {
     inline-size: 100%;
-    block-size: 16rem;
+    block-size: var(--preview-block);
     display: grid;
     place-items: center;
     perspective: 900px;
   }
 
   .tilt-card {
+    --size: 12rem;
+
     position: relative;
-    inline-size: 12rem;
-    block-size: 12rem;
-    border-radius: 1rem;
+    inline-size: var(--size);
+    block-size: var(--size);
+    border-radius: var(--radius-l);
     background: linear-gradient(160deg, var(--color-surface-2), var(--color-bg));
     border: 1px solid var(--color-border);
-    box-shadow: 0 1.5rem 3rem var(--shadow-color);
+    box-shadow: 0 var(--space-9) var(--space-12) var(--shadow-color);
     transform-style: preserve-3d;
     overflow: hidden;
     transform:
       rotateX(calc((var(--_y) - 0.5) * -40deg))
       rotateY(calc((var(--_x) - 0.5) * 40deg));
-  }
 
-  .tilt-card-sheen {
-    position: absolute;
-    inset: -50%;
-    background: radial-gradient(
-      circle at
-        calc(var(--_x) * 100%)
-        calc(var(--_y) * 100%),
-      rgb(255 255 255 / 25%),
-      transparent 45%
-    );
+    .tilt-card-sheen {
+      position: absolute;
+      inset: -50%;
+      background: radial-gradient(
+        circle at
+          calc(var(--_x) * 100%)
+          calc(var(--_y) * 100%),
+        rgb(255 255 255 / 25%),
+        transparent 45%
+      );
+    }
   }
 }
