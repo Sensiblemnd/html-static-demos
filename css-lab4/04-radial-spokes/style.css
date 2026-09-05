@@ -1,13 +1,15 @@
-/* Registering --angle as a typed <angle> forces it to resolve on .spoke
-   (using .spoke's real sibling-index()/sibling-count()) before the value
-   inherits down to the label span. Without this, the span would re-run
-   those two functions in its own context when it reads var(--angle), and
-   a span has no siblings of its own, so every label would end up rotated
-   by the same fixed, wrong amount instead of canceling its parent's spin. */
-@property --angle {
-  syntax: "<angle>";
-  inherits: true;
-  initial-value: 0deg;
+@layer tokens {
+  /* Registering --angle as a typed <angle> forces it to resolve on .spoke
+     (using .spoke's real sibling-index()/sibling-count()) before the value
+     inherits down to the label span. Without this, the span would re-run
+     those two functions in its own context when it reads var(--angle), and
+     a span has no siblings of its own, so every label would end up rotated
+     by the same fixed, wrong amount instead of canceling its parent's spin. */
+  @property --angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0deg;
+  }
 }
 
 @layer components {
@@ -15,50 +17,57 @@
      sibling-index()/sibling-count() see, so the fallback still reads as a
      deliberate layout rather than a pile of overlapping circles. */
   .ring {
+    /* The circular layout's diameter, once sibling-index()/sibling-count()
+       are supported. Distinct from --measure-xs above: that one bounds the
+       fallback row's width, this one is the enhanced layout's own size. */
+    --ring-diameter: 280px;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: .6rem;
-    max-inline-size: 320px;
+    gap: var(--space-sm);
+    max-inline-size: var(--measure-xs);
     margin-inline: auto;
-  }
 
-  .spoke span {
-    display: grid;
-    place-items: center;
-    inline-size: 2.5rem;
-    block-size: 2.5rem;
-    border-radius: 50%;
-    background: var(--color-accent);
-    color: oklch(15% 0.02 250);
-    font-family: ui-monospace, monospace;
-    font-size: .8rem;
-    font-weight: 700;
-  }
-
-  /* counter-reset takes an <integer>, same type sibling-index() returns, so
-     it doubles as a support test for the function itself. */
-  @supports (counter-reset: c sibling-index()) {
-    .ring {
+    /* counter-reset takes an <integer>, same type sibling-index() returns,
+       so it doubles as a support test for the function itself. */
+    @supports (counter-reset: c sibling-index()) {
       position: relative;
-      inline-size: 280px;
-      block-size: 280px;
+      inline-size: var(--ring-diameter);
+      block-size: var(--ring-diameter);
       border-radius: 50%;
       border: 1px dashed var(--color-border);
     }
+  }
 
-    .spoke {
+  .spoke {
+    --spoke-size: 2.5rem;
+
+    span {
+      display: grid;
+      place-items: center;
+      inline-size: var(--spoke-size);
+      block-size: var(--spoke-size);
+      border-radius: 50%;
+      background: var(--color-accent);
+      color: var(--color-bg);
+      font-family: ui-monospace, monospace;
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    @supports (counter-reset: c sibling-index()) {
       --angle: calc((360deg / sibling-count()) * sibling-index());
       position: absolute;
       inset: 0;
       display: grid;
       place-items: start center;
       transform: rotate(var(--angle));
-    }
 
-    .spoke span {
-      margin-block-start: -1.25rem;
-      transform: rotate(calc(var(--angle) * -1));
+      span {
+        margin-block-start: calc(var(--spoke-size) / -2);
+        transform: rotate(calc(var(--angle) * -1));
+      }
     }
   }
 }

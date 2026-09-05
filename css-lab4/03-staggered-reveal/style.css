@@ -1,42 +1,40 @@
 @layer components {
   .stagger-list {
     display: grid;
-    gap: .6rem;
+    gap: var(--space-sm);
     margin: 0;
     padding: 0;
     list-style: none;
     font-family: ui-monospace, monospace;
     font-size: .95rem;
-  }
 
-  .stagger-list li {
-    display: flex;
-    align-items: center;
-    gap: .65rem;
-    padding: .75rem 1rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: .5rem;
+    li {
+      display: flex;
+      align-items: center;
+      gap: var(--space-s);
+      padding: var(--space-m) var(--space-l);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-s);
+
+      @media (prefers-reduced-motion: no-preference) {
+        opacity: 0;
+        translate: 0 var(--space-m);
+        animation: reveal .5s ease forwards;
+        /* Falls back to the property's initial 0s if sibling-index() isn't
+           recognized: every row then animates in together instead of in
+           sequence, which still looks intentional rather than broken. */
+        animation-delay: calc(sibling-index() * 80ms);
+      }
+    }
   }
 
   .dot {
-    inline-size: .5rem;
-    block-size: .5rem;
+    inline-size: var(--space-xs);
+    block-size: var(--space-xs);
     border-radius: 50%;
     background: var(--color-accent);
     flex-shrink: 0;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .stagger-list li {
-      opacity: 0;
-      translate: 0 .75rem;
-      animation: reveal .5s ease forwards;
-      /* Falls back to the property's initial 0s if sibling-index() isn't
-         recognized: every row then animates in together instead of in
-         sequence, which still looks intentional rather than broken. */
-      animation-delay: calc(sibling-index() * 80ms);
-    }
   }
 
   @keyframes reveal {
